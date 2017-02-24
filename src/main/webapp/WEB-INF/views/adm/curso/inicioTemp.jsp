@@ -21,7 +21,8 @@
 	
 <h1>IFTube - Adm</h1>		
 <hr>
-<a href="exibirPaginaCadastro"><button>Cadastrar Disciplina</button></a>
+<a href="exibirPaginaCadastrarCurso"><button>Cadastrar Curso</button></a> |
+<a href="exibirPaginaCadastrarDisciplina"><button>Cadastrar Disciplina</button></a>
 <hr>
 
 

@@ -13,36 +13,26 @@
 </head>
 <body>
 
-<jsp:useBean id="curso"
-		class="br.com.iftube.model.entities.Curso" />
+	<jsp:useBean id="curso" class="br.com.iftube.model.entities.Curso" />
 	<jsp:useBean id="disciplina"
 		class="br.com.iftube.model.entities.Disciplina" />
 	<jsp:useBean id="palavraChave"
 		class="br.com.iftube.model.entities.PalavraChave" />
 
-<h1>IFTube - Adm</h1>		
-<hr>
-<h3>Disciplina</h3>
-<hr>
-	<form action="addDisciplina" method="post">
-	
-		Curso:<select name="curso">
-			<c:forEach var="c" items="${listarCurso}">
-				<option value="${c.id}">${c.nomeCurso}</option>
-			</c:forEach>
-		</select><br/>
-		
-		Disciplina:<input type="text" name="nomeDisciplina"> <br /> 
-		
-		
-		Período:<select name="periodo">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-		</select><br /> 
-		
-		Tags:<input type="text" name="tag"><br /> 
-		<input type="submit" value="Cadastrar">
+	<h1>IFTube - Adm</h1>
+	<hr>
+	<h3>Curso</h3>
+	<hr>
+	<form action="addCurso" method="post">
+
+		<div>
+			<label for="title">Curso</label>
+			<input type="text" name="nomeCurso" />
+		</div>
+
+		<div>
+			<input type="submit" value="Cadastrar">
+		</div>
 	</form>
 	<a href="listar"><button>Voltar</button></a>
 

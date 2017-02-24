@@ -7,14 +7,13 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-
 	<properties>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	
 	<build>
-		<finalName>fabricaweb2</finalName>
+		<finalName>iftube</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -44,7 +43,8 @@
 		</dependency>
 		<dependency>
 		
-		<!-- Spring Web 
+	<!-- 
+		Spring Web 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>

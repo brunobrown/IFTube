@@ -29,7 +29,6 @@ public class Disciplina implements Serializable{
 	
 	private Integer periodo;
 	
-	
 	@ManyToOne
 	@JoinColumn(name = "id_curso_fk")
 	private Curso curso;
