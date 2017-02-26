@@ -1,4 +1,4 @@
-package br.com.iftube.model.daos.exception;
+package br.com.iftube.exception.model;
 
 public class DAOException extends Exception{
 

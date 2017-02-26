@@ -2,6 +2,7 @@ package br.com.iftube.model.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,19 +13,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "palavra_chave")
+@Table(name="palavra_chave")
 public class PalavraChave implements Serializable{
-
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 9099352935326276989L;
-	
+	private static final long serialVersionUID = -7868269123208270826L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
 	@Lob
+	@Column(nullable=false)
 	private String tag;
 	
 	@ManyToOne

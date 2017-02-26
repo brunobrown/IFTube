@@ -13,20 +13,22 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "disciplina")
+@Table(name="disciplina")
 public class Disciplina implements Serializable{
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5312804025362449060L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@Column(name = "nome_disciplina")
+	@Column(name = "nome_disciplina", unique=true, nullable=false, length=100)
 	private String nomeDisciplina;
 	
+	@Column(nullable=false, length=10)
 	private Integer periodo;
 	
 	@ManyToOne

@@ -26,15 +26,46 @@
 	<form action="addCurso" method="post">
 
 		<div>
-			<label for="title">Curso</label>
-			<input type="text" name="nomeCurso" />
+			<label for="title">Curso</label> <input type="text" name="nomeCurso" />
 		</div>
 
 		<div>
 			<input type="submit" value="Cadastrar">
 		</div>
 	</form>
+
 	<a href="listar"><button>Voltar</button></a>
+
+	<hr />
+
+
+	<form:form action="searchCurso" method="get">
+		Curso:<input type="text" name="nomeCurso">
+		<input type="submit" value="Pesquisar">
+	</form:form>
+
+	<hr />
+	<table style='width: 30%'>
+		<tr>
+			<th>ID</th>
+			<th>CURSO</th>
+			<th>AÇÕES</th>
+		</tr>
+
+		<c:forEach var="c" items="${listarCurso}">
+
+			<tr>
+
+				<form:form action="editCurso" method="get">
+					<td><input type="text" name="id" value="${c.id}"
+						readonly="readonly"></td>
+					<td><input type="text" name="nomeCurso" value="${c.nomeCurso}"></td>
+					<td><input type="submit" value="Alterar"></td>
+				</form:form>
+				<td><a href="deleteCurso?id=${c.id}"><button>Remover</button></a></td>
+			</tr>
+		</c:forEach>
+	</table>
 
 </body>
 </html>

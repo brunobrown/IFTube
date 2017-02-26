@@ -1,4 +1,4 @@
-package br.com.iftube.service.exception;
+package br.com.iftube.exception.service;
 
 public class ServiceException extends Exception {
 
@@ -9,10 +9,6 @@ public class ServiceException extends Exception {
 
 	public ServiceException(String msg) {
 		super(msg);
-	}
-
-	public ServiceException(Exception e) {
-		super(e);
 	}
 
 }

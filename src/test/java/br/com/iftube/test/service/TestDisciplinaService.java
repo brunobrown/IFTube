@@ -8,10 +8,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.daos.DisciplinaDAO;
 import br.com.iftube.model.entities.Disciplina;
 import br.com.iftube.service.DisciplinaService;
-import br.com.iftube.service.exception.ServiceException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/applicationContext.xml"})

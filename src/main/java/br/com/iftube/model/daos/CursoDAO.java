@@ -7,10 +7,12 @@ import br.com.iftube.model.entities.Curso;
 public interface CursoDAO {
 
 	public Curso adicionar(Curso curso);
-	public void editar(Curso curso);
-	public void deletar(int cursoId);
+	public Curso editar(Curso curso);
+	public void deletar(Curso curso);
 	public Curso obterCursoPorId(int cursoId);
+	public Curso obterCursoPorNome(String nomeCurso);
 	@SuppressWarnings("rawtypes")
 	public List obterTodosCurso();
+
 	
 }

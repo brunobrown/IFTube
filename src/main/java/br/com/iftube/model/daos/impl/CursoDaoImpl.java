@@ -29,18 +29,29 @@ public class CursoDaoImpl implements CursoDAO {
 	}
 
 	@Transactional
-	public void editar(Curso curso) {
-		em.merge(curso);
+	public Curso editar(Curso curso) {
+		return em.merge(curso);
 	}
 
 	@Transactional
-	public void deletar(int cursoId) {
-		em.remove(cursoId);
+	public void deletar(Curso curso) {
+		em.remove(curso);
 	}
 
 	@Transactional
 	public Curso obterCursoPorId(int cursoId) {
 		return em.find(Curso.class, cursoId);
+	}
+
+	@Transactional
+	public Curso obterCursoPorNome(String nomeCurso) {
+		try {
+		Query q = em.createQuery("select c from Curso c where c.nomeCurso=:nomeCursoParam");
+		q.setParameter("nomeCursoParam", nomeCurso);
+		return (Curso) q.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -49,5 +60,5 @@ public class CursoDaoImpl implements CursoDAO {
 		Query q = em.createQuery("from Curso");
 		return q.getResultList();
 	}
-	
+
 }

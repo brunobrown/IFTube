@@ -10,21 +10,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "curso")
+@Table(name="curso")
 public class Curso implements Serializable{
 
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3789251352886877783L;
-	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@Column(name = "nome_curso")
-	private String nomeCurso;
+	@Column(name = "nome_curso",unique=true, nullable=false, length=100)
+	private String nomeCurso; 
 	
 	public Curso() {
 		// TODO Auto-generated constructor stub

@@ -4,15 +4,15 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.entities.Curso;
 import br.com.iftube.service.CursoService;
-import br.com.iftube.service.exception.ServiceException;
 
 
 @Controller
-@Transactional
 public class CursoController {
 
 	@Autowired
@@ -20,21 +20,47 @@ public class CursoController {
 
 
 	@RequestMapping("exibirPaginaCadastrarCurso")
-	public String exibirForm() {
+	public String exibirPaginaCadastrarCurso(Model model) {
+		model.addAttribute("listarCurso", cursoService.obterTodosCurso());
 		return "adm/curso/addCursoTemp";
 	}
 	
+	@Transactional
 	@RequestMapping("addCurso")
 	public String cadastrarCurso(Curso curso) {
-		try {
-			cursoService.adicionar(curso);
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+			try {
+				cursoService.adicionar(curso);
+			} catch (ServiceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		
 		return "forward:exibirPaginaCadastrarCurso";
 	}
 
+	@RequestMapping("editCurso")
+	@Transactional
+	public String alterarCurso(int id, Curso curso){
+		cursoService.editar(curso);
+		return "forward:exibirPaginaCadastrarCurso";
+	}
+	
+	@RequestMapping("deleteCurso")
+	@Transactional
+	public String removeCurso(int id, Curso curso){
+		
+		cursoService.deletar(cursoService.obterCursoPorId(curso.getId()));
+		return "forward:exibirPaginaCadastrarCurso";
+	}
+	
+	@RequestMapping("searchCurso")
+	@Transactional
+	public String searchCurso(String nomeCurso, Model model){
+		Curso cursoLocalizado = cursoService.obterCursoPorNome(nomeCurso);
+		model.addAttribute("listarCurso", cursoLocalizado);
+		return "adm/curso/addCursoTemp";
+	}
 
 }

@@ -2,8 +2,8 @@ package br.com.iftube.service;
 
 import java.util.List;
 
+import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.entities.Disciplina;
-import br.com.iftube.service.exception.ServiceException;
 
 public interface DisciplinaService {
 
