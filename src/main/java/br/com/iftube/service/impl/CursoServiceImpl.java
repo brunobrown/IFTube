@@ -20,6 +20,11 @@ public class CursoServiceImpl implements CursoService{
 	
 	@Transactional
 	public Curso adicionar(Curso curso) throws ServiceException{
+		Curso cursoEncontrado = cursoDao.obterCursoPorNome(curso.getNomeCurso());
+		if(cursoEncontrado != null){
+			throw new ServiceException("Curso já existe!");
+		}
+		
 		return cursoDao.adicionar(curso);
 	}
 

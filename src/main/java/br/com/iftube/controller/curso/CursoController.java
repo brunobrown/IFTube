@@ -27,13 +27,13 @@ public class CursoController {
 	
 	@Transactional
 	@RequestMapping("addCurso")
-	public String cadastrarCurso(Curso curso) {
+	public String cadastrarCurso(Curso curso, Model model) {
 		
 			try {
 				cursoService.adicionar(curso);
 			} catch (ServiceException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				model.addAttribute("exception", e);
 			}
 		
 		
@@ -59,7 +59,7 @@ public class CursoController {
 	@Transactional
 	public String searchCurso(String nomeCurso, Model model){
 		Curso cursoLocalizado = cursoService.obterCursoPorNome(nomeCurso);
-		model.addAttribute("listarCurso", cursoLocalizado);
+		model.addAttribute("cursoLocalizado", cursoLocalizado);
 		return "adm/curso/addCursoTemp";
 	}
 

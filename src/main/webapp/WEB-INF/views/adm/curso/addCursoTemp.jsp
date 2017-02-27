@@ -23,6 +23,8 @@
 	<hr>
 	<h3>Curso</h3>
 	<hr>
+	${exception}
+
 	<form action="addCurso" method="post">
 
 		<div>
@@ -52,19 +54,42 @@
 			<th>AÇÕES</th>
 		</tr>
 
-		<c:forEach var="c" items="${listarCurso}">
 
-			<tr>
+		<c:choose>
+			<c:when test="${cursoLocalizado != null}">
 
-				<form:form action="editCurso" method="get">
-					<td><input type="text" name="id" value="${c.id}"
-						readonly="readonly"></td>
-					<td><input type="text" name="nomeCurso" value="${c.nomeCurso}"></td>
-					<td><input type="submit" value="Alterar"></td>
-				</form:form>
-				<td><a href="deleteCurso?id=${c.id}"><button>Remover</button></a></td>
-			</tr>
-		</c:forEach>
+				<tr>
+					<form:form action="editCurso" method="get">
+						<td><input type="text" name="id"
+							value="${cursoLocalizado.id}" readonly="readonly"></td>
+						<td><input type="text" name="nomeCurso"
+							value="${cursoLocalizado.nomeCurso}"></td>
+						<td><input type="submit" value="Alterar"></td>
+					</form:form>
+					<td><a href="deleteCurso?id=${cursoLocalizado.id}"><button>Remover</button></a></td>
+				</tr>
+
+			</c:when>
+			<c:otherwise>
+
+				<c:forEach var="c" items="${listarCurso}">
+
+					<tr>
+
+						<form:form action="editCurso" method="get">
+							<td><input type="text" name="id" value="${c.id}"
+								readonly="readonly"></td>
+							<td><input type="text" name="nomeCurso"
+								value="${c.nomeCurso}"></td>
+							<td><input type="submit" value="Alterar"></td>
+						</form:form>
+						<td><a href="deleteCurso?id=${c.id}"><button>Remover</button></a></td>
+					</tr>
+				</c:forEach>
+
+			</c:otherwise>
+		</c:choose>
+
 	</table>
 
 </body>

@@ -3,6 +3,7 @@ package br.com.iftube.model.daos.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -48,9 +49,11 @@ public class CursoDaoImpl implements CursoDAO {
 		try {
 		Query q = em.createQuery("select c from Curso c where c.nomeCurso=:nomeCursoParam");
 		q.setParameter("nomeCursoParam", nomeCurso);
+		q.setMaxResults(1);
 		return (Curso) q.getSingleResult();
-		} catch (Exception e) {
+		} catch (NoResultException e) {
 			return null;
+			//throw new DAOException("Resgistro não encontrado", e);
 		}
 	}
 
