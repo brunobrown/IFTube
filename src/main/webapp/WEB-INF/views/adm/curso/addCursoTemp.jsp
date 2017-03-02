@@ -36,7 +36,7 @@
 		</div>
 	</form>
 
-	<a href="listar"><button>Voltar</button></a>
+	<a href="home"><button>Voltar</button></a>
 
 	<hr />
 
@@ -47,7 +47,7 @@
 	</form:form>
 
 	<hr />
-	<table style='width: 30%'>
+	<table>
 		<tr>
 			<th>ID</th>
 			<th>CURSO</th>

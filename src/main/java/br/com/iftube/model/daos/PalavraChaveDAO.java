@@ -2,15 +2,17 @@ package br.com.iftube.model.daos;
 
 import java.util.List;
 
+
 import br.com.iftube.model.entities.PalavraChave;
 
 public interface PalavraChaveDAO {
 
-	public void adicionar(PalavraChave palavraChave);
-	public void editar(PalavraChave palavraChave);
-	public void deletar(int palavraChaveId);
-	public PalavraChave obterPalavraChavePorId(int palavraChaveId);
+	public PalavraChave adicionar(PalavraChave tag);
+	public void editar(PalavraChave tag);
+	public void deletar(int tagId);
+	public PalavraChave obterTagPorId(int tagId);
+	public PalavraChave obterTagPorNome(String tag);
 	@SuppressWarnings("rawtypes")
-	public List obterTodosPalavraChave();
+	public List obterTodosTag();
 	
 }

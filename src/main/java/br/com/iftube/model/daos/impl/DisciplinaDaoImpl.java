@@ -3,6 +3,7 @@ package br.com.iftube.model.daos.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -44,14 +45,15 @@ public class DisciplinaDaoImpl implements DisciplinaDAO {
 	}
 	
 	@Transactional
-	public Disciplina obterDisciplinaPorNome(String nomeDisciplina){
+	public Disciplina obterDisciplinaPorNome(String nomeDisciplina) {
 		try {
-			Query q = em.createQuery("select d from Disciplina d where d.nomeDisciplina=:nomeParam");
-			q.setParameter("nomeParam", nomeDisciplina);
-			return (Disciplina) q.getSingleResult();
-		} catch (Exception e) {
+		Query q = em.createQuery("select d from Disciplina d where d.nomeDisciplina=:nomeDisciplinaParam");
+		q.setParameter("nomeDisciplinaParam", nomeDisciplina);
+		q.setMaxResults(1);
+		return (Disciplina) q.getSingleResult();
+		} catch (NoResultException e) {
 			return null;
-			//throw new DAOException("Registro não encontrado", e);
+			//throw new DAOException("Resgistro não encontrado", e);
 		}
 	}
 

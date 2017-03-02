@@ -18,15 +18,18 @@
 		class="br.com.iftube.model.entities.Disciplina" />
 	<jsp:useBean id="palavraChave"
 		class="br.com.iftube.model.entities.PalavraChave" />
-	
-<h1>IFTube - Adm</h1>		
-<hr>
-<a href="exibirPaginaCadastrarCurso"><button>Cadastrar Curso</button></a> |
-<a href="exibirPaginaCadastrarDisciplina"><button>Cadastrar Disciplina</button></a>
-<hr>
 
 
-	<table>
+	<h1>IFTube - Adm</h1>
+	<hr>
+	<a href="exibirPaginaCadastrarCurso"><button>Cadastrar
+			Curso</button></a> |
+	<a href="exibirPaginaCadastrarDisciplina"><button>Cadastrar
+			Disciplina</button></a>
+	<hr>
+
+
+	<table border='1' style='width: 50%'>
 		<tr>
 			<th>ID</th>
 			<th>CURSO</th>
@@ -36,18 +39,18 @@
 			<th>AÇÕES</th>
 		</tr>
 
-		<c:forEach var="c" items="${listarCurso}">
-					<tr>
-						<td>${c.id}</td>
-						<td>${c.nomeCurso}</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><a href="exibirPaginaVisualizar?id=${c.id}"><button>Vilualizar</button></a></td>
-						<td><a href="exibirPaginaAlterar?id=${c.id}"><button>Alterar</button></a></td>
-						<td><a href="delete?id=${c.id}"><button>Remover</button></a></td>
-					</tr>
-				</c:forEach>
+		<c:forEach var="obj" items="${listar}" varStatus="i">
+			<tr bgcolor="#${ i.count % 2 == 0 ? 'ffffff' : 'bdc3c7' }" >
+				<td></td>
+				<td></td>
+				<td>${obj.nomeDisciplina}</td>
+				<td>${obj.periodo}</td>
+				<td></td>
+				<td><a href="exibirPaginaVisualizar?id=${l.id}"><button>Vilualizar</button></a></td>
+				<td><a href="exibirPaginaAlterar?id=${l.id}"><button>Alterar</button></a></td>
+				<td><a href="delete?id=${l.id}"><button>Remover</button></a></td>
+			</tr>
+		</c:forEach>
 	</table>
 
 

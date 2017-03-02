@@ -1,4 +1,4 @@
-package br.com.iftube.controller.curso;
+package br.com.iftube.controller;
 
 import javax.transaction.Transactional;
 
@@ -25,8 +25,9 @@ public class CursoController {
 		return "adm/curso/addCursoTemp";
 	}
 	
-	@Transactional
+	
 	@RequestMapping("addCurso")
+	@Transactional
 	public String cadastrarCurso(Curso curso, Model model) {
 		
 			try {

@@ -3,6 +3,7 @@ package br.com.iftube.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +13,7 @@ import br.com.iftube.model.entities.Curso;
 import br.com.iftube.service.CursoService;
 
 @Service
-public class CursoServiceImpl implements CursoService{
+public class CursoServiceImpl implements CursoService, Converter<String, Curso>{
 
 	@Autowired
 	private CursoDAO cursoDao;
@@ -53,5 +54,15 @@ public class CursoServiceImpl implements CursoService{
 	public List obterTodosCurso() {
 		return cursoDao.obterTodosCurso();
 	}
-
+	
+	@Transactional
+	public Curso convert(String id) {
+		
+		if (!id.equals("")) {
+			return cursoDao.obterCursoPorId(Integer.valueOf(id));
+		} else {
+		    return null;
+		}
+	}
+	
 }

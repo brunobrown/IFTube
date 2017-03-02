@@ -3,6 +3,7 @@ package br.com.iftube.model.daos.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -23,28 +24,42 @@ public class PalavraChaveDaoImpl implements PalavraChaveDAO {
 	}
 
 	@Transactional
-	public void adicionar(PalavraChave palavraChave) {
-		em.persist(palavraChave);
+	public PalavraChave adicionar(PalavraChave tag) {
+		em.persist(tag);
+		return tag;
 	}
 
 	@Transactional
-	public void editar(PalavraChave palavraChave) {
-		em.merge(palavraChave);
+	public void editar(PalavraChave tag) {
+		em.merge(tag);
 	}
 
 	@Transactional
-	public void deletar(int palavraChaveId) {
-		em.remove(palavraChaveId);
+	public void deletar(int tagId) {
+		em.remove(tagId);
 	}
 
 	@Transactional
-	public PalavraChave obterPalavraChavePorId(int palavraChaveId) {
-		return em.find(PalavraChave.class, palavraChaveId);
+	public PalavraChave obterTagPorId(int tagId) {
+		return em.find(PalavraChave.class, tagId);
+	}
+	
+	@Transactional
+	public PalavraChave obterTagPorNome(String tag) {
+		try {
+		Query q = em.createQuery("select d from PalavraChave d where d.tag=:tagParam");
+		q.setParameter("tagParam", tag);
+		q.setMaxResults(1);
+		return (PalavraChave) q.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+			//throw new DAOException("Resgistro não encontrado", e);
+		}
 	}
 
 	@SuppressWarnings("rawtypes")
 	@Transactional
-	public List obterTodosPalavraChave() {
+	public List obterTodosTag() {
 		Query q = em.createQuery("from PalavraChave");
 		return q.getResultList();
 	}

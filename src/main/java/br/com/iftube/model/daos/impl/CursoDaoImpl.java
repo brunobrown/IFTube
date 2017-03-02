@@ -14,7 +14,7 @@ import br.com.iftube.model.daos.CursoDAO;
 import br.com.iftube.model.entities.Curso;
 
 @Repository
-public class CursoDaoImpl implements CursoDAO {
+public class CursoDaoImpl implements CursoDAO{
 
 	@PersistenceContext
 	EntityManager em;
