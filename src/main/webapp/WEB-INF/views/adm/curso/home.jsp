@@ -41,14 +41,14 @@
 
 		<c:forEach var="obj" items="${listar}" varStatus="i">
 			<tr bgcolor="#${ i.count % 2 == 0 ? 'ffffff' : 'bdc3c7' }" >
-				<td></td>
-				<td></td>
+				<td>${obj.curso.id}</td>
+				<td>${obj.curso.nomeCurso}</td>
 				<td>${obj.nomeDisciplina}</td>
 				<td>${obj.periodo}</td>
 				<td></td>
-				<td><a href="exibirPaginaVisualizar?id=${l.id}"><button>Vilualizar</button></a></td>
-				<td><a href="exibirPaginaAlterar?id=${l.id}"><button>Alterar</button></a></td>
-				<td><a href="delete?id=${l.id}"><button>Remover</button></a></td>
+				<td><a href="exibirPaginaVisualizar?id=${obj.id}"><button>Vilualizar</button></a></td>
+				<td><a href="exibirPaginaAlterar?id=${obj.id}"><button>Alterar</button></a></td>
+				<td><a href="delete?id=${obj.id}"><button>Remover</button></a></td>
 			</tr>
 		</c:forEach>
 	</table>

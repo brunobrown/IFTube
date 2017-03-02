@@ -13,31 +13,28 @@
 </head>
 <body>
 
-	<jsp:useBean id="curso" class="br.com.iftube.model.entities.Curso" />
-	<jsp:useBean id="disciplina"
-		class="br.com.iftube.model.entities.Disciplina" />
-	<jsp:useBean id="palavraChave"
-		class="br.com.iftube.model.entities.PalavraChave" />
 
 	<h1>IFTube - Adm</h1>
 	<hr>
 	<h3>Visualizar - Disciplina</h3>
 	<hr>
 
-	Curso:
-	<input type="text" readonly="readonly" value="${c.nomeCurso}">
+	ID:
+	<input type="text" readonly="readonly" value="${disciplina.id}"><br/>
+	<input type="text" readonly="readonly" value="${curso.nomeCurso}">
 	<br /> Disciplina:
-	<input type="text" readonly="readonly" value="${d.nomeDisciplina}">
+	<input type="text" readonly="readonly"
+		value="${disciplina.nomeDisciplina}">
 	<br /> Período:
-	<input type="text" readonly="readonly" value="${d.periodo}">
+	<input type="text" readonly="readonly" value="${disciplina.periodo}">
 	<br /> Tags:
-	<input type="text" readonly="readonly" value="${pc.tag}">
+	<input type="text" readonly="readonly" value="${palavraChave.tag}">
 	<br />
 	<hr>
-	<a href="listar"><button>Voltar</button></a>
+	<a href="home"><button>Voltar</button></a>
 	<a href="exibirPaginaAlterar?id=${c.id}"><button>Alterar</button></a>
 	<a href="delete?id=${c.id}"><button>Remover</button></a>
 	<hr>
-	
+
 </body>
 </html>
