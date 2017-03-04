@@ -25,8 +25,11 @@ public class PalavraChaveDaoImpl implements PalavraChaveDAO {
 
 	@Transactional
 	public PalavraChave adicionar(PalavraChave tag) {
+		
 		em.persist(tag);
+		//em.flush();
 		return tag;
+		
 	}
 
 	@Transactional

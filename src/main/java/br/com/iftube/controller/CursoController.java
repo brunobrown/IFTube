@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.entities.Curso;
@@ -48,11 +49,10 @@ public class CursoController {
 		return "forward:exibirPaginaCadastrarCurso";
 	}
 	
-	@RequestMapping("deleteCurso")
+	@RequestMapping(value = "desabilitarCurso", method = RequestMethod.POST)
 	@Transactional
-	public String removeCurso(int id, Curso curso){
-		
-		cursoService.deletar(cursoService.obterCursoPorId(curso.getId()));
+	public String removeCurso(Curso curso){
+		cursoService.editar(curso);
 		return "forward:exibirPaginaCadastrarCurso";
 	}
 	
@@ -61,7 +61,7 @@ public class CursoController {
 	public String searchCurso(String nomeCurso, Model model){
 		Curso cursoLocalizado = cursoService.obterCursoPorNome(nomeCurso);
 		model.addAttribute("cursoLocalizado", cursoLocalizado);
-		return "adm/curso/addCursoTemp";
+		return "forward:exibirPaginaCadastrarCurso";
 	}
 
 }

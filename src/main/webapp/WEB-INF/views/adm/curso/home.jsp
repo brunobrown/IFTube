@@ -41,8 +41,8 @@
 
 		<c:forEach var="obj" items="${listar}" varStatus="i">
 			<tr bgcolor="#${ i.count % 2 == 0 ? 'ffffff' : 'bdc3c7' }" >
-				<td>${obj.curso.id}</td>
-				<td>${obj.curso.nomeCurso}</td>
+				<td>${obj.idCursoFk.id}</td>
+				<td>${obj.idCursoFk.nomeCurso}</td>
 				<td>${obj.nomeDisciplina}</td>
 				<td>${obj.periodo}</td>
 				<td></td>

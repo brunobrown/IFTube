@@ -58,7 +58,7 @@ public class DisciplinaController {
 			model.addAttribute("exception", e);
 		}
 		
-		model.addAttribute("curso", cursoService.obterCursoPorId(disciplina.getCurso().getId()));
+		model.addAttribute("curso", cursoService.obterCursoPorId(disciplina.getIdCursoFk().getId()));
 		model.addAttribute("disciplina", disciplina);
 		
 		return "forward:exibirPaginaCadastrarDisciplina";
@@ -70,7 +70,7 @@ public class DisciplinaController {
 		
 		Disciplina disciplina = disciplinaService.obterDisciplinaPorId(id);
 		
-		Curso curso = cursoService.obterCursoPorId(disciplina.getCurso().getId());
+		Curso curso = cursoService.obterCursoPorId(disciplina.getIdCursoFk().getId());
 		
 		PalavraChave palavraChave = palavraChaveService.obterTagPorId(id);
 		palavraChaveService.obterTagPorId(palavraChave.getIdDisciplinaFk().getId());
@@ -86,7 +86,7 @@ public class DisciplinaController {
 	public String exibirPaginaAlterar(Model model, Integer id){
 		
 		Disciplina disciplina = disciplinaService.obterDisciplinaPorId(id);
-		Curso curso = cursoService.obterCursoPorId(disciplina.getCurso().getId());
+		Curso curso = cursoService.obterCursoPorId(disciplina.getIdCursoFk().getId());
 		
 		PalavraChave palavraChave = palavraChaveService.obterTagPorId(id);
 		palavraChaveService.obterTagPorId(palavraChave.getIdDisciplinaFk().getId());

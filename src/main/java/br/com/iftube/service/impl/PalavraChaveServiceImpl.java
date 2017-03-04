@@ -12,20 +12,35 @@ import br.com.iftube.model.entities.PalavraChave;
 import br.com.iftube.service.PalavraChaveService;
 
 @Service
-public class PalavraChaveServiceImpl implements PalavraChaveService{
+public class PalavraChaveServiceImpl implements PalavraChaveService {
 
 	@Autowired
 	private PalavraChaveDAO palavraChaveDao;
-	
-	
+
 	@Transactional
 	public PalavraChave adicionar(PalavraChave tag) throws ServiceException {
-		PalavraChave tagEncontrada = palavraChaveDao.obterTagPorNome(tag.getTag());
-		if(tagEncontrada != null){
-			throw new ServiceException("Disciplina já existe!");
+		//PalavraChave tagEncontrada = null;
+
+		String[] tagSubDividida = tag.getTag().split("\r\n");
+
+		/*
+		for (String tagPesquisada : tagSubDividida) {
+			tagEncontrada = palavraChaveDao.obterTagPorNome(tagPesquisada);
+			if (tagEncontrada != null) {
+				throw new ServiceException("Tag (" + tagPesquisada + ") já existe!");
+			}
+
 		}
-		
-		return palavraChaveDao.adicionar(tag);
+		*/
+
+		for (String str : tagSubDividida) {
+			PalavraChave palavraChave = new PalavraChave();
+			palavraChave.setTag(str);
+			palavraChave.setIdDisciplinaFk(tag.getIdDisciplinaFk());
+			palavraChaveDao.adicionar(palavraChave);
+		}
+
+		return tag;
 	}
 
 	@Transactional
@@ -42,7 +57,7 @@ public class PalavraChaveServiceImpl implements PalavraChaveService{
 	public PalavraChave obterTagPorId(int tagId) {
 		return palavraChaveDao.obterTagPorId(tagId);
 	}
-	
+
 	@Transactional
 	public PalavraChave obterTagPorNome(String tag) {
 		return palavraChaveDao.obterTagPorNome(tag);

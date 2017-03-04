@@ -33,7 +33,7 @@ public class Disciplina implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "id_curso_fk")
-	private Curso curso;
+	private Curso idCursoFk;
 	
 	
 	public Disciplina() {
@@ -71,13 +71,13 @@ public class Disciplina implements Serializable{
 	}
 
 
-	public Curso getCurso() {
-		return curso;
+	public Curso getIdCursoFk() {
+		return idCursoFk;
 	}
 
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public void setIdCursoFk(Curso curso) {
+		this.idCursoFk = curso;
 	}
 
 
@@ -85,7 +85,7 @@ public class Disciplina implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((curso == null) ? 0 : curso.hashCode());
+		result = prime * result + ((idCursoFk == null) ? 0 : idCursoFk.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nomeDisciplina == null) ? 0 : nomeDisciplina.hashCode());
 		result = prime * result + ((periodo == null) ? 0 : periodo.hashCode());
@@ -102,10 +102,10 @@ public class Disciplina implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Disciplina other = (Disciplina) obj;
-		if (curso == null) {
-			if (other.curso != null)
+		if (idCursoFk == null) {
+			if (other.idCursoFk != null)
 				return false;
-		} else if (!curso.equals(other.curso))
+		} else if (!idCursoFk.equals(other.idCursoFk))
 			return false;
 		if (id == null) {
 			if (other.id != null)

@@ -8,6 +8,7 @@ public interface CursoDAO {
 
 	public Curso adicionar(Curso curso);
 	public Curso editar(Curso curso);
+	//public Curso desabilitarHabilitar(Curso curso);
 	public void deletar(Curso curso);
 	public Curso obterCursoPorId(int cursoId);
 	public Curso obterCursoPorNome(String nomeCurso);

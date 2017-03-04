@@ -13,19 +13,29 @@ import javax.persistence.Table;
 @Table(name="curso")
 public class Curso implements Serializable{
 
-	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3789251352886877783L;
+	private static final long serialVersionUID = 689773374265672630L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
 	@Column(name = "nome_curso",unique=true, nullable=false, length=100)
-	private String nomeCurso; 
+	private String nomeCurso;
 	
+	@Column(name = "estado_curso", nullable=false, length=10)
+	private String estadoCurso;
+	
+	public String getEstadoCurso() {
+		return estadoCurso;
+	}
+
+	public void setEstadoCurso(String estadoCurso) {
+		this.estadoCurso = estadoCurso;
+	}
+
 	public Curso() {
 		// TODO Auto-generated constructor stub
 	}

@@ -26,14 +26,9 @@
 	${exception}
 
 	<form action="addCurso" method="post">
-
-		<div>
-			<label for="title">Curso</label> <input type="text" name="nomeCurso" />
-		</div>
-
-		<div>
-			<input type="submit" value="Cadastrar">
-		</div>
+		<input type="text" name="nomeCurso" />
+		<input type="hidden" name="estadoCurso" value="ATIVO"/>
+		<input type="submit" value="Cadastrar">
 	</form>
 
 	<a href="home"><button>Voltar</button></a>
@@ -47,11 +42,12 @@
 	</form:form>
 
 	<hr />
-	<table>
+	<table border=1>
 		<tr>
 			<th>ID</th>
 			<th>CURSO</th>
-			<th>AÇÕES</th>
+			<th colspan="2">ACÃO</th>
+			<th>STATUS</th>
 		</tr>
 
 
@@ -59,14 +55,24 @@
 			<c:when test="${cursoLocalizado != null}">
 
 				<tr>
-					<form:form action="editCurso" method="get">
+					<form:form action="editCurso" method="post">
 						<td><input type="text" name="id"
 							value="${cursoLocalizado.id}" readonly="readonly"></td>
 						<td><input type="text" name="nomeCurso"
 							value="${cursoLocalizado.nomeCurso}"></td>
+						<input type="hidden" name="estadoCurso"
+							value="${cursoLocalizado.estadoCurso}">
 						<td><input type="submit" value="Alterar"></td>
+						<br/>
 					</form:form>
-					<td><a href="deleteCurso?id=${cursoLocalizado.id}"><button>Remover</button></a></td>
+					
+					<form:form action="desabilitarCurso" method="post">
+						<input type="hidden" name="id" value="${cursoLocalizado.id}">
+						<input type="hidden" name="nomeCurso" value="${cursoLocalizado.nomeCurso}" >
+						<input type="hidden" name="estadoCurso" value="${cursoLocalizado.estadoCurso eq 'INATIVO' ? 'ATIVO' : 'INATIVO' }">	
+						<td><input type="submit" value="${cursoLocalizado.estadoCurso eq 'INATIVO' ? 'Habilitar' : 'Desabilitar' }"></td>
+						<td style="color: ${cursoLocalizado.estadoCurso eq 'ATIVO' ? 'green' : 'red' }">${cursoLocalizado.estadoCurso}</td>
+					</form:form>
 				</tr>
 
 			</c:when>
@@ -76,14 +82,24 @@
 
 					<tr>
 
-						<form:form action="editCurso" method="get">
+						<form:form action="editCurso" method="post">
 							<td><input type="text" name="id" value="${c.id}"
 								readonly="readonly"></td>
 							<td><input type="text" name="nomeCurso"
 								value="${c.nomeCurso}"></td>
+							<input type="hidden" name="estadoCurso"
+								value="${c.estadoCurso}">	
 							<td><input type="submit" value="Alterar"></td>
+							<br/>
 						</form:form>
-						<td><a href="deleteCurso?id=${c.id}"><button>Remover</button></a></td>
+						
+						<form:form action="desabilitarCurso" method="post">
+							<input type="hidden" name="id" value="${c.id}">
+							<input type="hidden" name="nomeCurso" value="${c.nomeCurso}" >
+							<input type="hidden" name="estadoCurso" value="${c.estadoCurso eq 'INATIVO' ? 'ATIVO' : 'INATIVO' }">	
+							<td><input type="submit" value="${c.estadoCurso eq 'INATIVO' ? 'Habilitar' : 'Desabilitar' }"></td>
+							<td style="color: ${c.estadoCurso eq 'ATIVO' ? 'green' : 'red' }">${c.estadoCurso}</td>
+						</form:form>
 					</tr>
 				</c:forEach>
 

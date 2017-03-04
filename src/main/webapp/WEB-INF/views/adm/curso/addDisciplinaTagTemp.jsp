@@ -22,14 +22,13 @@
 	<h3>Disciplina</h3>
 	<hr>
 
+${exception}
 
 	<c:choose>
-
-
 		<c:when test="${disciplina.id == null}">
 			<form action="addDisciplina" method="post">
 
-				<select name="curso">
+				<select name="idCursoFk">
 					<option>Selecione um Curso:</option>
 					<c:forEach var="c" items="${listarCurso}">
 						<option value="${c.id}">${c.nomeCurso}</option>
@@ -64,10 +63,12 @@
 
 			<input type="hidden" name="idDisciplinaFk" value="${disciplina.id}"><br />
 
-			<label for="tags">Informe as Tags utilizando (#) + (nome)
-				separados por espaço</label><br /> Tags:<input type="text" name="tag"
-				placeholder="#matrizes #spring #mvc #substantivo"><br /> <input
-				type="submit" value="Cadastrar">
+			<label for="tags">Observe: A cada TAG digitada aperte ENTER!</label><br /> 
+				
+				Tags:<br/>
+				<br/><textarea name="tag" rows="10" cols="20"></textarea><br /> 
+			
+				<input type="submit" value="Cadastrar">
 
 		</form>
 	</c:if>
