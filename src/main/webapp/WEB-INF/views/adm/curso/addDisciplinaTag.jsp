@@ -31,7 +31,7 @@ ${exception}
 				<select name="idCursoFk">
 					<option>Selecione um Curso:</option>
 					<c:forEach var="c" items="${listarCurso}">
-						<option value="${c.id}">${c.nomeCurso}</option>
+						<c:if test="${c.estadoCurso != 'INATIVO'}"><option value="${c.id}" >${c.nomeCurso}</option></c:if>
 					</c:forEach>
 				</select> <br /> Disciplina:<input type="text" name="nomeDisciplina" /><br />
 

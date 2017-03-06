@@ -13,13 +13,6 @@
 </head>
 <body>
 
-	<jsp:useBean id="curso" class="br.com.iftube.model.entities.Curso" />
-	<jsp:useBean id="disciplina"
-		class="br.com.iftube.model.entities.Disciplina" />
-	<jsp:useBean id="palavraChave"
-		class="br.com.iftube.model.entities.PalavraChave" />
-
-
 	<h1>IFTube - Adm</h1>
 	<hr>
 	<a href="exibirPaginaCadastrarCurso"><button>Cadastrar
@@ -36,19 +29,36 @@
 			<th>DISCIPLINA</th>
 			<th>PERIODO</th>
 			<th>TAGS</th>
-			<th>AÇÕES</th>
+			<th colspan="3">AÇÕES</th>
+			<th>STATUS</th>
 		</tr>
 
-		<c:forEach var="obj" items="${listar}" varStatus="i">
+		<c:forEach var="objDisciplina" items="${disciplina}" varStatus="i">
 			<tr bgcolor="#${ i.count % 2 == 0 ? 'ffffff' : 'bdc3c7' }" >
-				<td>${obj.idCursoFk.id}</td>
-				<td>${obj.idCursoFk.nomeCurso}</td>
-				<td>${obj.nomeDisciplina}</td>
-				<td>${obj.periodo}</td>
-				<td></td>
-				<td><a href="exibirPaginaVisualizar?id=${obj.id}"><button>Vilualizar</button></a></td>
-				<td><a href="exibirPaginaAlterar?id=${obj.id}"><button>Alterar</button></a></td>
-				<td><a href="delete?id=${obj.id}"><button>Remover</button></a></td>
+				<td>${objDisciplina.id}</td>
+				<td>${objDisciplina.idCursoFk.nomeCurso}</td>
+				<td>${objDisciplina.nomeDisciplina}</td>
+				<td>${objDisciplina.periodo}</td>
+				<td>
+					<c:forEach var="objPalavraChave" items="${palavraChave}">
+						<c:if test="${objDisciplina.id eq objPalavraChave.idDisciplinaFk.id}">${objPalavraChave.tag}</c:if>
+					</c:forEach>
+					
+				</td>
+				<td><a href="exibirPaginaVisualizar?id=${objDisciplina.id}"><button>Vilualizar</button></a></td>
+				<td><a href="exibirPaginaAlterar?id=${objDisciplina.id}"><button>Alterar</button></a></td>
+				<td>
+				
+					<form:form action="desabilitarCurso" method="post">
+							<input type="hidden" name="pagina" value="home">
+							<input type="hidden" name="id" value="${objDisciplina.idCursoFk.id}">
+							<input type="hidden" name="nomeCurso" value="${objDisciplina.idCursoFk.nomeCurso}" >
+							<input type="hidden" name="estadoCurso" value="${objDisciplina.idCursoFk.estadoCurso eq 'INATIVO' ? 'ATIVO' : 'INATIVO' }">	
+							<input type="submit" value="${objDisciplina.idCursoFk.estadoCurso eq 'INATIVO' ? 'Habilitar' : 'Desabilitar' }">
+					</form:form>
+				
+				</td>
+				<td style="color: ${objDisciplina.idCursoFk.estadoCurso eq 'ATIVO' ? 'green' : 'red' }">${objDisciplina.idCursoFk.estadoCurso}</td>
 			</tr>
 		</c:forEach>
 	</table>

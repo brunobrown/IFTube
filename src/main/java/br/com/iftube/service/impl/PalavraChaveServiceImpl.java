@@ -17,7 +17,7 @@ public class PalavraChaveServiceImpl implements PalavraChaveService {
 	@Autowired
 	private PalavraChaveDAO palavraChaveDao;
 
-	@Transactional
+
 	public PalavraChave adicionar(PalavraChave tag) throws ServiceException {
 		//PalavraChave tagEncontrada = null;
 

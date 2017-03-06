@@ -21,7 +21,7 @@
 
 	ID:
 	<input type="text" readonly="readonly" value="${disciplina.id}"><br/>
-	<input type="text" readonly="readonly" value="${curso.nomeCurso}">
+	Curso:<input type="text" readonly="readonly" value="${disciplina.idCursoFk.nomeCurso}">
 	<br /> Disciplina:
 	<input type="text" readonly="readonly"
 		value="${disciplina.nomeDisciplina}">
@@ -33,7 +33,7 @@
 	<hr>
 	<a href="home"><button>Voltar</button></a>
 	<a href="exibirPaginaAlterar?id=${c.id}"><button>Alterar</button></a>
-	<a href="delete?id=${c.id}"><button>Remover</button></a>
+	<a href="delete?id=${c.id}"><button>Desabilitar</button></a>
 	<hr>
 
 </body>

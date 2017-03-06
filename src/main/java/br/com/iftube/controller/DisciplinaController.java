@@ -28,14 +28,6 @@ public class DisciplinaController {
 	@Autowired
 	private PalavraChaveService palavraChaveService;
 
-	@RequestMapping("home")
-	@Transactional
-	public String exibirInico(Model model) {
-		model.addAttribute("listar", disciplinaService.obterTodosDisciplina());
-		//model.addAttribute("listar", palavraChaveService.obterTodosTag());
-		return "adm/curso/home";
-	}
-
 	@RequestMapping("exibirPaginaCadastrarDisciplina")
 	@Transactional
 	public String exibirForm(Model model) {
@@ -43,7 +35,7 @@ public class DisciplinaController {
 		model.addAttribute("listarCurso", cursoService.obterTodosCurso());
 		
 		
-		return "adm/curso/addDisciplinaTagTemp";
+		return "adm/curso/addDisciplinaTag";
 	}
 	
 	
@@ -70,14 +62,14 @@ public class DisciplinaController {
 		
 		Disciplina disciplina = disciplinaService.obterDisciplinaPorId(id);
 		
-		Curso curso = cursoService.obterCursoPorId(disciplina.getIdCursoFk().getId());
+		//Curso curso = cursoService.obterCursoPorId(disciplina.getIdCursoFk().getId());
 		
-		PalavraChave palavraChave = palavraChaveService.obterTagPorId(id);
-		palavraChaveService.obterTagPorId(palavraChave.getIdDisciplinaFk().getId());
+		//PalavraChave palavraChave = palavraChaveService.obterTagPorId(id);
+		//palavraChaveService.obterTagPorId(palavraChave.getIdDisciplinaFk().getId());
 		
-		model.addAttribute("curso", curso);
+		//model.addAttribute("curso", curso);
 		model.addAttribute("disciplina", disciplina);
-		model.addAttribute("palavraChave", palavraChave);
+		//model.addAttribute("palavraChave", palavraChave);
 		
 		return "adm/curso/view-disciplina";
 	}

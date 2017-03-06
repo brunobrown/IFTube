@@ -17,7 +17,7 @@ public class PalavraChaveController {
 	
 	@Autowired
 	private PalavraChaveService palavraChaveService;
-
+	
 	@RequestMapping("addTag")
 	@Transactional
 	public String addTag(PalavraChave tag, Model model) {

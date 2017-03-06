@@ -13,25 +13,20 @@
 </head>
 <body>
 
-	<jsp:useBean id="curso" class="br.com.iftube.model.entities.Curso" />
-	<jsp:useBean id="disciplina"
-		class="br.com.iftube.model.entities.Disciplina" />
-	<jsp:useBean id="palavraChave"
-		class="br.com.iftube.model.entities.PalavraChave" />
-
 	<h1>IFTube - Adm</h1>
 	<hr>
 	<h3>Curso</h3>
+	
+	<a href="home"><button>Home</button></a>
+	<a href="exibirPaginaCadastrarDisciplina"><button>Cadastrar
+			Disciplina</button></a>
 	<hr>
 	${exception}
-
 	<form action="addCurso" method="post">
-		<input type="text" name="nomeCurso" />
+		Cadastrar Curso<input type="text" name="nomeCurso" />
 		<input type="hidden" name="estadoCurso" value="ATIVO"/>
 		<input type="submit" value="Cadastrar">
 	</form>
-
-	<a href="home"><button>Voltar</button></a>
 
 	<hr />
 
@@ -67,6 +62,7 @@
 					</form:form>
 					
 					<form:form action="desabilitarCurso" method="post">
+						<input type="hidden" name="pagina" value="addCurso">
 						<input type="hidden" name="id" value="${cursoLocalizado.id}">
 						<input type="hidden" name="nomeCurso" value="${cursoLocalizado.nomeCurso}" >
 						<input type="hidden" name="estadoCurso" value="${cursoLocalizado.estadoCurso eq 'INATIVO' ? 'ATIVO' : 'INATIVO' }">	
@@ -90,10 +86,11 @@
 							<input type="hidden" name="estadoCurso"
 								value="${c.estadoCurso}">	
 							<td><input type="submit" value="Alterar"></td>
-							<br/>
+						
 						</form:form>
 						
 						<form:form action="desabilitarCurso" method="post">
+							<input type="hidden" name="pagina" value="addCurso">
 							<input type="hidden" name="id" value="${c.id}">
 							<input type="hidden" name="nomeCurso" value="${c.nomeCurso}" >
 							<input type="hidden" name="estadoCurso" value="${c.estadoCurso eq 'INATIVO' ? 'ATIVO' : 'INATIVO' }">	

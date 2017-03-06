@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.entities.Curso;
 import br.com.iftube.service.CursoService;
+import br.com.iftube.service.DisciplinaService;
+import br.com.iftube.service.PalavraChaveService;
 
 
 @Controller
@@ -18,12 +20,25 @@ public class CursoController {
 
 	@Autowired
 	private CursoService cursoService;
+	
+	@Autowired
+	private DisciplinaService disciplinaService;
 
+	@Autowired
+	private PalavraChaveService palavraChaveService;
 
+	@RequestMapping("home")
+	@Transactional
+	public String exibirInicio(Model model) {
+		model.addAttribute("curso", cursoService.obterTodosCurso());
+		model.addAttribute("disciplina", disciplinaService.obterTodosDisciplina());
+		model.addAttribute("palavraChave", palavraChaveService.obterTodosTag());
+		return "adm/curso/home";
+	}
 	@RequestMapping("exibirPaginaCadastrarCurso")
 	public String exibirPaginaCadastrarCurso(Model model) {
 		model.addAttribute("listarCurso", cursoService.obterTodosCurso());
-		return "adm/curso/addCursoTemp";
+		return "adm/curso/addCurso";
 	}
 	
 	
@@ -51,9 +66,15 @@ public class CursoController {
 	
 	@RequestMapping(value = "desabilitarCurso", method = RequestMethod.POST)
 	@Transactional
-	public String removeCurso(Curso curso){
+	public String removeCurso(Curso curso, String pagina){
 		cursoService.editar(curso);
+		
+		if(pagina.equals("home")){
+			return "forward:home";
+		}
+		
 		return "forward:exibirPaginaCadastrarCurso";
+		
 	}
 	
 	@RequestMapping("searchCurso")
