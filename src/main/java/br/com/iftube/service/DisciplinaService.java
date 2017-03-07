@@ -12,6 +12,8 @@ public interface DisciplinaService {
 	public void deletar(int disciplinaId);
 	public Disciplina obterDisciplinaPorId(int disciplinaId);
 	public Disciplina obterDisciplinaPorNome(String nomeDisciplina);
+	public Disciplina alterarEstadoDisciplina(int id, String estadoDisciplina);
+	public void alterarTodosEstadoDisciplina(int id, String estadoCurso);
 	@SuppressWarnings("rawtypes")
 	public List obterTodosDisciplina();
 	

@@ -15,11 +15,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name="disciplina")
 public class Disciplina implements Serializable{
-	
+
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5312804025362449060L;
+	private static final long serialVersionUID = -3424033014565040249L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,6 +31,9 @@ public class Disciplina implements Serializable{
 	
 	@Column(nullable=false, length=10)
 	private Integer periodo;
+	
+	@Column(name = "estado_disciplina", nullable=false, length=10)
+	private String estadoDisciplina;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_curso_fk")
@@ -70,6 +74,15 @@ public class Disciplina implements Serializable{
 		this.periodo = periodo;
 	}
 
+	public String getEstadoDisciplina() {
+		return estadoDisciplina;
+	}
+
+
+	public void setEstadoDisciplina(String estadoDisciplina) {
+		this.estadoDisciplina = estadoDisciplina;
+	}
+	
 
 	public Curso getIdCursoFk() {
 		return idCursoFk;

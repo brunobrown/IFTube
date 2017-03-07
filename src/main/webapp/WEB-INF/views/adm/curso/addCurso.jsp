@@ -64,7 +64,6 @@
 					<form:form action="desabilitarCurso" method="post">
 						<input type="hidden" name="pagina" value="addCurso">
 						<input type="hidden" name="id" value="${cursoLocalizado.id}">
-						<input type="hidden" name="nomeCurso" value="${cursoLocalizado.nomeCurso}" >
 						<input type="hidden" name="estadoCurso" value="${cursoLocalizado.estadoCurso eq 'INATIVO' ? 'ATIVO' : 'INATIVO' }">	
 						<td><input type="submit" value="${cursoLocalizado.estadoCurso eq 'INATIVO' ? 'Habilitar' : 'Desabilitar' }"></td>
 						<td style="color: ${cursoLocalizado.estadoCurso eq 'ATIVO' ? 'green' : 'red' }">${cursoLocalizado.estadoCurso}</td>
@@ -92,7 +91,6 @@
 						<form:form action="desabilitarCurso" method="post">
 							<input type="hidden" name="pagina" value="addCurso">
 							<input type="hidden" name="id" value="${c.id}">
-							<input type="hidden" name="nomeCurso" value="${c.nomeCurso}" >
 							<input type="hidden" name="estadoCurso" value="${c.estadoCurso eq 'INATIVO' ? 'ATIVO' : 'INATIVO' }">	
 							<td><input type="submit" value="${c.estadoCurso eq 'INATIVO' ? 'Habilitar' : 'Desabilitar' }"></td>
 							<td style="color: ${c.estadoCurso eq 'ATIVO' ? 'green' : 'red' }">${c.estadoCurso}</td>

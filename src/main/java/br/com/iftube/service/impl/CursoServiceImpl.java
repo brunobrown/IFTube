@@ -48,6 +48,14 @@ public class CursoServiceImpl implements CursoService, Converter<String, Curso>{
 	public Curso obterCursoPorNome(String nomeCurso) {
 		return cursoDao.obterCursoPorNome(nomeCurso);
 	}
+	
+	@Transactional
+	public Curso alterarEstadoCurso(int id, String estadoCurso) {
+		Curso curso = obterCursoPorId(id);
+		curso.setEstadoCurso(estadoCurso);
+		editar(curso);
+		return curso;
+	}
 
 	@SuppressWarnings("rawtypes")
 	@Transactional

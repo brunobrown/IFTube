@@ -30,7 +30,8 @@
 			<th>PERIODO</th>
 			<th>TAGS</th>
 			<th colspan="3">AÇÕES</th>
-			<th>STATUS</th>
+			<th>STATUS CURSO</th>
+			<th>STATUS DISCIPLINA</th>
 		</tr>
 
 		<c:forEach var="objDisciplina" items="${disciplina}" varStatus="i">
@@ -45,20 +46,21 @@
 					</c:forEach>
 					
 				</td>
-				<td><a href="exibirPaginaVisualizar?id=${objDisciplina.id}"><button>Vilualizar</button></a></td>
-				<td><a href="exibirPaginaAlterar?id=${objDisciplina.id}"><button>Alterar</button></a></td>
+				<td><a href="exibirPaginaVisualizar?id=${objDisciplina.id}"><button>Visualizar Disciplina</button></a></td>
+				<td><a href="exibirPaginaAlterar?id=${objDisciplina.id}"><button>Alterar Disciplina</button></a></td>
 				<td>
 				
-					<form:form action="desabilitarCurso" method="post">
-							<input type="hidden" name="pagina" value="home">
-							<input type="hidden" name="id" value="${objDisciplina.idCursoFk.id}">
-							<input type="hidden" name="nomeCurso" value="${objDisciplina.idCursoFk.nomeCurso}" >
-							<input type="hidden" name="estadoCurso" value="${objDisciplina.idCursoFk.estadoCurso eq 'INATIVO' ? 'ATIVO' : 'INATIVO' }">	
-							<input type="submit" value="${objDisciplina.idCursoFk.estadoCurso eq 'INATIVO' ? 'Habilitar' : 'Desabilitar' }">
-					</form:form>
-				
+					<c:if test="${objDisciplina.idCursoFk.estadoCurso != 'INATIVO'}">
+						<form:form action="desabilitarDisciplina" method="post">
+							<input type="hidden" name="id" value="${objDisciplina.id}">
+							<input type="hidden" name="estadoDisciplina" value="${objDisciplina.estadoDisciplina eq 'INATIVO' ? 'ATIVO' : 'INATIVO' }">	
+							<input type="submit" value="${objDisciplina.estadoDisciplina eq 'INATIVO' ? 'Habilitar Disciplina' : 'Desabilitar Disciplina' }">
+						</form:form>
+					</c:if>
+					${objDisciplina.idCursoFk.estadoCurso != 'ATIVO' ? '<button>Ação Bloqueada</button>' : '' }
 				</td>
 				<td style="color: ${objDisciplina.idCursoFk.estadoCurso eq 'ATIVO' ? 'green' : 'red' }">${objDisciplina.idCursoFk.estadoCurso}</td>
+				<td style="color: ${objDisciplina.estadoDisciplina eq 'ATIVO' ? 'green' : 'red' }">${objDisciplina.estadoDisciplina}</td>
 			</tr>
 		</c:forEach>
 	</table>

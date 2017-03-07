@@ -66,8 +66,11 @@ public class CursoController {
 	
 	@RequestMapping(value = "desabilitarCurso", method = RequestMethod.POST)
 	@Transactional
-	public String removeCurso(Curso curso, String pagina){
-		cursoService.editar(curso);
+	public String desabilitarCurso(Curso curso, String pagina){
+		
+		cursoService.alterarEstadoCurso(curso.getId(), curso.getEstadoCurso());
+		
+		disciplinaService.alterarTodosEstadoDisciplina(curso.getId(), curso.getEstadoCurso());
 		
 		if(pagina.equals("home")){
 			return "forward:home";

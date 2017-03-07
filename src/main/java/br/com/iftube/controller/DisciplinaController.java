@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.entities.Curso;
@@ -100,6 +101,16 @@ public class DisciplinaController {
 		cursoService.editar(curso);
 		
 		return "forward:home";
+	}
+	
+	@RequestMapping(value = "desabilitarDisciplina", method = RequestMethod.POST)
+	@Transactional
+	public String desabilitarDisciplina(Disciplina disciplina){
+		
+		disciplinaService.alterarEstadoDisciplina(disciplina.getId(), disciplina.getEstadoDisciplina());
+		
+		return "forward:home";
+		
 	}
 	
 }

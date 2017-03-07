@@ -41,6 +41,8 @@ ${exception}
 					<option value="3">3</option>
 				</select><br /> <input type="submit" value="Enviar">
 
+				<input type="hidden" name="estadoDisciplina" value="ATIVO"/>
+
 			</form>
 		</c:when>
 
@@ -52,6 +54,8 @@ ${exception}
 			<br />	
 	Período:<input value="${disciplina.periodo}ª" readonly />
 			<br />
+			<input type="hidden" name="estadoDisciplina" value="${disciplina.estadoDisciplina}"/>
+			
 		</c:otherwise>
 	</c:choose>
 

@@ -47,6 +47,30 @@ public class DisciplinaServiceImpl implements DisciplinaService, Converter<Strin
 	public Disciplina obterDisciplinaPorNome(String nomeDisciplina) {
 		return disciplinaDao.obterDisciplinaPorNome(nomeDisciplina);
 	}
+	
+	@Transactional
+	public Disciplina alterarEstadoDisciplina(int id, String estadoDisciplina) {
+		Disciplina disciplina = obterDisciplinaPorId(id);
+		disciplina.setEstadoDisciplina(estadoDisciplina);
+		return disciplina;
+	}
+	
+	@Transactional
+	public void alterarTodosEstadoDisciplina(int id, String estadoCurso) {
+		@SuppressWarnings("unchecked")
+		List<Disciplina> estadoDisciplinaTodos = obterTodosDisciplina();
+		
+		for (Disciplina disc : estadoDisciplinaTodos) {
+			
+			if(estadoCurso.equals("ATIVO") && id == disc.getIdCursoFk().getId()){
+				disc.setEstadoDisciplina("ATIVO");
+				editar(disc);	
+			}else if(estadoCurso.equals("INATIVO") && id == disc.getIdCursoFk().getId()){
+				disc.setEstadoDisciplina("INATIVO");
+				editar(disc);
+			}
+		}
+	}
 
 	@SuppressWarnings("rawtypes")
 	@Transactional

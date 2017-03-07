@@ -21,6 +21,8 @@
 
 	<form action="edit" method="get">
 		
+		<input type="hidden" name="estadoDisciplina" value="${disciplina.estadoDisciplina}"/>
+		
 		Curso:<select name="curso">
 			<option>Selecione um Curso:</option>
 			<c:forEach var="c" items="${listarCurso}">

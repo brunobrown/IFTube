@@ -27,6 +27,8 @@
 		value="${disciplina.nomeDisciplina}">
 	<br /> Período:
 	<input type="text" readonly="readonly" value="${disciplina.periodo}">
+	<input type="hidden" value="${disciplina.estadoDisciplina}">
+	
 	<br /> Tags:
 	<input type="text" readonly="readonly" value="${palavraChave.tag}">
 	<br />
