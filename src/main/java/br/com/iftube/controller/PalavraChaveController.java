@@ -30,5 +30,13 @@ public class PalavraChaveController {
 		}
 		return "forward:exibirPaginaCadastrarDisciplina";
 	}
+	
+	@RequestMapping("editTag")
+	public String edit(PalavraChave tag){
+	
+		palavraChaveService.editar(tag);
+		
+		return "forward:exibirPaginaAlterar";
+	}
 
 }

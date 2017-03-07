@@ -20,22 +20,67 @@
 	<hr>
 
 	ID:
-	<input type="text" readonly="readonly" value="${disciplina.id}"><br/>
-	Curso:<input type="text" readonly="readonly" value="${disciplina.idCursoFk.nomeCurso}">
+	<input type="text" readonly="readonly" value="${disciplina.id}">
+	<br /> Curso:
+	<input type="text" readonly="readonly"
+		value="${disciplina.idCursoFk.nomeCurso}">
 	<br /> Disciplina:
 	<input type="text" readonly="readonly"
 		value="${disciplina.nomeDisciplina}">
 	<br /> Período:
 	<input type="text" readonly="readonly" value="${disciplina.periodo}">
-	<input type="hidden" value="${disciplina.estadoDisciplina}">
-	
+	<br />
+
+	Status Curso: <input type="text" readonly="readonly" 
+	style="color: ${disciplina.idCursoFk.estadoCurso eq 'ATIVO' ? 'green' : 'red' }"
+	value="${disciplina.idCursoFk.estadoCurso}"><br/>
+
+	Status Disciplina:
+	<input type="text" readonly="readonly"
+		style="color: ${disciplina.estadoDisciplina eq 'ATIVO' ? 'green' : 'red' }"
+		value="${disciplina.estadoDisciplina}" />
+		
 	<br /> Tags:
-	<input type="text" readonly="readonly" value="${palavraChave.tag}">
+	<br />
+	<textarea rows="10" cols="20" readonly="readonly"><c:forEach
+			var="objPalavraChave" items="${palavraChave}">
+			<c:if test="${disciplina.id eq objPalavraChave.idDisciplinaFk.id}">
+${objPalavraChave.tag}</c:if>
+		</c:forEach></textarea>
+
+
 	<br />
 	<hr>
 	<a href="home"><button>Voltar</button></a>
-	<a href="exibirPaginaAlterar?id=${c.id}"><button>Alterar</button></a>
-	<a href="delete?id=${c.id}"><button>Desabilitar</button></a>
+	
+	<c:choose>
+		<c:when test="${disciplina.estadoDisciplina != 'ATIVO'}">
+			<a href="exibirPaginaAlterar?id=${disciplina.id}"><button>Alterar Disciplina</button></a>
+		</c:when>
+		<c:otherwise>
+			<button>Ação Bloqueada</button>
+		</c:otherwise>
+	</c:choose>
+	
+	<table>
+		<tr>
+			<td><c:choose>
+					<c:when test="${disciplina.idCursoFk.estadoCurso != 'INATIVO'}">
+						<form:form action="desabilitarDisciplina" method="post">
+							<input type="hidden" name="pagina" value="view"/>
+							<input type="hidden" name="id" value="${disciplina.id}">
+							<input type="hidden" name="estadoDisciplina"
+								value="${disciplina.estadoDisciplina eq 'INATIVO' ? 'ATIVO' : 'INATIVO' }">
+							<input type="submit"
+								value="${disciplina.estadoDisciplina eq 'INATIVO' ? 'Habilitar Disciplina' : 'Desabilitar Disciplina' }">
+						</form:form>
+					</c:when>
+					<c:otherwise>
+						<button>Ação Bloqueada</button>
+					</c:otherwise>
+				</c:choose></td>
+		</tr>
+	</table>
 	<hr>
 
 </body>

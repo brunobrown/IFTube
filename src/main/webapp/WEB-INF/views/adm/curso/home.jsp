@@ -29,7 +29,9 @@
 			<th>DISCIPLINA</th>
 			<th>PERIODO</th>
 			<th>TAGS</th>
-			<th colspan="3">AÇÕES</th>
+			<th>VISUALIZAR</th>
+			<th>ALTERAR</th>
+			<th>DESABILITAR</th>
 			<th>STATUS CURSO</th>
 			<th>STATUS DISCIPLINA</th>
 		</tr>
@@ -47,17 +49,30 @@
 					
 				</td>
 				<td><a href="exibirPaginaVisualizar?id=${objDisciplina.id}"><button>Visualizar Disciplina</button></a></td>
-				<td><a href="exibirPaginaAlterar?id=${objDisciplina.id}"><button>Alterar Disciplina</button></a></td>
 				<td>
-				
-					<c:if test="${objDisciplina.idCursoFk.estadoCurso != 'INATIVO'}">
-						<form:form action="desabilitarDisciplina" method="post">
-							<input type="hidden" name="id" value="${objDisciplina.id}">
-							<input type="hidden" name="estadoDisciplina" value="${objDisciplina.estadoDisciplina eq 'INATIVO' ? 'ATIVO' : 'INATIVO' }">	
-							<input type="submit" value="${objDisciplina.estadoDisciplina eq 'INATIVO' ? 'Habilitar Disciplina' : 'Desabilitar Disciplina' }">
-						</form:form>
-					</c:if>
-					${objDisciplina.idCursoFk.estadoCurso != 'ATIVO' ? '<button>Ação Bloqueada</button>' : '' }
+					<c:choose>
+						<c:when test="${objDisciplina.estadoDisciplina != 'ATIVO'}">
+							<a href="exibirPaginaAlterar?id=${objDisciplina.id}"><button>Alterar Disciplina</button></a>
+						</c:when>
+						<c:otherwise>
+							<button>Ação Bloqueada</button>
+						</c:otherwise>
+					</c:choose>
+				</td>
+				<td>
+					<c:choose>
+						<c:when test="${objDisciplina.idCursoFk.estadoCurso != 'INATIVO'}">
+							<form:form action="desabilitarDisciplina" method="post">
+								<input type="hidden" name="pagina" value="home"/>
+								<input type="hidden" name="id" value="${objDisciplina.id}">
+								<input type="hidden" name="estadoDisciplina" value="${objDisciplina.estadoDisciplina eq 'INATIVO' ? 'ATIVO' : 'INATIVO' }">	
+								<input type="submit" value="${objDisciplina.estadoDisciplina eq 'INATIVO' ? 'Habilitar Disciplina' : 'Desabilitar Disciplina' }">
+							</form:form>
+						</c:when>
+						<c:otherwise>
+							<button>Ação Bloqueada</button>
+						</c:otherwise>
+					</c:choose>
 				</td>
 				<td style="color: ${objDisciplina.idCursoFk.estadoCurso eq 'ATIVO' ? 'green' : 'red' }">${objDisciplina.idCursoFk.estadoCurso}</td>
 				<td style="color: ${objDisciplina.estadoDisciplina eq 'ATIVO' ? 'green' : 'red' }">${objDisciplina.estadoDisciplina}</td>

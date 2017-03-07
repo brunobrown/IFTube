@@ -45,7 +45,16 @@ public class PalavraChaveServiceImpl implements PalavraChaveService {
 
 	@Transactional
 	public void editar(PalavraChave tag) {
-		palavraChaveDao.editar(tag);
+		
+		String[] tagSubDividida = tag.getTag().split("\r\n");
+
+		for (String str : tagSubDividida) {
+			PalavraChave palavraChave = new PalavraChave();
+			palavraChave.setTag(str);
+			palavraChave.setIdDisciplinaFk(tag.getIdDisciplinaFk());
+			palavraChaveDao.editar(palavraChave);
+		}
+		
 	}
 
 	@Transactional
@@ -68,5 +77,5 @@ public class PalavraChaveServiceImpl implements PalavraChaveService {
 	public List obterTodosTag() {
 		return palavraChaveDao.obterTodosTag();
 	}
-
+	
 }

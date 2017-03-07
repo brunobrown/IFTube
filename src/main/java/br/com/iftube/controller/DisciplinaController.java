@@ -34,8 +34,7 @@ public class DisciplinaController {
 	public String exibirForm(Model model) {
 		
 		model.addAttribute("listarCurso", cursoService.obterTodosCurso());
-		
-		
+
 		return "adm/curso/addDisciplinaTag";
 	}
 	
@@ -60,17 +59,9 @@ public class DisciplinaController {
 	@RequestMapping("exibirPaginaVisualizar")
 	public String exibirPaginaVisualizar(Model model, Integer id){
 		
-		
 		Disciplina disciplina = disciplinaService.obterDisciplinaPorId(id);
-		
-		//Curso curso = cursoService.obterCursoPorId(disciplina.getIdCursoFk().getId());
-		
-		//PalavraChave palavraChave = palavraChaveService.obterTagPorId(id);
-		//palavraChaveService.obterTagPorId(palavraChave.getIdDisciplinaFk().getId());
-		
-		//model.addAttribute("curso", curso);
 		model.addAttribute("disciplina", disciplina);
-		//model.addAttribute("palavraChave", palavraChave);
+		model.addAttribute("palavraChave", palavraChaveService.obterTodosTag());
 		
 		return "adm/curso/view-disciplina";
 	}
@@ -79,15 +70,9 @@ public class DisciplinaController {
 	public String exibirPaginaAlterar(Model model, Integer id){
 		
 		Disciplina disciplina = disciplinaService.obterDisciplinaPorId(id);
-		Curso curso = cursoService.obterCursoPorId(disciplina.getIdCursoFk().getId());
 		
-		PalavraChave palavraChave = palavraChaveService.obterTagPorId(id);
-		palavraChaveService.obterTagPorId(palavraChave.getIdDisciplinaFk().getId());
-		
-		model.addAttribute("listarCurso", cursoService.obterTodosCurso());
-		model.addAttribute("curso", curso);
 		model.addAttribute("disciplina", disciplina);
-		model.addAttribute("palavraChave", palavraChave);
+		model.addAttribute("palavraChave", palavraChaveService.obterTodosTag());
 		
 		return "adm/curso/edit-disciplina";
 	}
@@ -105,9 +90,13 @@ public class DisciplinaController {
 	
 	@RequestMapping(value = "desabilitarDisciplina", method = RequestMethod.POST)
 	@Transactional
-	public String desabilitarDisciplina(Disciplina disciplina){
+	public String desabilitarDisciplina(Disciplina disciplina, String pagina){
 		
 		disciplinaService.alterarEstadoDisciplina(disciplina.getId(), disciplina.getEstadoDisciplina());
+		
+		if(pagina.equals("view")){
+			return "forward:exibirPaginaVisualizar";
+		}
 		
 		return "forward:home";
 		
