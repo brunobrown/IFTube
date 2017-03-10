@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.entities.Curso;
+import br.com.iftube.model.entities.Disciplina;
 import br.com.iftube.service.CursoService;
 import br.com.iftube.service.DisciplinaService;
 import br.com.iftube.service.PalavraChaveService;
@@ -23,24 +24,25 @@ public class CursoController {
 	
 	@Autowired
 	private DisciplinaService disciplinaService;
-
+	
 	@Autowired
 	private PalavraChaveService palavraChaveService;
 
 	@RequestMapping("home")
 	@Transactional
-	public String exibirInicio(Model model) {
+	public String exibirInicio(Model model, Disciplina disciplina) {
 		model.addAttribute("curso", cursoService.obterTodosCurso());
 		model.addAttribute("disciplina", disciplinaService.obterTodosDisciplina());
 		model.addAttribute("palavraChave", palavraChaveService.obterTodosTag());
+
 		return "adm/curso/home";
 	}
+	
 	@RequestMapping("exibirPaginaCadastrarCurso")
 	public String exibirPaginaCadastrarCurso(Model model) {
 		model.addAttribute("listarCurso", cursoService.obterTodosCurso());
 		return "adm/curso/addCurso";
 	}
-	
 	
 	@RequestMapping("addCurso")
 	@Transactional

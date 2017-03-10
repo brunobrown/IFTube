@@ -38,8 +38,8 @@ public class PalavraChaveDaoImpl implements PalavraChaveDAO {
 	}
 
 	@Transactional
-	public void deletar(int tagId) {
-		em.remove(tagId);
+	public void deletar(PalavraChave tag) {
+		em.remove(tag);
 	}
 
 	@Transactional

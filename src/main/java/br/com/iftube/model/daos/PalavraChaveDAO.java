@@ -9,7 +9,7 @@ public interface PalavraChaveDAO {
 
 	public PalavraChave adicionar(PalavraChave tag);
 	public void editar(PalavraChave tag);
-	public void deletar(int tagId);
+	public void deletar(PalavraChave tag);
 	public PalavraChave obterTagPorId(int tagId);
 	public PalavraChave obterTagPorNome(String tag);
 	@SuppressWarnings("rawtypes")

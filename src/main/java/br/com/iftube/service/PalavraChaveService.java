@@ -8,8 +8,8 @@ import br.com.iftube.model.entities.PalavraChave;
 public interface PalavraChaveService {
 
 	public PalavraChave adicionar(PalavraChave tag) throws ServiceException;
-	public void editar(PalavraChave tag);
-	public void deletar(int tagId);
+	public void editar(PalavraChave tag, String iDs);
+	public void deletar(PalavraChave tag);
 	public PalavraChave obterTagPorId(int tagId);
 	public PalavraChave obterTagPorNome(String tag);
 	@SuppressWarnings("rawtypes")

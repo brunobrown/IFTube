@@ -32,9 +32,9 @@ public class PalavraChaveController {
 	}
 	
 	@RequestMapping("editTag")
-	public String edit(PalavraChave tag){
+	public String edit(PalavraChave tag, String id){
 	
-		palavraChaveService.editar(tag);
+		palavraChaveService.editar(tag, id);
 		
 		return "forward:exibirPaginaAlterar";
 	}

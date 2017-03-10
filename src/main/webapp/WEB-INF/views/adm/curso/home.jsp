@@ -44,7 +44,11 @@
 				<td>${objDisciplina.periodo}</td>
 				<td>
 					<c:forEach var="objPalavraChave" items="${palavraChave}">
-						<c:if test="${objDisciplina.id eq objPalavraChave.idDisciplinaFk.id}">${objPalavraChave.tag}</c:if>
+
+						<c:if test="${objDisciplina.id eq objPalavraChave.idDisciplinaFk.id}">
+							${objPalavraChave.tag}
+						</c:if>
+
 					</c:forEach>
 					
 				</td>

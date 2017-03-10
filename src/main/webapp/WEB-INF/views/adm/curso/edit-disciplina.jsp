@@ -48,15 +48,23 @@
 			</c:otherwise>
 		</c:choose>
 		
-	<form action="editTag" method="get">
-	<input type="hidden" name="id" value="${disciplina.id}">
+	<form action="editTag" method="post">
+	
+	<c:forEach var="objPalavraChave" items="${palavraChave}">
+		<c:if test="${disciplina.id eq objPalavraChave.idDisciplinaFk.id}">
+
+			<input type="hidden" name="id" value="${objPalavraChave.id}">
+			
+		</c:if>
+	</c:forEach>
+	<input type="hidden" name="idDisciplinaFk" value="${disciplina.id}">
 	
 		Tags:
 	<br />
 	<textarea name="tag" rows="10" cols="20"><c:forEach var="objPalavraChave" items="${palavraChave}"><c:if test="${disciplina.id eq objPalavraChave.idDisciplinaFk.id}">
 ${objPalavraChave.tag}</c:if></c:forEach></textarea>
 		
-		<br/><input type="submit" value="Alterar">
+		<br/><input type="submit" value="Alterar / Remover">
 	</form>
 	<a href="home"><button>Cancelar</button></a>
 </body>

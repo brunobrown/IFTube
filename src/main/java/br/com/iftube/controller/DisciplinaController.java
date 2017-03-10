@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.entities.Curso;
 import br.com.iftube.model.entities.Disciplina;
-import br.com.iftube.model.entities.PalavraChave;
 import br.com.iftube.service.CursoService;
 import br.com.iftube.service.DisciplinaService;
 import br.com.iftube.service.PalavraChaveService;
@@ -28,6 +27,8 @@ public class DisciplinaController {
 
 	@Autowired
 	private PalavraChaveService palavraChaveService;
+	
+	
 
 	@RequestMapping("exibirPaginaCadastrarDisciplina")
 	@Transactional
@@ -67,7 +68,7 @@ public class DisciplinaController {
 	}
 	
 	@RequestMapping("exibirPaginaAlterar")
-	public String exibirPaginaAlterar(Model model, Integer id){
+	public String exibirPaginaAlterar(Model model, int id){
 		
 		Disciplina disciplina = disciplinaService.obterDisciplinaPorId(id);
 		
@@ -76,18 +77,16 @@ public class DisciplinaController {
 		
 		return "adm/curso/edit-disciplina";
 	}
-	
+	/*
 	@RequestMapping("edit")
-	public String edit(Curso curso, Disciplina disciplina, PalavraChave tag){
+	public String edit(Curso curso, Disciplina disciplina){
 		
-	
-		palavraChaveService.editar(tag);
 		disciplinaService.editar(disciplina);
 		cursoService.editar(curso);
 		
 		return "forward:home";
 	}
-	
+	*/
 	@RequestMapping(value = "desabilitarDisciplina", method = RequestMethod.POST)
 	@Transactional
 	public String desabilitarDisciplina(Disciplina disciplina, String pagina){

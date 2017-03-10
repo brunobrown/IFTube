@@ -17,21 +17,19 @@ public class PalavraChaveServiceImpl implements PalavraChaveService {
 	@Autowired
 	private PalavraChaveDAO palavraChaveDao;
 
-
 	public PalavraChave adicionar(PalavraChave tag) throws ServiceException {
-		//PalavraChave tagEncontrada = null;
+		// PalavraChave tagEncontrada = null;
 
 		String[] tagSubDividida = tag.getTag().split("\r\n");
 
 		/*
-		for (String tagPesquisada : tagSubDividida) {
-			tagEncontrada = palavraChaveDao.obterTagPorNome(tagPesquisada);
-			if (tagEncontrada != null) {
-				throw new ServiceException("Tag (" + tagPesquisada + ") já existe!");
-			}
-
-		}
-		*/
+		 * for (String tagPesquisada : tagSubDividida) { tagEncontrada =
+		 * palavraChaveDao.obterTagPorNome(tagPesquisada); if (tagEncontrada !=
+		 * null) { throw new ServiceException("Tag (" + tagPesquisada +
+		 * ") já existe!"); }
+		 * 
+		 * }
+		 */
 
 		for (String str : tagSubDividida) {
 			PalavraChave palavraChave = new PalavraChave();
@@ -43,23 +41,67 @@ public class PalavraChaveServiceImpl implements PalavraChaveService {
 		return tag;
 	}
 
+	
 	@Transactional
-	public void editar(PalavraChave tag) {
-		
+	public void editar(PalavraChave tag, String id) {
 		String[] tagSubDividida = tag.getTag().split("\r\n");
+		String[] idSubDivididoStr = id.split(",");
+		int[] idSubDividido = new int[idSubDivididoStr.length];
 
-		for (String str : tagSubDividida) {
-			PalavraChave palavraChave = new PalavraChave();
-			palavraChave.setTag(str);
-			palavraChave.setIdDisciplinaFk(tag.getIdDisciplinaFk());
-			palavraChaveDao.editar(palavraChave);
+		for (int i = 0; i < idSubDividido.length; i++) {
+			idSubDividido[i] = Integer.parseInt(idSubDivididoStr[i]);
 		}
 		
+		int i = 0;
+		for (String str : tagSubDividida) {
+			PalavraChave palavraChave = new PalavraChave();
+			if (idSubDivididoStr.length - i > 0) {
+				palavraChave.setId(idSubDividido[i]);
+				palavraChave.setTag(str);
+				palavraChave.setIdDisciplinaFk(tag.getIdDisciplinaFk());
+				palavraChaveDao.editar(palavraChave);
+				i++;
+			} else if (idSubDivididoStr.length - i == 0) {
+				palavraChave.setTag(str);
+				palavraChave.setIdDisciplinaFk(tag.getIdDisciplinaFk());
+				palavraChaveDao.adicionar(palavraChave);
+			}
+		}	
+		
+			int j = 0;
+			int k = 0;
+			int cont = 0;
+
+			while (k < idSubDividido.length) {
+
+				j = 0;
+				cont = 0;
+
+				while (j < tagSubDividida.length) {
+					PalavraChave palavraChave = obterTagPorNome(tagSubDividida[j]);
+
+					if (idSubDividido[k] != palavraChave.getId()) {
+						j++;
+						cont++;
+					} else {
+						break;
+					}
+				}
+
+				if (cont == tagSubDividida.length) {
+					PalavraChave p = new PalavraChave();
+					p = palavraChaveDao.obterTagPorId(idSubDividido[k]);
+					deletar(p);
+					
+				}
+				k++;
+			
+		}
 	}
 
 	@Transactional
-	public void deletar(int tagId) {
-		palavraChaveDao.deletar(tagId);
+	public void deletar(PalavraChave tag) {
+		palavraChaveDao.deletar(tag);
 	}
 
 	@Transactional
@@ -77,5 +119,5 @@ public class PalavraChaveServiceImpl implements PalavraChaveService {
 	public List obterTodosTag() {
 		return palavraChaveDao.obterTodosTag();
 	}
-	
+
 }
