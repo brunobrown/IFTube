@@ -18,18 +18,44 @@ public class DisciplinaServiceImpl implements DisciplinaService, Converter<Strin
 	@Autowired
 	private DisciplinaDAO disciplinaDao;
 	
+	@SuppressWarnings("unchecked")
 	@Transactional
 	public Disciplina adicionar(Disciplina disciplina) throws ServiceException{
-		Disciplina disciplinaEncontrada = disciplinaDao.obterDisciplinaPorNome(disciplina.getNomeDisciplina());
-		if(disciplinaEncontrada != null){
-			throw new ServiceException("Disciplina já existe!");
+		List<Disciplina> todasDisciplinas = disciplinaDao.obterTodosDisciplina();
+		boolean disciplinaExiste = false;
+		
+		for (Disciplina d : todasDisciplinas) {
+			if(d.getIdCursoFk().getId() == disciplina.getIdCursoFk().getId() && d.getNomeDisciplina().equals(disciplina.getNomeDisciplina())){
+				disciplinaExiste = true;
+				break;
+			}
+		}
+		
+		if(disciplinaExiste){
+			throw new ServiceException("Essa Disciplina já Existe neste Curso!");
 		}
 		
 		return disciplinaDao.adicionar(disciplina);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Transactional
-	public void editar(Disciplina disciplina){
+	public void editar(Disciplina disciplina) throws ServiceException{
+		List<Disciplina> todasDisciplinas = disciplinaDao.obterTodosDisciplina();
+		boolean disciplinaExiste = false;
+		
+		for (Disciplina d : todasDisciplinas) {
+			if(d.getIdCursoFk().getId() == disciplina.getIdCursoFk().getId() && d.getNomeDisciplina().equals(disciplina.getNomeDisciplina())){
+				disciplinaExiste = true;
+				break;
+			}
+		}
+		
+		if(disciplinaExiste){
+			throw new ServiceException("Esta Disciplina já Existe neste Curso!");
+		}
+		
+		
 		disciplinaDao.editar(disciplina);
 	}
 	
@@ -56,7 +82,7 @@ public class DisciplinaServiceImpl implements DisciplinaService, Converter<Strin
 	}
 	
 	@Transactional
-	public void alterarTodosEstadoDisciplina(int id, String estadoCurso) {
+	public void alterarTodosEstadoDisciplina(int id, String estadoCurso) throws ServiceException {
 		@SuppressWarnings("unchecked")
 		List<Disciplina> estadoDisciplinaTodos = obterTodosDisciplina();
 		
@@ -64,10 +90,10 @@ public class DisciplinaServiceImpl implements DisciplinaService, Converter<Strin
 			
 			if(estadoCurso.equals("ATIVO") && id == disc.getIdCursoFk().getId()){
 				disc.setEstadoDisciplina("ATIVO");
-				editar(disc);	
+				disciplinaDao.editar(disc);	
 			}else if(estadoCurso.equals("INATIVO") && id == disc.getIdCursoFk().getId()){
 				disc.setEstadoDisciplina("INATIVO");
-				editar(disc);
+				disciplinaDao.editar(disc);
 			}
 		}
 	}

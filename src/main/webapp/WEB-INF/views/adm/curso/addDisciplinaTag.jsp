@@ -67,14 +67,13 @@ ${exception}
 
 			<input type="hidden" name="idDisciplinaFk" value="${disciplina.id}"><br />
 
-			<label for="tags">Observe: A cada TAG digitada aperte ENTER!</label><br /> 
-				
 				Tags:<br/>
-				<br/><textarea name="tag" rows="10" cols="20"></textarea><br /> 
+				<br/><textarea name="tag" rows="10" cols="20" placeholder="Informe uma Tag aqui! Aperte Enter ao final de cada Tag! Não Repetita Tags!"></textarea><br /> 
 			
 				<input type="submit" value="Cadastrar">
 
 		</form>
+
 	</c:if>
 
 

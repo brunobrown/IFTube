@@ -27,7 +27,6 @@ public class PalavraChaveDaoImpl implements PalavraChaveDAO {
 	public PalavraChave adicionar(PalavraChave tag) {
 		
 		em.persist(tag);
-		//em.flush();
 		return tag;
 		
 	}

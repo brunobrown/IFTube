@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Table(name="curso")
 public class Curso implements Serializable{
 
+
 	/**
 	 * 
 	 */

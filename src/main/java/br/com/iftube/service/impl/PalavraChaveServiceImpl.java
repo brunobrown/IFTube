@@ -1,5 +1,6 @@
 package br.com.iftube.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +19,17 @@ public class PalavraChaveServiceImpl implements PalavraChaveService {
 	private PalavraChaveDAO palavraChaveDao;
 
 	public PalavraChave adicionar(PalavraChave tag) throws ServiceException {
-		// PalavraChave tagEncontrada = null;
 
 		String[] tagSubDividida = tag.getTag().split("\r\n");
+		HashSet<String> tags = new HashSet<String>();
+		
+		for (String t : tagSubDividida) {
+			tags.add(new String(t));
+		}
 
-		/*
-		 * for (String tagPesquisada : tagSubDividida) { tagEncontrada =
-		 * palavraChaveDao.obterTagPorNome(tagPesquisada); if (tagEncontrada !=
-		 * null) { throw new ServiceException("Tag (" + tagPesquisada +
-		 * ") já existe!"); }
-		 * 
-		 * }
-		 */
-
-		for (String str : tagSubDividida) {
+		for (String tagsStr : tags) {
 			PalavraChave palavraChave = new PalavraChave();
-			palavraChave.setTag(str);
+			palavraChave.setTag(tagsStr);
 			palavraChave.setIdDisciplinaFk(tag.getIdDisciplinaFk());
 			palavraChaveDao.adicionar(palavraChave);
 		}
@@ -42,9 +38,21 @@ public class PalavraChaveServiceImpl implements PalavraChaveService {
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	@Transactional
 	public void editar(PalavraChave tag, String id) {
 		String[] tagSubDividida = tag.getTag().split("\r\n");
+		HashSet<String> tags = new HashSet<String>();
+		
+		for (String t : tagSubDividida) {
+			tags.add(new String(t));
+		}
+		
+		List <PalavraChave> todasTags = obterTodosTag();
+		
+		if(id == null){
+			id = "1";
+		}
 		String[] idSubDivididoStr = id.split(",");
 		int[] idSubDividido = new int[idSubDivididoStr.length];
 
@@ -53,55 +61,93 @@ public class PalavraChaveServiceImpl implements PalavraChaveService {
 		}
 		
 		int i = 0;
-		for (String str : tagSubDividida) {
+		int verificador = 0;
+		for (String str : tags) {
 			PalavraChave palavraChave = new PalavraChave();
 			if (idSubDivididoStr.length - i > 0) {
 				palavraChave.setId(idSubDividido[i]);
 				palavraChave.setTag(str);
 				palavraChave.setIdDisciplinaFk(tag.getIdDisciplinaFk());
-				palavraChaveDao.editar(palavraChave);
+				verificador = 0;
+				for (PalavraChave t : todasTags) {
+					if(t.getIdDisciplinaFk().getId() == tag.getIdDisciplinaFk().getId()){
+						if(palavraChave.getTag().equals(t.getTag())){
+							verificador++;
+							break;
+						}
+					}
+				}
+				if(verificador == 0){
+					palavraChaveDao.editar(palavraChave);
+				}
 				i++;
-			} else if (idSubDivididoStr.length - i == 0) {
+			} else if (idSubDivididoStr.length - i <= 0) {
 				palavraChave.setTag(str);
 				palavraChave.setIdDisciplinaFk(tag.getIdDisciplinaFk());
-				palavraChaveDao.adicionar(palavraChave);
+				verificador = 0;
+				for (PalavraChave t : todasTags) {
+					if(t.getIdDisciplinaFk().getId() == tag.getIdDisciplinaFk().getId()){
+						if(palavraChave.getTag().equals(t.getTag())){
+							verificador++;
+							break;
+						}
+					}
+				}
+				
+				if(verificador == 0){
+					palavraChaveDao.adicionar(palavraChave);
+				}
+				
 			}
-		}	
+			
+		}
 		
-			int j = 0;
-			int k = 0;
-			int cont = 0;
+		if(idSubDividido.length > tagSubDividida.length){
+			deletar(tagSubDividida, idSubDividido, tag.getIdDisciplinaFk().getId());
+		}
+		
+	}
 
-			while (k < idSubDividido.length) {
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public void deletar(String[] tagSubDividida, int[] idSubDividido, int disciplinaId) {
+		List <PalavraChave> todasTags = obterTodosTag();
+		PalavraChave palavraChave = null;
+		int j = 0;
+		int k = 0;
+		int cont = 0;
 
-				j = 0;
-				cont = 0;
+		while (k < idSubDividido.length) {
 
-				while (j < tagSubDividida.length) {
-					PalavraChave palavraChave = obterTagPorNome(tagSubDividida[j]);
+			j = 0;
+			cont = 0;
 
-					if (idSubDividido[k] != palavraChave.getId()) {
-						j++;
-						cont++;
-					} else {
+			while (j < tagSubDividida.length) {
+				
+				for (PalavraChave t : todasTags) {
+					if(t.getIdDisciplinaFk().getId() == disciplinaId && t.getTag().equals(tagSubDividida[j])){
+						palavraChave = t;
 						break;
 					}
 				}
 
-				if (cont == tagSubDividida.length) {
-					PalavraChave p = new PalavraChave();
-					p = palavraChaveDao.obterTagPorId(idSubDividido[k]);
-					deletar(p);
-					
+				if (idSubDividido[k] != palavraChave.getId()) {
+					j++;
+					cont++;
+				} else {
+					break;
 				}
-				k++;
-			
-		}
-	}
+			}
 
-	@Transactional
-	public void deletar(PalavraChave tag) {
-		palavraChaveDao.deletar(tag);
+			if (cont == tagSubDividida.length) {
+				PalavraChave p = new PalavraChave();
+				p = palavraChaveDao.obterTagPorId(idSubDividido[k]);
+				palavraChaveDao.deletar(p);
+			}
+			k++;
+		
+	}
+		
 	}
 
 	@Transactional

@@ -9,7 +9,7 @@ public interface PalavraChaveService {
 
 	public PalavraChave adicionar(PalavraChave tag) throws ServiceException;
 	public void editar(PalavraChave tag, String iDs);
-	public void deletar(PalavraChave tag);
+	public void deletar(String[] tagSubDividida, int[] idSubDividido, int idDisciplina);
 	public PalavraChave obterTagPorId(int tagId);
 	public PalavraChave obterTagPorNome(String tag);
 	@SuppressWarnings("rawtypes")

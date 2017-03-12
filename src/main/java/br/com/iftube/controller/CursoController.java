@@ -72,7 +72,12 @@ public class CursoController {
 		
 		cursoService.alterarEstadoCurso(curso.getId(), curso.getEstadoCurso());
 		
-		disciplinaService.alterarTodosEstadoDisciplina(curso.getId(), curso.getEstadoCurso());
+		try {
+			disciplinaService.alterarTodosEstadoDisciplina(curso.getId(), curso.getEstadoCurso());
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		if(pagina.equals("home")){
 			return "forward:home";

@@ -21,25 +21,27 @@
 
 	ID:
 	<input type="text" readonly="readonly" value="${disciplina.id}">
-	<br /> Curso:
-	<input type="text" readonly="readonly"
+	<br /> 
+	Curso:<input type="text" readonly="readonly"
 		value="${disciplina.idCursoFk.nomeCurso}">
-	<br /> Disciplina:
-	<input type="text" readonly="readonly"
-		value="${disciplina.nomeDisciplina}">
-	<br /> Período:
-	<input type="text" readonly="readonly" value="${disciplina.periodo}">
 	<br />
-
+	
 	Status Curso: <input type="text" readonly="readonly" 
 	style="color: ${disciplina.idCursoFk.estadoCurso eq 'ATIVO' ? 'green' : 'red' }"
 	value="${disciplina.idCursoFk.estadoCurso}"><br/>
-
+	
+	Disciplina:<input type="text" readonly="readonly"
+		value="${disciplina.nomeDisciplina}">
+	<br />
+	
 	Status Disciplina:
 	<input type="text" readonly="readonly"
 		style="color: ${disciplina.estadoDisciplina eq 'ATIVO' ? 'green' : 'red' }"
-		value="${disciplina.estadoDisciplina}" />
-		
+		value="${disciplina.estadoDisciplina}" /><br/>
+	
+	Período:<input type="text" readonly="readonly" value="${disciplina.periodo}">
+	<br />
+
 	<br /> Tags:
 	<br />
 	<textarea rows="10" cols="20" readonly="readonly"><c:forEach

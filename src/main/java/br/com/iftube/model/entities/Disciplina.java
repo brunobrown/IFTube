@@ -26,7 +26,7 @@ public class Disciplina implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@Column(name = "nome_disciplina", unique=true, nullable=false, length=100)
+	@Column(name = "nome_disciplina", nullable=false, length=100)
 	private String nomeDisciplina;
 	
 	@Column(nullable=false, length=10)
