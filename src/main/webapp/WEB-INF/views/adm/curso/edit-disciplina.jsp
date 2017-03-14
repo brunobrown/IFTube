@@ -36,9 +36,9 @@
 					value="${disciplina.idCursoFk.estadoCurso}"><br />
 
 				Disciplina:<input type="text" name="nomeDisciplina"
-					value="<c:out value='${disciplina.nomeDisciplina}'/>"> <br />
+					value="${disciplina.nomeDisciplina}"/> <br />
 
-				Status Disciplina: <input type="text" readonly="readonly"
+				Status Disciplina: <input type="text" name="estadoDisciplina" readonly="readonly"
 					style="color: ${disciplina.estadoDisciplina eq 'ATIVO' ? 'green' : 'red' }"
 					value="${disciplina.estadoDisciplina}" /><br /> Período: <select
 					name="periodo">
@@ -63,7 +63,7 @@
 					value="${disciplina.idCursoFk.estadoCurso}"><br />
 				Disciplina:<input type="text" readonly="readonly"
 				name="nomeDisciplina"
-				value="<c:out value='${disciplina.nomeDisciplina}'/>">
+				value="${disciplina.nomeDisciplina}"/>
 			<br /> 
 				Status Disciplina: <input type="text" readonly="readonly"
 					style="color: ${disciplina.estadoDisciplina eq 'ATIVO' ? 'green' : 'red' }"

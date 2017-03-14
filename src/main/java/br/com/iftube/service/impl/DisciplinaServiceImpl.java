@@ -52,10 +52,21 @@ public class DisciplinaServiceImpl implements DisciplinaService, Converter<Strin
 		}
 		
 		if(disciplinaExiste){
+//			String nomeDisciplina = disciplina.getNomeDisciplina();
+//			disciplina.setNomeDisciplina(nomeDisciplina);
+//			disciplina.setEstadoDisciplina("INATIVO");
+			
+			Disciplina disciplinaAtual = obterDisciplinaPorId(disciplina.getId());
+			if(disciplina.getNomeDisciplina().equals(disciplinaAtual.getNomeDisciplina())){
+				disciplinaDao.editar(disciplina);
+			}
+			disciplina.setNomeDisciplina(disciplinaAtual.getNomeDisciplina());
+			disciplina.setPeriodo(disciplinaAtual.getPeriodo());
+			disciplinaDao.editar(disciplina);
 			throw new ServiceException("Esta Disciplina já Existe neste Curso!");
 		}
 		
-		
+		//disciplina.setEstadoDisciplina("INATIVO");
 		disciplinaDao.editar(disciplina);
 	}
 	
