@@ -1,5 +1,6 @@
 package br.com.iftube.controller;
 
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +51,10 @@ public class CursoController {
 		
 			try {
 				cursoService.adicionar(curso);
+				model.addAttribute("exception", "Curso cadastrado com sucesso!");
 			} catch (ServiceException e) {
-				// TODO Auto-generated catch block
-				model.addAttribute("exception", e);
+				model.addAttribute("exception", "Este Curso já existe!");
+				e.printStackTrace();
 			}
 		
 		
@@ -61,8 +63,14 @@ public class CursoController {
 
 	@RequestMapping("editCurso")
 	@Transactional
-	public String alterarCurso(int id, Curso curso){
-		cursoService.editar(curso);
+	public String alterarCurso(int id, Curso curso, Model model){
+		try {
+			cursoService.editar(curso);
+			model.addAttribute("exception", "Curso alterado com sucesso!");
+		} catch (ServiceException e) {
+			model.addAttribute("exception", "Este Curso não pode ser alterado, ele já existe!");
+			e.printStackTrace();
+		}
 		return "forward:exibirPaginaCadastrarCurso";
 	}
 	

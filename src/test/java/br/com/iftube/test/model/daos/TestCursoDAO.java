@@ -27,6 +27,7 @@ public class TestCursoDAO {
 		Curso curso = new Curso();
 		curso.setNomeCurso("testAdicionarCurso");
 		cursoDao.adicionar(curso);
+
 	
 		Assert.assertNotNull(curso.getId());
 	}

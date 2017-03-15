@@ -8,7 +8,7 @@ import br.com.iftube.model.entities.Curso;
 public interface CursoService {
 
 	public Curso adicionar(Curso curso) throws ServiceException;
-	public Curso editar(Curso curso);
+	public Curso editar(Curso curso) throws ServiceException;
 	//public Curso desabilitarHabilitar(Curso curso);
 	public void deletar(Curso curso);
 	public Curso obterCursoPorId(int cursoId);

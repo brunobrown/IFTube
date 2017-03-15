@@ -46,9 +46,10 @@ public class DisciplinaController {
 		
 		try {
 			disciplinaService.adicionar(disciplina);
+			model.addAttribute("exception", "Disciplina cadastrada com sucesso!");
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			model.addAttribute("exception", e);
+			model.addAttribute("exception", "Esta Disciplina já existe neste Curso!");
+			e.printStackTrace();
 		}
 		
 		model.addAttribute("curso", cursoService.obterCursoPorId(disciplina.getIdCursoFk().getId()));
@@ -82,9 +83,10 @@ public class DisciplinaController {
 		
 		try {
 			disciplinaService.editar(disciplina);
+			model.addAttribute("exception", "Disciplina alterada com sucesso!");
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			model.addAttribute("exception", e);
+			model.addAttribute("exception", "Esta Disciplina já existe neste Curso!");
+			e.printStackTrace();
 		}
 		
 		return "forward:exibirPaginaAlterar";

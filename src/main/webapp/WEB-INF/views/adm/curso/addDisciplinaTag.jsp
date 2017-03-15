@@ -22,7 +22,7 @@
 	<h3>Disciplina</h3>
 	<hr>
 
-${exception}
+${exception}<br/>
 
 	<c:choose>
 		<c:when test="${disciplina.id == null}">

@@ -25,12 +25,17 @@ public class CursoServiceImpl implements CursoService, Converter<String, Curso>{
 		if(cursoEncontrado != null){
 			throw new ServiceException("Curso já existe!");
 		}
-		
+
 		return cursoDao.adicionar(curso);
 	}
 
 	@Transactional
-	public Curso editar(Curso curso) {
+	public Curso editar(Curso curso) throws ServiceException {
+		Curso cursoEncontrado = cursoDao.obterCursoPorNome(curso.getNomeCurso());
+		if(cursoEncontrado != null){
+			throw new ServiceException("Curso já existe!");
+		}
+		
 		return cursoDao.editar(curso);
 	}
 
@@ -53,7 +58,11 @@ public class CursoServiceImpl implements CursoService, Converter<String, Curso>{
 	public Curso alterarEstadoCurso(int id, String estadoCurso) {
 		Curso curso = obterCursoPorId(id);
 		curso.setEstadoCurso(estadoCurso);
-		editar(curso);
+		try {
+			editar(curso);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
 		return curso;
 	}
 
