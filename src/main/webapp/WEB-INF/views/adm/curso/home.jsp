@@ -15,6 +15,8 @@
 
 	<h1>IFTube - Adm</h1>
 	<hr>
+	<a href="homeUser"><button>Usuarios</button></a>
+	<hr>
 	<a href="exibirPaginaCadastrarCurso"><button>Cadastrar
 			Curso</button></a> |
 	<a href="exibirPaginaCadastrarDisciplina"><button>Cadastrar
