@@ -7,10 +7,10 @@ import br.com.iftube.model.entities.Usuario;
 public interface UsuarioDAO {
 
 	public Usuario adicionar(Usuario usuario);
-	public Usuario editar(Usuario usuario);
+	public void editar(Usuario usuario);
 	public void deletar(int usuarioId);
 	public Usuario obterUsuarioPorId(int usuarioId);
-	public Usuario obterUsuarioPorNome(String nomeUsuario);
+	public Usuario obterUsuarioPorNome(String nome);
 	@SuppressWarnings("rawtypes")
 	public List obterTodosUsuario();
 }

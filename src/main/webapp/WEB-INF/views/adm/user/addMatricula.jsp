@@ -15,44 +15,43 @@
 
 	<h1>IFTube - Adm</h1>
 	<hr>
-	<h3>Perfil</h3>
+	<h3>Matrícula</h3>
 	
 	<a href="homeUser"><button>Usuários</button></a>
 	<a href="exibirPaginaCadastrarUsuario"><button>Cadastrar
 			Usuário</button></a>
 	<hr>
 	${exception}
-	<form action="addPerfil" method="post">
-		Cadastrar Perfil<input type="text" name="descricao" />
-		<input type="hidden" name="estadoPerfil" value="ATIVO"/>
+	
+	<form action="addMatricula" method="post">
+		Cadastrar Usuário<input type="text" name="matricula" />
 		<input type="submit" value="Cadastrar">
 	</form>
 
 	<hr />
 
 
-	<form:form action="searchPerfil" method="get">
-		Perfil:<input type="text" name="descricao">
+	<form:form action="searchMatricula" method="get">
+		Matrícula:<input type="text" name="matricula">
 		<input type="submit" value="Pesquisar">
 	</form:form>
 
 	<hr />
 	<table border=1>
 		<tr>
-			<th>ID</th>
-			<th>DESCRICAO</th>
+			<th>MATRÍCULA</th>
 			<th>ACÃO</th>
+			<th>STATUS</th>
 		</tr>
 
+
 		<c:choose>
-			<c:when test="${perfilLocalizado != null}">
+			<c:when test="${matriculaLocalizado != null}">
 
 				<tr>
-					<form:form action="editPerfil" method="post">
-						<td><input type="text" name="id"
-							value="${perfilLocalizado.id}" readonly="readonly"></td>
-						<td><input type="text" name="descricao"
-							value="${perfilLocalizado.descricao}"></td>
+					<form:form action="editMatricula" method="post">
+						<td><input type="text" name="matricula"
+							value="${matriculaLocalizado.matricula}"></td>
 						<td><input type="submit" value="Alterar"></td>
 						<br/>
 					</form:form>
@@ -61,15 +60,13 @@
 			</c:when>
 			<c:otherwise>
 
-				<c:forEach var="c" items="${listarPerfil}">
+				<c:forEach var="c" items="${listarMatricula}">
 
 					<tr>
 
-						<form:form action="editPerfil" method="post">
-							<td><input type="text" name="id" value="${c.id}"
-								readonly="readonly"></td>
-							<td><input type="text" name="descricao"
-								value="${c.descricao}"></td>
+						<form:form action="editMatricula" method="post">
+							<td><input type="text" name="matricula"
+								value="${c.matricula}"></td>
 							<td><input type="submit" value="Alterar"></td>
 						
 						</form:form>

@@ -14,7 +14,7 @@ import br.com.iftube.model.daos.UsuarioDAO;
 import br.com.iftube.model.entities.Usuario;
 
 @Repository
-public class UsuarioDaoImpl implements UsuarioDAO{
+public class UsuarioDaoImpl implements UsuarioDAO {
 
 	@PersistenceContext
 	EntityManager em;
@@ -30,8 +30,8 @@ public class UsuarioDaoImpl implements UsuarioDAO{
 	}
 
 	@Transactional
-	public Usuario editar(Usuario usuario) {
-		return em.merge(usuario);
+	public void editar(Usuario usuario) {
+		em.merge(usuario);
 	}
 
 	@Transactional
@@ -43,12 +43,12 @@ public class UsuarioDaoImpl implements UsuarioDAO{
 	public Usuario obterUsuarioPorId(int usuarioId) {
 		return em.find(Usuario.class, usuarioId);
 	}
-
+	
 	@Transactional
-	public Usuario obterUsuarioPorNome(String nomeUsuario) {
+	public Usuario obterUsuarioPorNome(String nome) {
 		try {
-		Query q = em.createQuery("select c from Usuario c where c.nomeUsuario=:nomeUsuarioParam");
-		q.setParameter("nomeUsuarioParam", nomeUsuario);
+		Query q = em.createQuery("select u from Usuario u where u.nome=:nomeParam");
+		q.setParameter("nomeParam", nome);
 		q.setMaxResults(1);
 		return (Usuario) q.getSingleResult();
 		} catch (NoResultException e) {
@@ -57,9 +57,10 @@ public class UsuarioDaoImpl implements UsuarioDAO{
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+
+	@SuppressWarnings("rawtypes")
 	@Transactional
-	public List<Usuario> obterTodosUsuario() {
+	public List obterTodosUsuario() {
 		Query q = em.createQuery("from Usuario");
 		return q.getResultList();
 	}

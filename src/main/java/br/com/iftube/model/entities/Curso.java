@@ -8,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 @Entity
 @Table(name="curso")
@@ -22,6 +26,12 @@ public class Curso implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
+	/*##############################
+	Validacao adicionada abaixo*/
+	@NotEmpty(message="Este campo deve ser preenchido!")
+	@Size(min = 5, max = 15, message="O Nome do Curso deve deve ter um tamanho de 15 caracteres")
+	//##############################
 	
 	@Column(name = "nome_curso",unique=true, nullable=false, length=100)
 	private String nomeCurso;

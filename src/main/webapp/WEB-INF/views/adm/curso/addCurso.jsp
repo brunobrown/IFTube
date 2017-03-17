@@ -6,6 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,6 +24,12 @@
 	<hr>
 	${exception}
 	<form action="addCurso" method="post">
+	
+	<!--######################
+	Aqui exibo as mensagens de validação com uma tag do Spring MVC chamada: <form:errors/> 
+	##########################-->
+	<form:errors path="curso.nomeCurso" cssStyle="color:red" /><br/>
+	
 		Cadastrar Curso<input type="text" name="nomeCurso" />
 		<input type="hidden" name="estadoCurso" value="ATIVO"/>
 		<input type="submit" value="Cadastrar">

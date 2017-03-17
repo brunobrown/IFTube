@@ -11,7 +11,7 @@
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<build>
 		<finalName>iftube</finalName>
 		<plugins>
@@ -33,7 +33,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 
 	<dependencies>
 		<dependency>
@@ -42,7 +42,15 @@
 			<version>4.1.0.RELEASE</version>
 		</dependency>
 		<dependency>
-		
+
+
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-servlet-api</artifactId>
+			<version>7.0.30</version>
+			<scope>provided</scope>
+
+	</dependency>
+	
 	<!-- 
 		Spring Web 
 		<dependency>
@@ -51,12 +59,8 @@
 			<version>4.1.0.RELEASE</version>
 		</dependency>
 		-->
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-servlet-api</artifactId>
-			<version>7.0.30</version>
-			<scope>provided</scope>
-
-		</dependency>
+	
+	
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -185,13 +189,39 @@
 			<artifactId>commons-io</artifactId>
 			<version>1.4</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.1.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.fasterxml</groupId>
+			<artifactId>classmate</artifactId>
+			<version>0.8.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.1.0.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.0.0.GA</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging -->
+		<dependency>
+	    	<groupId>org.jboss.logging</groupId>
+	    	<artifactId>jboss-logging</artifactId>
+	    	<version>3.3.0.Final</version>
+		</dependency>
+		
 	</dependencies>
+
 
 </project>

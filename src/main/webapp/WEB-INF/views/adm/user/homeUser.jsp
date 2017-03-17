@@ -17,8 +17,8 @@
 	<hr>
 	<a href="home"><button>Disciplinas</button></a>
 	<hr>
-	<a href="exibirPaginaCadastrarPerfil"><button>Cadastrar
-			Perfil</button></a> |
+	<a href="exibirPaginaCadastrarMatricula"><button>Cadastrar
+			Matricula</button></a> |
 	<a href="exibirPaginaCadastrarUsuario"><button>Cadastrar
 			Usuário</button></a>
 	<hr>

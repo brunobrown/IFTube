@@ -2,10 +2,12 @@ package br.com.iftube.controller;
 
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -47,8 +49,27 @@ public class CursoController {
 	
 	@RequestMapping("addCurso")
 	@Transactional
-	public String cadastrarCurso(Curso curso, Model model) {
+	
+	/*
+	###########################
+	No parametro do metodo (cadastarCurso) eu aviso ao Spring MVC que quero executar a
+	validação utilizando a anotação (@Valid)
+	
+	Ainda no parametro do metodo (cadastarCurso) aviso ao Spring MVC para guardar a exception e o 
+	resultado dos erros de validação em um objeto do tipo (BindingResult)
+	###########################
+	*/
+	public String cadastrarCurso(@Valid Curso curso, BindingResult result, Model model) {
 		
+			/*
+			 ###################################
+			 Aqui verifico se a variavel (result) contem erro de validação,
+			 se existir erro, o sistema retorna ao formulário. 
+			 */
+			if (result.hasErrors()) {
+				return "forward:exibirPaginaCadastrarCurso";
+			}
+			//###############################
 			try {
 				cursoService.adicionar(curso);
 				model.addAttribute("exception", "Curso cadastrado com sucesso!");
