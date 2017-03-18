@@ -25,6 +25,8 @@
 				<bean class="br.com.iftube.service.impl.CursoServiceImpl" />
 				<bean class="br.com.iftube.service.impl.DisciplinaServiceImpl" />
 			<!--<bean class="br.com.iftube.service.impl.PalavraChaveServiceImpl" />-->
+				<bean class="br.com.iftube.service.impl.MatriculaServiceImpl" />
+				<bean class="br.com.iftube.service.impl.UsuarioServiceImpl" />
 			</list>
 		</property>
 	</bean>

@@ -22,7 +22,7 @@ public class Usuario implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5865049840812792059L;
+	private static final long serialVersionUID = 140038084406397982L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -49,9 +49,13 @@ public class Usuario implements Serializable{
 	private Perfil perfil;
 	
 	@OneToOne
-	@JoinColumn(name = "id_matricula_fk")
-	private Matricula idMatriculaFk;
+	@JoinColumn(name = "id_matricula_aluno_fk")
+	private Matricula idMatriculaAlunoFk;
 
+	public Usuario() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -109,13 +113,14 @@ public class Usuario implements Serializable{
 		this.perfil = perfil;
 	}
 
-	public Matricula getIdMatriculaFk() {
-		return idMatriculaFk;
+	public Matricula getIdMatriculaAlunoFk() {
+		return idMatriculaAlunoFk;
 	}
 
-	public void setIdMatriculaFk(Matricula idMatriculaFk) {
-		this.idMatriculaFk = idMatriculaFk;
+	public void setIdMatriculaAlunoFk(Matricula idMatriculaAlunoFk) {
+		this.idMatriculaAlunoFk = idMatriculaAlunoFk;
 	}
+	
 
 	@Override
 	public int hashCode() {
@@ -124,7 +129,7 @@ public class Usuario implements Serializable{
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((estadoUsuario == null) ? 0 : estadoUsuario.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((idMatriculaFk == null) ? 0 : idMatriculaFk.hashCode());
+		result = prime * result + ((idMatriculaAlunoFk == null) ? 0 : idMatriculaAlunoFk.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((perfil == null) ? 0 : perfil.hashCode());
@@ -153,10 +158,10 @@ public class Usuario implements Serializable{
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (idMatriculaFk == null) {
-			if (other.idMatriculaFk != null)
+		if (idMatriculaAlunoFk == null) {
+			if (other.idMatriculaAlunoFk != null)
 				return false;
-		} else if (!idMatriculaFk.equals(other.idMatriculaFk))
+		} else if (!idMatriculaAlunoFk.equals(other.idMatriculaAlunoFk))
 			return false;
 		if (login == null) {
 			if (other.login != null)
@@ -168,10 +173,7 @@ public class Usuario implements Serializable{
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (perfil == null) {
-			if (other.perfil != null)
-				return false;
-		} else if (!perfil.equals(other.perfil))
+		if (perfil != other.perfil)
 			return false;
 		if (senha == null) {
 			if (other.senha != null)
@@ -180,9 +182,5 @@ public class Usuario implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
-	
 	
 }

@@ -89,7 +89,7 @@ public class MatriculaController {
 			model.addAttribute("matriculaExiste", matriculaService.validarMatricula(matricula));
 			model.addAttribute("matricula", matriculaService.obterMatriculaPorNome(matricula));
 		} catch (ServiceException e) {
-			model.addAttribute("exception", "Matrícula não existe!");
+			model.addAttribute("exception", e);
 			e.printStackTrace();
 		}
 		

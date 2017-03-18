@@ -45,10 +45,10 @@ public class MatriculaDaoImpl implements MatriculaDAO{
 	}
 
 	@Transactional
-	public Matricula obterMatriculaPorNome(String matricula) {
+	public Matricula obterMatriculaPorNome(String matriculaAluno) {
 		try {
-		Query q = em.createQuery("select m from Matricula m where m.matricula=:matriculaParam");
-		q.setParameter("matriculaParam", matricula);
+		Query q = em.createQuery("select m from Matricula m where m.matriculaAluno=:matriculaAlunoParam");
+		q.setParameter("matriculaAlunoParam", matriculaAluno);
 		q.setMaxResults(1);
 		return (Matricula) q.getSingleResult();
 		} catch (NoResultException e) {

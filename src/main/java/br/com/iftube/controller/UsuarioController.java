@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.entities.EstadoUsuario;
 import br.com.iftube.model.entities.Perfil;
 import br.com.iftube.model.entities.Usuario;
@@ -35,7 +36,6 @@ public class UsuarioController {
 	@RequestMapping("exibirPaginaCadastrarUsuario")
 	@Transactional
 	public String exibirForm(Usuario usuario, Model model) {
-		
 		model.addAttribute("estadoUsuario", estadoUsuario);
 		model.addAttribute("perfil", perfil);
 		return "adm/user/addUsuario";
@@ -43,9 +43,14 @@ public class UsuarioController {
 	
 	@RequestMapping("addUsuario")
 	@Transactional
-	public String cadastrarUsuario(Usuario usuario, Model model) {
+	public String cadastrarUsuario(Usuario usuario, String confirmaSenha, Model model) {
 		
-		usuarioService.adicionar(usuario);
+		try {
+			usuarioService.adicionar(usuario, confirmaSenha);
+		} catch (ServiceException e) {
+			model.addAttribute("exceptionEmailLoginSenha", e);
+			e.printStackTrace();
+		}
 		
 		return "forward:exibirPaginaCadastrarUsuario";
 	}

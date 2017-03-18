@@ -39,16 +39,16 @@ public class Curso implements Serializable{
 	@Column(name = "estado_curso", nullable=false, length=10)
 	private String estadoCurso;
 	
+	public Curso() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public String getEstadoCurso() {
 		return estadoCurso;
 	}
 
 	public void setEstadoCurso(String estadoCurso) {
 		this.estadoCurso = estadoCurso;
-	}
-
-	public Curso() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Integer getId() {

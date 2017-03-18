@@ -7,6 +7,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.daos.UsuarioDAO;
 import br.com.iftube.model.entities.Usuario;
 import br.com.iftube.service.UsuarioService;
@@ -17,21 +18,36 @@ public class UsuarioServiceImpl implements UsuarioService, Converter<String, Usu
 	@Autowired
 	private UsuarioDAO usuarioDao;
 	
-	public Usuario adicionar(Usuario usuario/*, String email, String login*/){
+	@SuppressWarnings("unchecked")
+	public Usuario adicionar(Usuario usuario, String confirmaSenha) throws ServiceException{
 		
-//		List<Usuario> todosUsuario = usuarioDao.obterTodosUsuario();
-//		boolean loginOuEmailExiste = false;
-//		
-//		for (Usuario u : todosUsuario) {
-//			if(u.getEmail.equals(email) || u.getLogin.equals(login)){
-//				loginOuEmailExiste = true;
-//				break;
-//			}
-//		}
-//		
-//		if(loginOuEmailExiste){
-//			throw new ServiceException("Email ou Login já Existem!");
-//		}
+		List<Usuario> todosUsuario = usuarioDao.obterTodosUsuario();
+		
+		boolean loginExiste = false;
+		boolean emailExiste = false;
+		boolean senhaNaoConfere = false;
+		
+		for (Usuario u : todosUsuario) {
+			if(u.getEmail().equals(usuario.getEmail())){
+				loginExiste = true;
+				break;
+			}else if(u.getLogin().equals(usuario.getLogin())){
+				emailExiste = true;
+				break;
+			}else if(!u.getSenha().equals(confirmaSenha)){
+				senhaNaoConfere = true;
+				break;
+			}
+		
+		}
+		
+		if(loginExiste){
+			throw new ServiceException("Este Login já Existe!");
+		}else if(emailExiste){
+			throw new ServiceException("Este Email já Existe!");
+		}else if(senhaNaoConfere){
+			throw new ServiceException("Senhas não conferem!");
+		}
 		
 		return usuarioDao.adicionar(usuario);
 	}
@@ -55,6 +71,11 @@ public class UsuarioServiceImpl implements UsuarioService, Converter<String, Usu
 	@Transactional
 	public Usuario obterUsuarioPorNome(String nome) {
 		return usuarioDao.obterUsuarioPorNome(nome);
+	}
+	
+	@Transactional
+	public Usuario obterUsuarioPorMatricula(String idMatriculaAlunoFk) {
+		return usuarioDao.obterUsuarioPorNome(idMatriculaAlunoFk);
 	}
 	
 //	@Transactional

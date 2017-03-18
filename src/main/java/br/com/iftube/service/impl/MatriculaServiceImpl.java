@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.daos.MatriculaDAO;
 import br.com.iftube.model.entities.Matricula;
+import br.com.iftube.model.entities.Usuario;
 import br.com.iftube.service.MatriculaService;
+import br.com.iftube.service.UsuarioService;
 
 @Service
 public class MatriculaServiceImpl implements MatriculaService, Converter<String, Matricula>{
@@ -18,10 +20,13 @@ public class MatriculaServiceImpl implements MatriculaService, Converter<String,
 	@Autowired
 	private MatriculaDAO matriculaDao;
 	
+	@Autowired
+	private UsuarioService usuarioService;
+	
 	
 	@Transactional
 	public Matricula adicionar(Matricula matricula) throws ServiceException{
-		Matricula matriculaEncontrado = matriculaDao.obterMatriculaPorNome(matricula.getMatricula());
+		Matricula matriculaEncontrado = matriculaDao.obterMatriculaPorNome(matricula.getMatriculaAluno());
 		if(matriculaEncontrado != null){
 			throw new ServiceException("Matricula já existe!");
 		}
@@ -31,7 +36,7 @@ public class MatriculaServiceImpl implements MatriculaService, Converter<String,
 
 	@Transactional
 	public Matricula editar(Matricula matricula) throws ServiceException {
-		Matricula matriculaEncontrado = matriculaDao.obterMatriculaPorNome(matricula.getMatricula());
+		Matricula matriculaEncontrado = matriculaDao.obterMatriculaPorNome(matricula.getMatriculaAluno());
 		if(matriculaEncontrado != null){
 			throw new ServiceException("Matricula já existe!");
 		}
@@ -64,18 +69,30 @@ public class MatriculaServiceImpl implements MatriculaService, Converter<String,
 	@Transactional
 	public boolean validarMatricula(String matriculaStr) throws ServiceException {
 		
+		List<Usuario> todosUsuarios = usuarioService.obterTodosUsuario();
+		
 		List<Matricula> todosMatriculas = matriculaDao.obterTodosMatricula();
 		boolean matriculaExiste = false;
+		boolean matriculaAlunoExiste = false;
+		
+		for (Usuario u : todosUsuarios) {
+			if(u.getIdMatriculaAlunoFk().getMatriculaAluno().equals(matriculaStr)){
+				matriculaAlunoExiste = true;
+				break;
+			}
+		}
 		
 		for (Matricula m : todosMatriculas) {
-			if(m.getMatricula().equals(matriculaStr)){
+			if(m.getMatriculaAluno().equals(matriculaStr)){
 				matriculaExiste = true;
 				break;
 			}
 		}
 		
-		if(!matriculaExiste){
-			throw new ServiceException("Essa Matrícula Não Existe!");
+		if(matriculaAlunoExiste){
+			throw new ServiceException("Esta Matrícula já tem usuário Cadastrado!");
+		}else if(!matriculaExiste){
+			throw new ServiceException("Esta Matrícula Não Existe!");
 		}
 		
 		return matriculaExiste;
@@ -83,10 +100,10 @@ public class MatriculaServiceImpl implements MatriculaService, Converter<String,
 	
 	
 	@Transactional
-	public Matricula convert(String id) {
+	public Matricula convert(String matriculaAluno) {
 		
-		if (!id.equals("")) {
-			return matriculaDao.obterMatriculaPorId(Integer.valueOf(id));
+		if (!matriculaAluno.equals("")) {
+			return matriculaDao.obterMatriculaPorNome(String.valueOf(matriculaAluno));
 		} else {
 		    return null;
 		}

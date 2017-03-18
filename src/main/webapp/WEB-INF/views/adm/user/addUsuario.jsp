@@ -29,16 +29,20 @@ ${exception}<br/>
 		<input type="text" name="matricula" placeholder="Ex.: 20151JBTI000"/>
 		<input type="submit" value="Enviar"/> 
 	</form>
+	<br/><hr>
+	
+	${exceptionEmailLoginSenha}
+	<br/>
 
 	<c:if test="${matriculaExiste}">
 	
-	<form action="addUsuario" Method="get">
-		Matŕcula<input type="text" name="idMatriculaFk" value="${matricula.matricula}" readonly="readonly"/><br/>
+	<form action="addUsuario" method="get">
+		Matrícula<input type="text" name="idMatriculaAlunoFk" value="${matricula.matriculaAluno}" readonly="readonly"/><br/>
 		Nome:<input type="text" name="nome"/><br/>
 		Email<input type="text" name="email"/><br/>
 		Login:<input type="text" name="login"/><br/>
 		Senha:<input type="text" name="senha"/><br/>
-		<!-- Confirme a Senha:<input type="text" name="senha"/><br/> -->
+		Confirme a Senha:<input type="text" name="confirmaSenha"/><br/>
 		
 		<c:forEach var="estadoUsuario" items="${estadoUsuario}">
 			
@@ -58,49 +62,8 @@ ${exception}<br/>
 	</form>
 	
 	</c:if>
-
-
-<!--
-	<c:choose>
-		<c:when test="${usuario.id == null}">
-			<form action="addUsuario" method="post">
-
-				<select name="idCursoFk">
-					<option>Selecione um Curso:</option>
-					<c:forEach var="c" items="${listarCurso}">
-						<c:if test="${c.estadoCurso != 'INATIVO'}"><option value="${c.id}" >${c.nomeCurso}</option></c:if>
-					</c:forEach>
-				</select> <br /> Usuario:<input type="text" name="nomeUsuario" /><br />
-
-				Período:<select name="periodo">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-				</select><br /> <input type="submit" value="Enviar">
-
-				<input type="hidden" name="estadoUsuario" value="ATIVO"/>
-
-			</form>
-		</c:when>
-
-		<c:otherwise>
-			
-	Curso:<input value="${curso.nomeCurso}" readonly />
-			<br />
-	Usuario:<input value="${usuario.nomeUsuario}" readonly />
-			<br />	
-	Período:<input value="${usuario.periodo}ª" readonly />
-			<br />
-			<input type="hidden" name="estadoUsuario" value="${usuario.estadoUsuario}"/>
-			
-		</c:otherwise>
-	</c:choose>
-
-	<hr>
--->
-
-
-	<a href="home"><button>Voltar</button></a>
+	<hr/>
+	<a href="homeUser"><button>Voltar</button></a>
 
 </body>
 </html>

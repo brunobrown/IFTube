@@ -24,7 +24,7 @@
 	${exception}
 	
 	<form action="addMatricula" method="post">
-		Cadastrar Usuário<input type="text" name="matricula" />
+		Cadastrar Usuário<input type="text" name="matriculaAluno" />
 		<input type="submit" value="Cadastrar">
 	</form>
 
@@ -32,7 +32,7 @@
 
 
 	<form:form action="searchMatricula" method="get">
-		Matrícula:<input type="text" name="matricula">
+		Matrícula:<input type="text" name="matriculaAluno">
 		<input type="submit" value="Pesquisar">
 	</form:form>
 
@@ -50,8 +50,8 @@
 
 				<tr>
 					<form:form action="editMatricula" method="post">
-						<td><input type="text" name="matricula"
-							value="${matriculaLocalizado.matricula}"></td>
+						<td><input type="text" name="matriculaAluno"
+							value="${matriculaLocalizado.matriculaAluno}"></td>
 						<td><input type="submit" value="Alterar"></td>
 						<br/>
 					</form:form>
@@ -65,8 +65,8 @@
 					<tr>
 
 						<form:form action="editMatricula" method="post">
-							<td><input type="text" name="matricula"
-								value="${c.matricula}"></td>
+							<td><input type="text" name="matriculaAluno"
+								value="${c.matriculaAluno}"></td>
 							<td><input type="submit" value="Alterar"></td>
 						
 						</form:form>
