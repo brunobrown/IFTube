@@ -24,11 +24,11 @@
 
 ${exception}<br/>
 
-	<form action="validarMatricula" method="post">
+	<form:form action="validarMatricula" method="post">
 		Informe uma Matrícula:
 		<input type="text" name="matricula" placeholder="Ex.: 20151JBTI000"/>
 		<input type="submit" value="Enviar"/> 
-	</form>
+	</form:form>
 	<br/><hr>
 	
 	${exceptionEmailLoginSenha}
@@ -43,7 +43,7 @@ ${exception}<br/>
 		Login:<input type="text" name="login"/><br/>
 		Senha:<input type="text" name="senha"/><br/>
 		Confirme a Senha:<input type="text" name="confirmaSenha"/><br/>
-		
+		<!-- 
 		<c:forEach var="estadoUsuario" items="${estadoUsuario}">
 			
 			<c:if test="${estadoUsuario eq 'ATIVO'}">
@@ -51,6 +51,7 @@ ${exception}<br/>
 			</c:if>
 			
 		</c:forEach><br/>
+		 -->
 		Perfil:
 		<select name="perfil">
 			<c:forEach var="perfil" items="${perfil}">

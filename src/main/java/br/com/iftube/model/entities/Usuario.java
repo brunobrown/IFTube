@@ -22,7 +22,7 @@ public class Usuario implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 140038084406397982L;
+	private static final long serialVersionUID = -2719100751610972345L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,9 +40,11 @@ public class Usuario implements Serializable{
 	@Column(nullable=false, length=15)
 	private String senha;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(name="estado_usuario",length = 7)
-	private EstadoUsuario estadoUsuario;
+	private boolean ativo = true;
+	
+//	@Enumerated(EnumType.STRING)
+//	@Column(name="estado_usuario",length = 7, insertable=true)
+//	private EstadoUsuario estadoUsuario;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(length = 15)
@@ -96,12 +98,20 @@ public class Usuario implements Serializable{
 		this.senha = senha;
 	}
 
-	public EstadoUsuario getEstadoUsuario() {
-		return estadoUsuario;
+//	public EstadoUsuario getEstadoUsuario() {
+//		return estadoUsuario;
+//	}
+//
+//	public void setEstadoUsuario(EstadoUsuario estadoUsuario) {
+//		this.estadoUsuario = estadoUsuario;
+//	}
+	
+	public boolean isAtivo() {
+		return ativo;
 	}
 
-	public void setEstadoUsuario(EstadoUsuario estadoUsuario) {
-		this.estadoUsuario = estadoUsuario;
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Transient
@@ -120,14 +130,13 @@ public class Usuario implements Serializable{
 	public void setIdMatriculaAlunoFk(Matricula idMatriculaAlunoFk) {
 		this.idMatriculaAlunoFk = idMatriculaAlunoFk;
 	}
-	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (ativo ? 1231 : 1237);
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((estadoUsuario == null) ? 0 : estadoUsuario.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((idMatriculaAlunoFk == null) ? 0 : idMatriculaAlunoFk.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
@@ -146,12 +155,12 @@ public class Usuario implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
+		if (ativo != other.ativo)
+			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))
-			return false;
-		if (estadoUsuario != other.estadoUsuario)
 			return false;
 		if (id == null) {
 			if (other.id != null)

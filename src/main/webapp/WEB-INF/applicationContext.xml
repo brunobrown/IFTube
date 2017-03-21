@@ -15,6 +15,7 @@
 	<context:component-scan base-package="br.com.iftube.model" />
 	<context:component-scan base-package="br.com.iftube.controller" />
 	<context:component-scan base-package="br.com.iftube.service" />
+	<context:component-scan base-package="br.com.iftube.util" />
 	<context:component-scan base-package="br.com.iftube.test" />
 
 
@@ -74,9 +75,13 @@
 	<!-- Ao anotar @Transaction irá chamar os gerenciadores de transações -->
 	<tx:annotation-driven transaction-manager="transactionManager"
 		proxy-target-class="true" />
-
-
+	<!--
+	<mvc:interceptors>
+		<bean class="br.com.iftube.util.AutorizadorInterceptor" />
+	</mvc:interceptors>
+	-->
+	
 	<!-- View scope - Integração do Spring com JSF <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer"> 
-		<property name="scopes"> <map> <entry key="view"> <bean class="com.htcursos.controller.util.ViewScope" 
+		<property name="scopes"> <map> <entry key="view"> <bean class="br.com.iftube.util.ViewScope" 
 		/> </entry> </map> </property> </bean> -->
 </beans>

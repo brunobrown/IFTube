@@ -45,6 +45,20 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	}
 	
 	@Transactional
+	public Usuario obterUsuario(String login, String senha) {
+		try {
+				Query q = em.createQuery("select u from Usuario u where u.login=:loginParam and u.senha=:senhaParam");
+				q.setParameter("loginParam", login);
+				q.setParameter("senhaParam", senha);
+				q.setMaxResults(1);
+				return (Usuario) q.getSingleResult();
+			} catch (NoResultException e) {
+				return null;
+				//throw new DAOException("Resgistro não encontrado", e);
+			}
+	}
+			
+	@Transactional
 	public Usuario obterUsuarioPorNome(String nome) {
 		try {
 		Query q = em.createQuery("select u from Usuario u where u.nome=:nomeParam");

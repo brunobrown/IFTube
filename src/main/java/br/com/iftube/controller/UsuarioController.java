@@ -55,43 +55,4 @@ public class UsuarioController {
 		return "forward:exibirPaginaCadastrarUsuario";
 	}
 	
-	
-//	@RequestMapping("exibirPaginaVisualiza")
-//	public String exibirPaginaVisualizar(Model model, Integer id){
-//		
-//		Usuario usuario = usuarioService.obterUsuarioPorId(id);
-//		model.addAttribute("usuario", usuario);
-//		//model.addAttribute("palavraChave", palavraChaveService.obterTodosTag());
-//		
-//		return "adm/curso/view-usuario";
-//	}
-//	
-//	@RequestMapping("exibirPaginaAlterar")
-//	public String exibirPaginaAlterar(Model model, int id, PalavraChave p){
-//		
-//		Usuario usuario = usuarioService.obterUsuarioPorId(id);
-//		model.addAttribute("usuario", usuario);
-//		//model.addAttribute("palavraChave", palavraChaveService.obterTodosTag());
-//		
-//		return "adm/curso/edit-usuario";
-//	}
-//	
-//	@RequestMapping("editUsuario")
-//	public String edit(Usuario usuario, Model model){
-//		
-//		usuarioService.editar(usuario);
-//		
-//		return "forward:exibirPaginaAlterar";
-//	}
-//	
-//	@RequestMapping(value = "desabilitarUsuario", method = RequestMethod.POST)
-//	@Transactional
-//	public String desabilitarUsuario(Usuario usuario, String pagina){
-//		
-//		//usuarioService.alterarEstadoUsuario(usuario.getId(), usuario.getEstadoUsuario());
-//		
-//		return "forward:home";
-//		
-//	}
-	
 }

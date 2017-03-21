@@ -15,12 +15,15 @@
 
 	<h1>IFTube - Adm</h1>
 	<hr>
+	Bem vindo, ${usuarioLogado.nome} | <a href="logout">Logout</a>
+	<hr>
 	<a href="homeUser"><button>Usuarios</button></a>
 	<hr>
 	<a href="exibirPaginaCadastrarCurso"><button>Cadastrar
 			Curso</button></a> |
 	<a href="exibirPaginaCadastrarDisciplina"><button>Cadastrar
-			Disciplina</button></a>
+			Disciplina</button></a> |
+	<a href="logout"><button>Logout</button></a>
 	<hr>
 
 

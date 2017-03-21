@@ -23,10 +23,10 @@
 	<hr>
 	${exception}
 	
-	<form action="addMatricula" method="post">
+	<form:form action="addMatricula" method="post">
 		Cadastrar Usuário<input type="text" name="matriculaAluno" />
 		<input type="submit" value="Cadastrar">
-	</form>
+	</form:form>
 
 	<hr />
 

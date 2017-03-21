@@ -11,6 +11,8 @@ public interface UsuarioService {
 	public void editar(Usuario usuario);
 	public void deletar(int usuarioId);
 	public Usuario obterUsuarioPorId(int usuarioId);
+	public Usuario validarUsuario(Usuario usuario);
+	public boolean verificarPerfilUsuario(Usuario usuario);
 	public Usuario obterUsuarioPorNome(String nome);
 	public Usuario obterUsuarioPorMatricula(String idMatriculaAlunoFk);
 	@SuppressWarnings("rawtypes")
