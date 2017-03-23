@@ -5,19 +5,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
 
 	<mvc:annotation-driven conversion-service="conversionService" />
 	<mvc:default-servlet-handler />
 
 	<!-- Escaneia as classes analizando suas respectivas anotacoes -->
-	<context:component-scan base-package="br.com.iftube.model" />
-	<context:component-scan base-package="br.com.iftube.controller" />
-	<context:component-scan base-package="br.com.iftube.service" />
-	<context:component-scan base-package="br.com.iftube.util" />
-	<context:component-scan base-package="br.com.iftube.test" />
-
+	<context:component-scan base-package="br.com.iftube" />
 
 	<bean id="conversionService"
 		class="org.springframework.context.support.ConversionServiceFactoryBean">
@@ -57,8 +52,7 @@
 		</property>
 	</bean>
 
-	<bean
-		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
 	<!-- Construção do Objeto de Gestão de transações Spring JPA -->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -75,11 +69,15 @@
 	<!-- Ao anotar @Transaction irá chamar os gerenciadores de transações -->
 	<tx:annotation-driven transaction-manager="transactionManager"
 		proxy-target-class="true" />
-	<!--
+	
+	
+	<!--<bean id="springSecurityFilterChain" class="org.springframework.web.filter.DelegatingFilterProxy" />-->
+	
+	<!-- 
 	<mvc:interceptors>
 		<bean class="br.com.iftube.util.AutorizadorInterceptor" />
 	</mvc:interceptors>
-	-->
+	 -->
 	
 	<!-- View scope - Integração do Spring com JSF <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer"> 
 		<property name="scopes"> <map> <entry key="view"> <bean class="br.com.iftube.util.ViewScope" 

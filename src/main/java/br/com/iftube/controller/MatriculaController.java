@@ -12,6 +12,7 @@ import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.entities.Matricula;
 import br.com.iftube.model.entities.Disciplina;
 import br.com.iftube.service.MatriculaService;
+import br.com.iftube.service.UsuarioService;
 //import br.com.iftube.service.DisciplinaService;
 //import br.com.iftube.service.PalavraChaveService;
 
@@ -22,8 +23,8 @@ public class MatriculaController {
 	@Autowired
 	private MatriculaService matriculaService;
 	
-//	@Autowired
-//	private DisciplinaService disciplinaService;
+	@Autowired
+	private UsuarioService usuarioService;
 //	
 //	@Autowired
 //	private PalavraChaveService palavraChaveService;
@@ -32,7 +33,7 @@ public class MatriculaController {
 	@Transactional
 	public String exibirInicio(Model model, Disciplina disciplina) {
 		model.addAttribute("matricula", matriculaService.obterTodosMatricula());
-		//model.addAttribute("usuario", usuarioService.obterTodosUsuario());
+		model.addAttribute("usuario", usuarioService.obterTodosUsuario());
 
 		return "adm/user/homeUser";
 	}

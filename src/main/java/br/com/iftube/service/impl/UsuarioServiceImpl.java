@@ -59,6 +59,17 @@ public class UsuarioServiceImpl implements UsuarioService, Converter<String, Usu
 	}
 	
 	@Transactional
+	public Usuario alterarStatusUsuario(Usuario usuario){
+		
+		if(usuario.isAtivo() != true){
+			usuario.setAtivo(false);
+			editar(usuario);
+		}
+		
+		return usuario;
+	}
+	
+	@Transactional
 	public void deletar(int usuarioId) {
 		usuarioDao.deletar(usuarioId);
 	}

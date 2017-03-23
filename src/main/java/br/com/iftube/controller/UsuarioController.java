@@ -55,4 +55,15 @@ public class UsuarioController {
 		return "forward:exibirPaginaCadastrarUsuario";
 	}
 	
+	@RequestMapping("alterarStatusUsuario")
+	@Transactional
+	public String alterarStatusUsuario(String idUsuario, Model model) {
+		
+		Usuario usuario = usuarioService.obterUsuarioPorId(Integer.parseInt(idUsuario));
+		
+		model.addAttribute("usuario", usuarioService.alterarStatusUsuario(usuario));
+		
+		return "forward:homeUser";
+	}
+	
 }

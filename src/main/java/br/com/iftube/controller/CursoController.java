@@ -1,6 +1,7 @@
 package br.com.iftube.controller;
 
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.entities.Curso;
 import br.com.iftube.model.entities.Disciplina;
+import br.com.iftube.model.entities.Usuario;
 import br.com.iftube.service.CursoService;
 import br.com.iftube.service.DisciplinaService;
 import br.com.iftube.service.PalavraChaveService;
+import br.com.iftube.service.UsuarioService;
 
 
 @Controller
@@ -30,13 +33,20 @@ public class CursoController {
 	
 	@Autowired
 	private PalavraChaveService palavraChaveService;
+	
+	@Autowired
+	private UsuarioService usuarioService;
 
 	@RequestMapping("home")
 	@Transactional
-	public String exibirInicio(Model model, Disciplina disciplina) {
+	public String exibirInicio(Usuario usuario, Model model, HttpSession session, Disciplina disciplina) {
+		
+		Usuario usuarioLogado = usuarioService.validarUsuario(usuario);
+		
 		model.addAttribute("curso", cursoService.obterTodosCurso());
 		model.addAttribute("disciplina", disciplinaService.obterTodosDisciplina());
 		model.addAttribute("palavraChave", palavraChaveService.obterTodosTag());
+		session.setAttribute("usuarioLogado", usuarioLogado);
 
 		return "adm/curso/home";
 	}

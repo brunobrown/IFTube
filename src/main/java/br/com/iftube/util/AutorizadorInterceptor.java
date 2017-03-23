@@ -17,8 +17,9 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter{
 				|| uri.contains("js") 
 				|| uri.contains("img")
 				|| uri.endsWith("iftube/")
-				|| uri.endsWith("efetuarLogin") 
-				|| uri.endsWith("home")) {
+				|| uri.endsWith("/iftube/login") 
+				|| uri.endsWith("/iftube/efetuarLogin")
+				|| uri.endsWith("/iftube/efetuarLogin")){
 
 			return true;
 		}

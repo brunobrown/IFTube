@@ -30,20 +30,31 @@
 			<th>PERFIL</th>
 			<th>MATRICULA</th>
 			<th>NOME</th>
-			<th>EMAIL</th>
-			<th>LOGIN</th>
-			<th>SENHA</th>
-		</tr>
+			<th>STATUS</th>
 
+		</tr>
+	<c:forEach var="objUsuario" items="${usuario}" varStatus="i">
 			<tr bgcolor="#${ i.count % 2 == 0 ? 'ffffff' : 'bdc3c7' }" >
 				<td>${objUsuario.id}</td>
-				<td>${objUsuario.idPerfilFk.nome}</td>
-				<td>${objUsuario.matricula}</td>
+				<td>${objUsuario.perfil}</td>
+				<td>${objUsuario.idMatriculaAlunoFk.matriculaAluno}</td>
 				<td>${objUsuario.nome}</td>
-				<td>${objUsuario.email}</td>
-				<td>${objUsuario.login}</td>
-				<td>${objUsuario.senha}</td>
+				<td>${objUsuario.ativo eq true ? 'ATIVO' : 'INATIVO'}</td>
+				<td><a href="exibirPaginaVisualizarUsuario?id=${objUsuario.id}"><button>Visualizar Usuário</button></a></td>
+				<td>
+					<c:choose>
+						<c:when test="${objUsuario.ativo != 'true'}">
+							<a href="exibirPaginaAlterarUsuario?id=${objUsuario.id}"><button>Alterar Usuário</button></a>
+						</c:when>
+						<c:otherwise>
+							<button>Ação Bloqueada</button>
+						</c:otherwise>
+					</c:choose>
+				</td>
+				<td>
 				
+				<a href="alterarStatusUsuario?idUsuario=${objUsuario.id}"><button>Desabilitar Usuário</button></a></td>
+	</c:forEach>
 	</table>
 </body>
 </html>

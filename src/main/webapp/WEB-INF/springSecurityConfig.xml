@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+
+	<!-- Exigindo a autenticacao do usuario-->
+	<security:http use-expressions="true" auto-config="true">
+	
+		<security:intercept-url pattern="/adm/**"
+			access="isAuthenticaded()" />
+
+	<!-- Criando uma regra (Usuario deve participar de um grupo especifico para pode acessar.
+		 Regra = Usuario deve ser ADMINISTRADOR.)-->
+		<security:intercept-url pattern="/adm/**"
+			access="hasAuthority('ADMINISTRADOR')" />
+			
+		<!-- Acesso negado -->
+		<security:access-denied-handler error-page="/acessoNegado" />
+		
+		<!-- Tela de Login padrao-->
+		<security:intercept-url pattern="/login*" access="permitAll" />
+		
+		<!-- Falha na autenticacao, o usuario e direcionado para (/login.jsp?erro=true) -->
+		<!-- Sucesso na autenticacao, o usuario e direcionado para (/adm/curso/home.jsp) -->
+		<security:form-login 
+			authentication-failure-url="/login?erro=true"
+			default-target-url="/interceptarUsuario"
+			login-page="/login"
+			username-parameter="login"
+			password-parameter="senha"
+			login-processing-url="/j_spring_security_check" />
+			
+		
+		<security:logout logout-success-url="/login" logout-url="/j_spring_security_logout" />
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service
+				data-source-ref="mysqlDataSource"
+				users-by-username-query="SELECT login, senha, ativo FROM usuario WHERE login=?"
+				authorities-by-username-query="SELECT login, perfil FROM usuario WHERE login=?"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+</beans>
