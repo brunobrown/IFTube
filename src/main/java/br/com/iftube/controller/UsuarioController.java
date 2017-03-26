@@ -57,9 +57,7 @@ public class UsuarioController {
 	
 	@RequestMapping("alterarStatusUsuario")
 	@Transactional
-	public String alterarStatusUsuario(String idUsuario, Model model) {
-		
-		Usuario usuario = usuarioService.obterUsuarioPorId(Integer.parseInt(idUsuario));
+	public String alterarStatusUsuario(Usuario usuario, Model model) {
 		
 		model.addAttribute("usuario", usuarioService.alterarStatusUsuario(usuario));
 		

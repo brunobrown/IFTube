@@ -62,11 +62,13 @@ public class UsuarioServiceImpl implements UsuarioService, Converter<String, Usu
 	public Usuario alterarStatusUsuario(Usuario usuario){
 		
 		if(usuario.isAtivo() != true){
+			usuario.setAtivo(true);
+			editar(usuario);
+			return usuario;
+		}
 			usuario.setAtivo(false);
 			editar(usuario);
-		}
-		
-		return usuario;
+			return usuario;
 	}
 	
 	@Transactional
@@ -112,13 +114,14 @@ public class UsuarioServiceImpl implements UsuarioService, Converter<String, Usu
 		return usuarioDao.obterTodosUsuario();
 	}
 	
+
 	@Transactional
 	public Usuario convert(String id) {
-		
-		if (!id.equals("")) {
+			
+		if (id != null && !id.equals("")) {
 			return usuarioDao.obterUsuarioPorId(Integer.valueOf(id));
 		} else {
-		    return null;
+			return null;
 		}
 	}
 

@@ -7,13 +7,19 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-
+	<context:annotation-config/>
 	<mvc:annotation-driven conversion-service="conversionService" />
 	<mvc:default-servlet-handler />
 
 	<!-- Escaneia as classes analizando suas respectivas anotacoes -->
 	<context:component-scan base-package="br.com.iftube" />
 
+	<!-- To prevent browser's back button on displayng  secured resource after logout -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="cacheSeconds" value="0"/> 
+	</bean>
+	
+	
 	<bean id="conversionService"
 		class="org.springframework.context.support.ConversionServiceFactoryBean">
 		<property name="converters">

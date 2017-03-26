@@ -34,16 +34,16 @@ public class LoginLogoutController {
 	}
 	
 	
-	@RequestMapping("login")
+	@RequestMapping("index")
 	public String exibirLogin() {
 		
-		return "login";
+		return "index";
 	}
 		
 	//@RequestMapping(value = "efetuarLogin", method = RequestMethod.POST)
 	@RequestMapping("efetuarLogin")
 	@Transactional
-	public String efetuarLogin(Usuario usuario, HttpSession session, Model model) {
+	public String efetuarLogin(Usuario usuario, String userLogin, HttpSession session, Model model) {
 		
 		Usuario usuarioLogado = new Usuario();
 		
@@ -58,14 +58,14 @@ public class LoginLogoutController {
 				}
 			}
 
-			return "forward:login";
+			return "forward:index";
 	}
 	
-	@RequestMapping("logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "forward:login";
-	}
+//	@RequestMapping("logout")
+//	public String logout(HttpSession session) {
+//		session.invalidate();
+//		return "forward:login";
+//	}
 	
 	@RequestMapping("cadastroAluno")
 	public String cadastroAluno() {

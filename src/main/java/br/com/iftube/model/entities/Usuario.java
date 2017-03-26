@@ -42,10 +42,6 @@ public class Usuario implements Serializable{
 	
 	private boolean ativo = true;
 	
-//	@Enumerated(EnumType.STRING)
-//	@Column(name="estado_usuario",length = 7, insertable=true)
-//	private EstadoUsuario estadoUsuario;
-	
 	@Enumerated(EnumType.STRING)
 	@Column(length = 15)
 	private Perfil perfil;
@@ -97,14 +93,6 @@ public class Usuario implements Serializable{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-//	public EstadoUsuario getEstadoUsuario() {
-//		return estadoUsuario;
-//	}
-//
-//	public void setEstadoUsuario(EstadoUsuario estadoUsuario) {
-//		this.estadoUsuario = estadoUsuario;
-//	}
 	
 	public boolean isAtivo() {
 		return ativo;
@@ -191,5 +179,5 @@ public class Usuario implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 }

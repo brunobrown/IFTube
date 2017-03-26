@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <html>
 <head>
@@ -15,8 +17,19 @@
 
 	<h1>IFTube - Adm</h1>
 	<hr>
-	Bem vindo ${usuarioLogado.nome} | <a href="logout">Logout</a>
+	Bem vindo ${usuarioLogado.nome} | <a href='<c:url value="j_spring_security_logout"/>'>Logout</a><br/>
+	
+	<sec:authentication property="name"/> <sec:authentication property="authorities"/>
+	
+	<sec:authorize access="hasAuthority('ADMINISTRADOR')">
+	
+		<h6>Vc pode ver isso por ser um Administrador</h6>
+	
+	</sec:authorize>
+	
 	<hr>
+	
+	
 	<a href="homeUser"><button>Usuarios</button></a>
 	<hr>
 	<a href="exibirPaginaCadastrarCurso"><button>Cadastrar

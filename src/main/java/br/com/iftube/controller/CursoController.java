@@ -37,6 +37,7 @@ public class CursoController {
 	@Autowired
 	private UsuarioService usuarioService;
 
+	//@PreAuthorize ("hasAuthority ('ADMINISTRADOR')")
 	@RequestMapping("home")
 	@Transactional
 	public String exibirInicio(Usuario usuario, Model model, HttpSession session, Disciplina disciplina) {

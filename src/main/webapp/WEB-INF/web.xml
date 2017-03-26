@@ -37,31 +37,38 @@
     <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
+  
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/applicationContext.xml<!-- , /WEB-INF/springSecurityConfig.xml --></param-value> 
+		<param-value>
+		
+			/WEB-INF/applicationContext.xml, 
+			/WEB-INF/springSecurityConfig.xml 
+		
+		</param-value> 
 	</context-param>
 	
-	<!-- Criando e instanciando o Filtro 
+	<!-- Criando e instanciando o Filtro -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
-  	-->
+  	
   
-  <!-- Mapeando quais as requisicoes o filtro do spring vai responder 
+  <!-- Mapeando quais as requisicoes o filtro do spring vai responder  -->
   <filter-mapping>
   	<filter-name>springSecurityFilterChain</filter-name>
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
-  -->
+ 
   
-  <!-- Listerner escuta quando algum evento acontecer e realiza uma acao 
+  <!-- Listerner escuta quando algum evento acontecer e realiza uma acao -->
   <listener>
   	<listener-class>
   		org.springframework.security.web.session.HttpSessionEventPublisher
   	</listener-class>
   </listener>
-	-->
+	
 </web-app>
