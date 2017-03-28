@@ -61,11 +61,11 @@ public class LoginLogoutController {
 			return "forward:index";
 	}
 	
-//	@RequestMapping("logout")
-//	public String logout(HttpSession session) {
-//		session.invalidate();
-//		return "forward:login";
-//	}
+	@RequestMapping("acessoNegado")
+	public String acessoNegado(HttpSession session) {
+		session.invalidate();
+		return "acessoNegado";
+	}
 	
 	@RequestMapping("cadastroAluno")
 	public String cadastroAluno() {

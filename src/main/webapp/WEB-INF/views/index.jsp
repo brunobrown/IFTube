@@ -14,19 +14,51 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>IFTube - Aluno</h1>
+	<hr>
 	
-	<form:form action="j_spring_security_check" method="post">
-		Login:<input type="text" name="login" value="<sec:authentication property="name"/>"/><br/>
+	<sec:authorize access="hasAuthority('ADMINISTRADOR') or hasAuthority('COORDENADOR')">
+	
+		Bem vindo, <sec:authentication property="name"/> |
+	 
+	<c:url var="logout" value="/logout"/>
+	<form:form action="${logout}" method="post">
+    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    	<input type="submit" value="Logout" />
+	</form:form>
+	
+    | <a href="home">ADM</a>
+	
+	
+	
+	</sec:authorize>
+	
+	<sec:authorize access="hasAuthority('ALUNO')">
+	
+	Bem vindo, <sec:authentication property="name"/> |
+	
+	<c:url var="logout" value="/logout"/>
+	<form:form action="${logout}" method="post">
+    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    	<input type="submit" value="Logout" />
+	</form:form>
+	
+	</sec:authorize>
+	
+	<hr>
+	<c:url var="login" value="/login"/>
+	<form:form action="${login}" method="post">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		Login:<input type="text" name="login"/><br/>
 		Senha:<input type="password" name="senha"/><br/>
 		<input type="submit" value="logar">
+		<!-- Mantenha-me conectado: <input type="checkbox" name="_spring_security_remember_me" />  -->
 	</form:form>
 	<a href="cadastroAluno"><button>Quero me cadastrar</button></a>
 	
-	
+	<br/>
 	<font color="red">
 		<span>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</span>
 	</font>
-
 </body>
 </html>

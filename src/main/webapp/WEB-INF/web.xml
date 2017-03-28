@@ -4,8 +4,9 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 	<display-name>iftube</display-name>
-	
-	<listener>
+
+
+<listener>
 		<listener-class>
 			org.springframework.web.context.ContextLoaderListener
 		</listener-class>
@@ -37,9 +38,9 @@
     <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  
-  
 
+  <!--#################################### -->
+  
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -49,6 +50,8 @@
 		
 		</param-value> 
 	</context-param>
+	
+	<!-- Spring Security -->
 	
 	<!-- Criando e instanciando o Filtro -->
 	<filter>
@@ -70,5 +73,11 @@
   		org.springframework.security.web.session.HttpSessionEventPublisher
   	</listener-class>
   </listener>
-	
+  
+  
+	<session-config>
+	    <session-timeout>1</session-timeout>
+	</session-config>
+  
+
 </web-app>

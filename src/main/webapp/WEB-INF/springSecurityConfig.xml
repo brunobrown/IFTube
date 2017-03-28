@@ -1,70 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans 	xmlns="http://www.springframework.org/schema/beans"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xmlns:security="http://www.springframework.org/schema/security"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans 
-						http://www.springframework.org/schema/beans/spring-beans.xsd
-						http://www.springframework.org/schema/security 
-						http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+<beans:beans 	xmlns="http://www.springframework.org/schema/security"
+				xmlns:beans="http://www.springframework.org/schema/beans"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:schemaLocation="http://www.springframework.org/schema/beans 
+									http://www.springframework.org/schema/beans/spring-beans.xsd
+									http://www.springframework.org/schema/security 
+									http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 	
 	<!-- Exigindo a autenticacao do usuario-->
-	<security:http use-expressions="true" auto-config="true">
+	<http use-expressions="true">
 			
 		<!-- Tela de Login padrao-->
-		<security:intercept-url 
+		<intercept-url 
 			pattern="/index" 
-			access="permitAll" />	
-			
-		<security:intercept-url 
-			pattern="/**" 
-			access="isAuthenticated()" />
-
-	<!-- Criando uma regra (Usuario deve participar de um grupo especifico para pode acessar.
+			access="permitAll" 
+		/>
+		
+		<intercept-url 
+			pattern="/logout" 
+			access="permitAll" 
+		/>
+		
+					
+		<!-- Criando uma regra (Usuario deve participar de um grupo especifico para pode acessar.
 		 Regra = Usuario deve ser ADMINISTRADOR.)-->
-		 
-		<security:intercept-url 
-			pattern="/adm/**"
-			access="hasAuthority('ADMINISTRADOR') or hasAuthority('COORDENADOR')"/>
+		<intercept-url 
+			pattern="/**" 
+			access="hasAuthority('ADMINISTRADOR') or hasAuthority('COORDENADOR')"
+		/>
+		
+		<intercept-url 
+			pattern="/public/**" 
+			access="hasAuthority('ALUNO')" 
+		/>
 			
-		<security:intercept-url 
-			pattern="/public/**"
-			access="hasAuthority('ALUNO')"/>
-			
-		<!-- Acesso negado -->
-		<security:access-denied-handler 
-			error-page="/acessoNegado.html"/>
+		<!-- Definindo a página de acesso negado, essa pagina será exibida para o usuário
+		caso não tenha acesso a determina url que esteja tentando acessar. -->
+		<access-denied-handler 
+			error-page="/acessoNegado"
+		/>
 		
 		<!-- Falha na autenticacao, o usuario e direcionado para (/login.jsp?erro=true) -->
 		<!-- Sucesso na autenticacao, o usuario e direcionado para (/adm/curso/home.jsp) -->
-		<security:form-login
+		<form-login
 			authentication-failure-url="/index?erro=true"
 			default-target-url="/index"
+			always-use-default-target="true"
 			login-page="/index"
 			username-parameter="login"
 			password-parameter="senha"
-			login-processing-url="/j_spring_security_check" />
-			
+			login-processing-url="/login" 
+		/>
 		
-		<security:logout 
-			logout-success-url="/login"
-			invalidate-session="true"
-		 	logout-url="/j_spring_security_logout"
-		 	/>
-	</security:http>
+		<!-- Sessão inválida do usuário. 
+				 invalidate-session: define se a sessão pode ser invalidada,
+				 caso isso ocorra será redirecionada para a página definida na opção
+				 logout-success-url.
+				 
+				 logout-url: define se a url chamada contiver o valor /j_spring_security_logout
+				 a sessão será encerrada e os cookies de sessão serão removidos indicados
+				 em delete-cookies.
+		-->
+		<logout
+			logout-url="/logout"
+			logout-success-url="/index"
+			delete-cookies="JSESSIONID"
+			invalidate-session="false"
+		 />
+		 
+		<session-management invalid-session-url="/index?session=1">
+			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+		</session-management>
+		
+		<!-- Protegendo a aplicação contra ataques (Cross-Site Request Forgery) -->
+		<csrf /> 
+		
+		
+		<!-- Gerenciando a sessão do usuário. 
+				- 	invalid-session-url: define que se a sessão for inválida será redirecionado
+					para a página especificada.
+					
+				-	session-fixation-protection:
+					define como será tratada se o usuário que estiver tentando fazer o login já possuir alguma sessão
+					logada em outra parte ou computador, neste caso estamos migrando a sessão do usuário para a sessão
+					atual que está sendo criada no ultimo acesso.
+					
+				-	max-sessions: define que o usuário poderá ter apenas uma sessão de login no sistema.
+				
+				-	expired-url: define se a sessão expirar será redirecionada para a página especificada.
+				
+				-	error-if-maximum-exceeded: define que o Spring irá lançar um exceção caso as sessões
+					de login ultrapassem o valor configurado e estabelecido em 1 anteriormente.
+		-->
+		<session-management 
+			invalid-session-url="/index"
+			session-fixation-protection="migrateSession"> 
+			<concurrency-control 
+				max-sessions="1"
+				expired-url="/index"
+				error-if-maximum-exceeded="true" /> 
+		</session-management>
+		
+		<!-- relembrando o usuario	
+		<remember-me remember-me-parameter="_spring_security_remember_me"/>	
+		-->
+		
+	</http>
 
-	<security:authentication-manager>
-		<security:authentication-provider>
-			<security:jdbc-user-service
+	<!-- 
+	Definindo a consulta a base de dados para autenticação.
+	 
+		Definindo o gerenciador e provedor que ira ao pegar o login e senha do formulário,
+		gerar o sql e consultar no banco para validar o acesso do usuário a aplicação.
+		 -->
+
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service
 				data-source-ref="mysqlDataSource"
 				users-by-username-query="SELECT login, senha, ativo FROM usuario WHERE login=?"
 				authorities-by-username-query="SELECT login, perfil FROM usuario WHERE login=?"/>
-		</security:authentication-provider>
-	</security:authentication-manager>
-	
-	
-	
-	<!--###################################################-->
-	
-	
+		</authentication-provider>
+	</authentication-manager>	
 
-</beans>
+</beans:beans>

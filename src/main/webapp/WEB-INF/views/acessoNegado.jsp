@@ -7,9 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>IFTube - Aluno</h1>
-	<hr>
-	Bem vindo, ${usuarioLogado.nome} | <a href="logout">Logout</a>
-	<hr>
+
+<hr/>
+<h1>Ops!!! Seu acesso a essa página foi negado!</h1>
+<hr/>
+<a href="index">Voltar</a>
+
 </body>
 </html>

@@ -17,9 +17,14 @@
 
 	<h1>IFTube - Adm</h1>
 	<hr>
-	Bem vindo ${usuarioLogado.nome} | <a href='<c:url value="j_spring_security_logout"/>'>Logout</a><br/>
+	Bem vindo <sec:authentication property="name"/> |
+	<c:url var="logout" value="/logout"/>
+	<form:form action="${logout}" method="post">
+    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    	<input type="submit" value="Logout" />
+	</form:form>
 	
-	<sec:authentication property="name"/> <sec:authentication property="authorities"/>
+	 <sec:authentication property="authorities"/>
 	
 	<sec:authorize access="hasAuthority('ADMINISTRADOR')">
 	
