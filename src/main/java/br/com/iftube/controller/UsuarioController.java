@@ -35,9 +35,14 @@ public class UsuarioController {
 	
 	@RequestMapping("exibirPaginaCadastrarUsuario")
 	@Transactional
-	public String exibirForm(Usuario usuario, Model model) {
+	public String exibirForm(Usuario usuario, String holeUser, Model model) {
 		model.addAttribute("estadoUsuario", estadoUsuario);
 		model.addAttribute("perfil", perfil);
+		
+		if(holeUser.equals("[ROLE_ANONYMOUS]") || holeUser.equals("[ALUNO]")){
+			return "public/cadastro";
+		}
+		
 		return "adm/user/addUsuario";
 	}
 	

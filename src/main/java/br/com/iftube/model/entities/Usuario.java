@@ -46,7 +46,7 @@ public class Usuario implements Serializable{
 	@Column(length = 15)
 	private Perfil perfil;
 	
-	@OneToOne
+	@OneToOne//(cascade = CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name = "id_matricula_aluno_fk")
 	private Matricula idMatriculaAlunoFk;
 

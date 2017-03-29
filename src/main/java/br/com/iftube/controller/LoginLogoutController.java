@@ -83,7 +83,7 @@ public class LoginLogoutController {
 			e.printStackTrace();
 		}
 		
-		return "forward:efetuarLogin";
+		return "public/cadastro";
 	}
 	
 }

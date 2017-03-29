@@ -41,6 +41,7 @@ public class MatriculaController {
 	@RequestMapping("exibirPaginaCadastrarMatricula")
 	public String exibirPaginaCadastrarMatricula(Model model) {
 		model.addAttribute("listarMatricula", matriculaService.obterTodosMatricula());
+		model.addAttribute("listarUsuario", usuarioService.obterTodosUsuario());
 		return "adm/user/addMatricula";
 	}
 	
@@ -62,12 +63,13 @@ public class MatriculaController {
 
 	@RequestMapping("editMatricula")
 	@Transactional
-	public String alterarMatricula(int id, Matricula matricula, Model model){
+	public String alterarMatricula(Matricula matricula, String matriculaAtual, Integer idUsuario, Model model){
+
 		try {
-			matriculaService.editar(matricula);
+			matriculaService.editar(matricula, matriculaAtual, idUsuario);
 			model.addAttribute("exception", "Matrícula alterada com sucesso!");
 		} catch (ServiceException e) {
-			model.addAttribute("exception", "Esta Matrícula não pode ser alterada, ela já existe!");
+			model.addAttribute("exception", e);
 			e.printStackTrace();
 		}
 		return "forward:exibirPaginaCadastrarMatricula";
@@ -76,15 +78,15 @@ public class MatriculaController {
 	
 	@RequestMapping("searchMatricula")
 	@Transactional
-	public String searchMatricula(String nomeMatricula, Model model){
-		Matricula matriculaLocalizado = matriculaService.obterMatriculaPorNome(nomeMatricula);
+	public String searchMatricula(String matriculaAluno, Model model){
+		Matricula matriculaLocalizado = matriculaService.obterMatriculaPorId(matriculaAluno);
 		model.addAttribute("matriculaLocalizado", matriculaLocalizado);
 		return "forward:exibirPaginaCadastrarMatricula";
 	}
 	
 	@RequestMapping("validarMatricula")
 	@Transactional
-	public String validarMatricula(String matricula, Model model){
+	public String validarMatricula(String matricula, String holeUser, Model model){
 		
 		try {
 			model.addAttribute("matriculaExiste", matriculaService.validarMatricula(matricula));
@@ -93,6 +95,7 @@ public class MatriculaController {
 			model.addAttribute("exception", e);
 			e.printStackTrace();
 		}
+		model.addAttribute(holeUser);
 		
 		return "forward:exibirPaginaCadastrarUsuario";
 	}

@@ -9,7 +9,7 @@ public interface MatriculaDAO {
 	public Matricula adicionar(Matricula matricula);
 	public Matricula editar(Matricula matricula);
 	public void deletar(Matricula matricula);
-	public Matricula obterMatriculaPorId(int matriculaId);
+	public Matricula obterMatriculaPorId(String matricula);
 	public Matricula obterMatriculaPorNome(String matricula);
 	@SuppressWarnings("rawtypes")
 	public List obterTodosMatricula();

@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <html>
 <head>
@@ -18,18 +20,19 @@
 	<h3>Matrícula</h3>
 	
 	<a href="homeUser"><button>Usuários</button></a>
-	<a href="exibirPaginaCadastrarUsuario"><button>Cadastrar
+	<a href="exibirPaginaCadastrarUsuario?holeUser=<sec:authentication property="authorities"/>"><button>Cadastrar
 			Usuário</button></a>
 	<hr>
 	${exception}
 	
+	<c:url var="addMatricula" value="/addMatricula"/>
 	<form:form action="addMatricula" method="post">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		Cadastrar Usuário<input type="text" name="matriculaAluno" />
 		<input type="submit" value="Cadastrar">
 	</form:form>
 
 	<hr />
-
 
 	<form:form action="searchMatricula" method="get">
 		Matrícula:<input type="text" name="matriculaAluno">
@@ -49,9 +52,18 @@
 			<c:when test="${matriculaLocalizado != null}">
 
 				<tr>
+					<c:url var="editMatricula" value="/editMatricula"/>
 					<form:form action="editMatricula" method="post">
-						<td><input type="text" name="matriculaAluno"
-							value="${matriculaLocalizado.matriculaAluno}"></td>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+						<input type="hidden" name="matriculaAtual" value="${matriculaLocalizado.matriculaAluno}">
+							
+							<c:forEach var="objUsuario" items="${listarUsuario}">
+								<c:if test="${objUsuario.idMatriculaAlunoFk.matriculaAluno eq matriculaLocalizado.matriculaAluno}">
+									<input type="hidden" name="idUsuario" value="${objUsuario.id}">
+								</c:if>
+							</c:forEach>
+							
+						<td><input type="text" name="matriculaAluno" value="${matriculaLocalizado.matriculaAluno}"></td>
 						<td><input type="submit" value="Alterar"></td>
 						<br/>
 					</form:form>
@@ -63,10 +75,18 @@
 				<c:forEach var="c" items="${listarMatricula}">
 
 					<tr>
-
+						<c:url var="editMatricula" value="/editMatricula"/>
 						<form:form action="editMatricula" method="post">
-							<td><input type="text" name="matriculaAluno"
-								value="${c.matriculaAluno}"></td>
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+							<input type="hidden" name="matriculaAtual" value="${c.matriculaAluno}">
+							
+							<c:forEach var="objUsuario" items="${listarUsuario}">
+								<c:if test="${objUsuario.idMatriculaAlunoFk.matriculaAluno eq c.matriculaAluno}">
+									<input type="hidden" name="idUsuario" value="${objUsuario.id}">
+								</c:if>
+							</c:forEach>
+							
+							<td><input type="text" name="matriculaAluno" value="${c.matriculaAluno}"></td>
 							<td><input type="submit" value="Alterar"></td>
 						
 						</form:form>

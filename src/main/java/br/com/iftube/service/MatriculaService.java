@@ -8,10 +8,10 @@ import br.com.iftube.model.entities.Matricula;
 public interface MatriculaService {
 
 	public Matricula adicionar(Matricula matricula) throws ServiceException;
-	public Matricula editar(Matricula matricula) throws ServiceException;
+	public Matricula editar(Matricula matricula, String matriculaAtual, Integer idUsuario) throws ServiceException;
 	public void deletar(Matricula matricula);
 	public boolean validarMatricula(String matriculaStr) throws ServiceException;
-	public Matricula obterMatriculaPorId(int matriculaId);
+	public Matricula obterMatriculaPorId(String matriculaId);
 	public Matricula obterMatriculaPorNome(String matricula);
 	@SuppressWarnings("rawtypes")
 	public List obterTodosMatricula();

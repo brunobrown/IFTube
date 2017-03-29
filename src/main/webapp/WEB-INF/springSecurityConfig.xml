@@ -21,6 +21,20 @@
 			access="permitAll" 
 		/>
 		
+		<intercept-url 
+			pattern="/cadastroAluno" 
+			access="permitAll" 
+		/>
+		
+		<intercept-url 
+			pattern="/validarMatricula" 
+			access="permitAll" 
+		/>
+		
+		<intercept-url 
+			pattern="/novoAluno/**" 
+			access="permitAll" 
+		/>
 					
 		<!-- Criando uma regra (Usuario deve participar de um grupo especifico para pode acessar.
 		 Regra = Usuario deve ser ADMINISTRADOR.)-->
@@ -31,7 +45,7 @@
 		
 		<intercept-url 
 			pattern="/public/**" 
-			access="hasAuthority('ALUNO')" 
+			access="hasAuthority('ALUNO') or hasRole('ROLE_ANONYMOUS')" 
 		/>
 			
 		<!-- Definindo a página de acesso negado, essa pagina será exibida para o usuário

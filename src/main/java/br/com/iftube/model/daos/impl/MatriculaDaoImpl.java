@@ -40,7 +40,7 @@ public class MatriculaDaoImpl implements MatriculaDAO{
 	}
 
 	@Transactional
-	public Matricula obterMatriculaPorId(int matricula) {
+	public Matricula obterMatriculaPorId(String matricula) {
 		return em.find(Matricula.class, matricula);
 	}
 

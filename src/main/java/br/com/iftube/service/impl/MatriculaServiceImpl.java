@@ -28,20 +28,29 @@ public class MatriculaServiceImpl implements MatriculaService, Converter<String,
 	public Matricula adicionar(Matricula matricula) throws ServiceException{
 		Matricula matriculaEncontrado = matriculaDao.obterMatriculaPorNome(matricula.getMatriculaAluno());
 		if(matriculaEncontrado != null){
-			throw new ServiceException("Matricula já existe!");
+			throw new ServiceException("Esta Matrícula não pode ser alterada, ela já existe!");
 		}
 
 		return matriculaDao.adicionar(matricula);
 	}
 
 	@Transactional
-	public Matricula editar(Matricula matricula) throws ServiceException {
-		Matricula matriculaEncontrado = matriculaDao.obterMatriculaPorNome(matricula.getMatriculaAluno());
-		if(matriculaEncontrado != null){
+	public Matricula editar(Matricula matricula, String matriculaAtual, Integer idUsuario) throws ServiceException {
+		
+		
+		Matricula matriculaEncontrada = matriculaDao.obterMatriculaPorId(matricula.getMatriculaAluno());
+		
+		if(matriculaEncontrada != null){
 			throw new ServiceException("Matricula já existe!");
 		}
 		
-		return matriculaDao.editar(matricula);
+		
+		if(idUsuario != null){
+			throw new ServiceException("Esta Matrícula não pode ser alterada, ela já contem um usuário cadastrado!");
+		}
+		
+		matriculaDao.deletar(matriculaDao.obterMatriculaPorId(matriculaAtual));
+		return matriculaDao.adicionar(matricula);
 	}
 
 	@Transactional
@@ -50,8 +59,8 @@ public class MatriculaServiceImpl implements MatriculaService, Converter<String,
 	}
 
 	@Transactional
-	public Matricula obterMatriculaPorId(int matriculaId) {
-		return matriculaDao.obterMatriculaPorId(matriculaId);
+	public Matricula obterMatriculaPorId(String matricula) {
+		return matriculaDao.obterMatriculaPorId(matricula);
 	}
 	
 	@Transactional
