@@ -1,0 +1,10 @@
+/*
+ * Looking for the full, uncompressed source? Try here:
+ *
+ * https://github.com/nprapps/books16
+ * 
+ * The following files are included in this compressed version:
+ *
+ * www/css/icon/npr-app-template.css
+ */
+@font-face{font-family:'npr-app-template';src:url('../font/npr-app-template.eot?37816709');src:url('../font/npr-app-template.eot?37816709#iefix') format('embedded-opentype'),url('../font/npr-app-template.woff2?37816709') format('woff2'),url('../font/npr-app-template.woff?37816709') format('woff'),url('../font/npr-app-template.ttf?37816709') format('truetype'),url('../font/npr-app-template.svg?37816709#npr-app-template') format('svg');font-weight:normal;font-style:normal}[class^="icon-"]:before,[class*=" icon-"]:before{font-family:"npr-app-template";font-style:normal;font-weight:normal;speak:none;display:inline-block;text-decoration:inherit;width:1em;margin-right:.2em;text-align:center;font-variant:normal;text-transform:none;line-height:1em;margin-left:.2em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.icon-resize-horizontal:before{content:'\e800'}.icon-left-open:before{content:'\e801'}.icon-right-open:before{content:'\e802'}.icon-up-hand:before{content:'\e803'}.icon-mail:before{content:'\e804'}.icon-th:before{content:'\e805'}.icon-pinterest-circled:before{content:'\e806'}.icon-minus-circled:before{content:'\e807'}.icon-list-bullet:before{content:'\e808'}.icon-cancel-circled2:before{content:'\e809'}.icon-twitter:before{content:'\e80a'}.icon-facebook:before{content:'\e80b'}.icon-export:before{content:'\e80c'}.icon-home:before{content:'\e80d'}.icon-town-hall:before{content:'\e80e'}.icon-basket:before{content:'\e839'}.icon-clipboard:before{content:'\f0ea'}.icon-bank:before{content:'\f19c'}

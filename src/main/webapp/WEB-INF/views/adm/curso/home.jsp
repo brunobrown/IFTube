@@ -36,6 +36,7 @@
 	
 	
 	<a href="homeUser"><button>Usuarios</button></a>
+	<a href="homeLink"><button>Links</button></a>
 	<hr>
 	<a href="exibirPaginaCadastrarCurso"><button>Cadastrar
 			Curso</button></a> |

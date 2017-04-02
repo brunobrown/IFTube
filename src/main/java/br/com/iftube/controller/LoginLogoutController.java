@@ -35,8 +35,8 @@ public class LoginLogoutController {
 	
 	
 	@RequestMapping("index")
-	public String exibirLogin() {
-		
+	public String exibirLogin(boolean loginSenhaInvalido, Model model) {
+		model.addAttribute("erro", loginSenhaInvalido);
 		return "index";
 	}
 		
@@ -62,8 +62,7 @@ public class LoginLogoutController {
 	}
 	
 	@RequestMapping("acessoNegado")
-	public String acessoNegado(HttpSession session) {
-		session.invalidate();
+	public String acessoNegado() {
 		return "acessoNegado";
 	}
 	

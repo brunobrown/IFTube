@@ -23,7 +23,10 @@
 			Disciplina</button></a>
 	<hr>
 	${exception}
+	<c:url var="addCurso" value="/addCurso"/>
 	<form action="addCurso" method="post">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	
 	
 	<!--######################
 	Aqui exibo as mensagens de validação com uma tag do Spring MVC chamada: <form:errors/> 

@@ -46,7 +46,7 @@
 		<param-value>
 		
 			/WEB-INF/applicationContext.xml, 
-			/WEB-INF/springSecurityConfig.xml 
+			/WEB-INF/springSecurityConfig.xml
 		
 		</param-value> 
 	</context-param>
@@ -67,7 +67,7 @@
   </filter-mapping>
  
   
-  <!-- Listerner escuta quando algum evento acontecer e realiza uma acao -->
+  <!-- Listerner escuta quando algum evento acontecer e realiza uma acao  -->
   <listener>
   	<listener-class>
   		org.springframework.security.web.session.HttpSessionEventPublisher
@@ -78,6 +78,6 @@
 	<session-config>
 	    <session-timeout>1</session-timeout>
 	</session-config>
-  
+ 
 
 </web-app>

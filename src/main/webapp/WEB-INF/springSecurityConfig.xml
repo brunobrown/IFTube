@@ -7,6 +7,9 @@
 									http://www.springframework.org/schema/security 
 									http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 	
+	
+	<http pattern="/resources/**" security="none" />
+	
 	<!-- Exigindo a autenticacao do usuario-->
 	<http use-expressions="true">
 			
@@ -32,9 +35,10 @@
 		/>
 		
 		<intercept-url 
-			pattern="/novoAluno/**" 
+			pattern="/novoAluno" 
 			access="permitAll" 
 		/>
+		
 					
 		<!-- Criando uma regra (Usuario deve participar de um grupo especifico para pode acessar.
 		 Regra = Usuario deve ser ADMINISTRADOR.)-->
@@ -47,6 +51,7 @@
 			pattern="/public/**" 
 			access="hasAuthority('ALUNO') or hasRole('ROLE_ANONYMOUS')" 
 		/>
+		
 			
 		<!-- Definindo a página de acesso negado, essa pagina será exibida para o usuário
 		caso não tenha acesso a determina url que esteja tentando acessar. -->
@@ -57,7 +62,7 @@
 		<!-- Falha na autenticacao, o usuario e direcionado para (/login.jsp?erro=true) -->
 		<!-- Sucesso na autenticacao, o usuario e direcionado para (/adm/curso/home.jsp) -->
 		<form-login
-			authentication-failure-url="/index?erro=true"
+			authentication-failure-url="/index?loginSenhaInvalido=true"
 			default-target-url="/index"
 			always-use-default-target="true"
 			login-page="/index"
@@ -79,7 +84,7 @@
 			logout-url="/logout"
 			logout-success-url="/index"
 			delete-cookies="JSESSIONID"
-			invalidate-session="false"
+			invalidate-session="true"
 		 />
 		 
 		<session-management invalid-session-url="/index?session=1">
@@ -87,7 +92,7 @@
 		</session-management>
 		
 		<!-- Protegendo a aplicação contra ataques (Cross-Site Request Forgery) -->
-		<csrf /> 
+		<csrf  /> 
 		
 		
 		<!-- Gerenciando a sessão do usuário. 
@@ -122,9 +127,9 @@
 	</http>
 
 	<!-- 
-	Definindo a consulta a base de dados para autenticação.
+	Definindo a consulta com a base de dados para autenticação.
 	 
-		Definindo o gerenciador e provedor que ira ao pegar o login e senha do formulário,
+		Definindo o gerenciador e provedor que ira pegar o login e senha do formulário,
 		gerar o sql e consultar no banco para validar o acesso do usuário a aplicação.
 		 -->
 

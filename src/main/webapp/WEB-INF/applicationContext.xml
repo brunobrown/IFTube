@@ -10,11 +10,14 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
 	<context:annotation-config/>
-	<mvc:annotation-driven conversion-service="conversionService" />
-	<mvc:default-servlet-handler />
-
+	
 	<!-- Escaneia as classes analizando suas respectivas anotacoes -->
 	<context:component-scan base-package="br.com.iftube" />
+	
+	<!-- <mvc:resources mapping="/resources/**" location="/resources/" /> -->
+	<mvc:annotation-driven conversion-service="conversionService" />
+	<mvc:default-servlet-handler />
+	
 
 	<!-- To prevent browser's back button on displayng  secured resource after logout -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">

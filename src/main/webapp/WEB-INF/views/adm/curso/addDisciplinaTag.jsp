@@ -26,8 +26,9 @@ ${exception}<br/>
 
 	<c:choose>
 		<c:when test="${disciplina.id == null}">
+		<c:url var="addDisciplina" value="/addDisciplina"/>
 			<form action="addDisciplina" method="post">
-
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<select name="idCursoFk">
 					<option>Selecione um Curso:</option>
 					<c:forEach var="c" items="${listarCurso}">
@@ -62,7 +63,7 @@ ${exception}<br/>
 	<c:if test="${disciplina.id != null}">
 
 		<hr>
-
+		
 		<form action="addTag" method="get">
 
 			<input type="hidden" name="idDisciplinaFk" value="${disciplina.id}"><br />
