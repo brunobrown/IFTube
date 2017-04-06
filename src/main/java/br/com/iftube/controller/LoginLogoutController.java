@@ -16,6 +16,9 @@ import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.entities.EstadoUsuario;
 import br.com.iftube.model.entities.Perfil;
 import br.com.iftube.model.entities.Usuario;
+import br.com.iftube.service.DisciplinaService;
+import br.com.iftube.service.LinksService;
+import br.com.iftube.service.PalavraChaveService;
 import br.com.iftube.service.UsuarioService;
 
 @Controller
@@ -27,6 +30,15 @@ public class LoginLogoutController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@Autowired
+	private LinksService linkService;
+	
+	@Autowired
+	private DisciplinaService disciplinaService;
+	
+	@Autowired
+	private PalavraChaveService palavraChaveService;
+	
 	@PostConstruct
 	private void init() {
 		this.estadoUsuario = Arrays.asList(EstadoUsuario.values());
@@ -37,6 +49,7 @@ public class LoginLogoutController {
 	@RequestMapping("index")
 	public String exibirLogin(boolean loginSenhaInvalido, Model model) {
 		model.addAttribute("erro", loginSenhaInvalido);
+		model.addAttribute("link", linkService.obterTodosLinks());
 		return "index";
 	}
 		

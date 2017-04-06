@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.iftube.exception.service.ServiceException;
 import br.com.iftube.model.entities.Links;
 import br.com.iftube.service.DisciplinaService;
 import br.com.iftube.service.LinksService;
@@ -45,7 +46,12 @@ public class LinkController {
 	@RequestMapping("cadastrarLink")
 	public String cadastarLink(Links link, String userLogin, Model model){
 		
-		linkService.adicionar(link, usuarioService.obterUsuarioPorLogin(userLogin));
+		try {
+			linkService.adicionar(link, usuarioService.obterUsuarioPorLogin(userLogin));
+		} catch (ServiceException e) {
+			model.addAttribute("exception", e);
+			e.printStackTrace();
+		}
 		return "forward:exibirPaginaCadastrarLink";
 	}
 	

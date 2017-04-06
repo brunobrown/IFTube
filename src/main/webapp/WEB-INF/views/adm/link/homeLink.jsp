@@ -54,10 +54,8 @@
 				<td>${objLink.descricao}</td>
 				<td>${objLink.idDisciplinaFk.nomeDisciplina}</td>
 				<td>
-					<c:forEach var="objpalavraChave" items="${palavraChave}">
-					
-							${objLink.id}|${objpalavraChave.id}
-					
+					<c:forEach var="objPalavraChave" items="${palavraChave}">
+							${objPalavraChave.tag}
 					</c:forEach>
 				</td>
 				<td><a href="exibirPaginaVisualizar?id=${objLink.id}"><button>Visualizar Link</button></a></td>

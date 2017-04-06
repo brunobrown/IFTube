@@ -45,10 +45,10 @@ public class LinksDaoImpl implements LinksDAO {
 	}
 	
 	@Transactional
-	public Links obterLinkPorNome(String nomeLinks) {
+	public Links obterLinkPorNome(String nomeLink) {
 		try {
-		Query q = em.createQuery("select d from Links d where d.nomeLinks=:nomeLinksParam");
-		q.setParameter("nomeLinksParam", nomeLinks);
+		Query q = em.createQuery("select l from Links l where l.link=:nomeLinkParam");
+		q.setParameter("nomeLinkParam", nomeLink);
 		q.setMaxResults(1);
 		return (Links) q.getSingleResult();
 		} catch (NoResultException e) {
@@ -65,4 +65,6 @@ public class LinksDaoImpl implements LinksDAO {
 		return q.getResultList();
 	}
 
+	//SELECT f.codigo FROM Funcionalidades f LEFT JOIN f.tblPerfilCollection p, WHERE p.idPerfil = :id
+	
 }

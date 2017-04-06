@@ -85,7 +85,7 @@
         <li class="active">
         
         
-        <sec:authorize access="hasAuthority('ADMINISTRADOR') or hasAuthority('COORDENADOR')">
+        <sec:authorize access="hasAuthority('ADMINISTRADOR') or hasAuthority('COORDENADOR') or hasAuthority('ALUNO')">
         <a>Bem Vindo <sec:authentication property="name"/><span class="sr-only">(current)</span></a>
         </sec:authorize>
         </li>
@@ -113,7 +113,7 @@
 	            	</div>
 	            	<div class="form-group">
             	 		<label class="sr-only" for="exampleInputPassword2">Senha</label>
-						<input type="text" class="form-control" id="exampleInputPassword2" placeholder="Senha" name="senha">
+						<input type="password" class="form-control" id="exampleInputPassword2" placeholder="Senha" name="senha">
 	            	</div>
 	            	<div class="checkbox">
 	            		<label>
@@ -171,7 +171,7 @@
 
     <section id="content">
       <div class="btn" id="back-to-top">
-          <p id="back-to-top-text">voltar ao topo&nbsp;&nbsp;<i class="icon-up-hand"></i></p>
+          <p id="back-to-top-text">voltar ao topo&nbsp;&nbsp;<strong>&uarr;</strong></p>
           <p id="back-to-top-no-text"><i class="icon-up-hand"></i></p>
       </div>
         <div class="container">
@@ -187,7 +187,7 @@
 
             <div class="title-area">
                 <div class="current-tag-wrapper">
-                    <h3 class="current-tag"><span id="showing-span"></span><span id="tag-span"></span></h3>
+               		<h3 class="current-tag"><span>Mostrando todos os links</span></h3>
                 </div>
 
 
@@ -195,8 +195,8 @@
                 <div class="btn-group btn-group-lg toggle-text grid-active">
 
 
-                   <button class="grid btn btn-default"><i class="icon-th"></i>Capas</button>
-                   <button class="list btn btn-default"><i class="icon-list-bullet"></i>Lista</button>
+                   <button class="grid btn btn-default">Capas</button>
+                   <button class="list btn btn-default">Lista</button>
 
 
                 </div>
@@ -230,185 +230,40 @@
                      <li>
                          <button
                          class="btn btn-large btn-info tag ingles"
-                         data-filter-value=".tag-ingles" data-tag-slug="ingles">ingles</button>
+                         data-filter-value=".tag-ingles" data-tag-slug="ingles">Matemática</button>
                      </li>
-                    
+                     
                      <li>
                          <button
-                         class="btn btn-large btn-info tag biography-and-memoir"
-                         data-filter-value=".tag-biography-and-memoir" data-tag-slug="biography-and-memoir">Logica de Progamação</button>
+                         class="btn btn-large btn-info tag ingles"
+                         data-filter-value=".tag-ingles" data-tag-slug="ingles">inglês</button>
                      </li>
-                    
+                     
+                      <li>
+                         <button
+                         class="btn btn-large btn-info tag ingles"
+                         data-filter-value=".tag-ingles" data-tag-slug="ingles">Português</button>
+                     </li>
+                     
+                      <li>
+                         <button
+                         class="btn btn-large btn-info tag ingles"
+                         data-filter-value=".tag-ingles" data-tag-slug="ingles">Segurança do Trabalho</button>
+                     </li>
+                     
                      <li>
                          <button
-                         class="btn btn-large btn-info tag book-club-ideas"
-                         data-filter-value=".tag-book-club-ideas" data-tag-slug="book-club-ideas">Book Club Ideas</button>
+                         class="btn btn-large btn-info tag ingles"
+                         data-filter-value=".tag-ingles" data-tag-slug="ingles">Lógica de Programação</button>
                      </li>
-                    
-                  
-                     <li>
+                     
+                      <li>
                          <button
-                         class="btn btn-large btn-info tag comics-and-graphic-novels"
-                         data-filter-value=".tag-comics-and-graphic-novels" data-tag-slug="comics-and-graphic-novels">Comics & Graphic Novels</button>
+                         class="btn btn-large btn-info tag ingles"
+                         data-filter-value=".tag-ingles" data-tag-slug="ingles">Redes</button>
                      </li>
                     
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag cookbooks-and-food"
-                         data-filter-value=".tag-cookbooks-and-food" data-tag-slug="cookbooks-and-food">Cookbooks & Food</button>
-                     </li>
                     
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag eye-opening-reads"
-                         data-filter-value=".tag-eye-opening-reads" data-tag-slug="eye-opening-reads">Eye-Opening Reads</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag family-matters"
-                         data-filter-value=".tag-family-matters" data-tag-slug="family-matters">Family Matters</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag for-art-lovers"
-                         data-filter-value=".tag-for-art-lovers" data-tag-slug="for-art-lovers">For Art Lovers</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag for-history-lovers"
-                         data-filter-value=".tag-for-history-lovers" data-tag-slug="for-history-lovers">For History Lovers</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag for-music-lovers"
-                         data-filter-value=".tag-for-music-lovers" data-tag-slug="for-music-lovers">For Music Lovers</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag funny-stuff"
-                         data-filter-value=".tag-funny-stuff" data-tag-slug="funny-stuff">Funny Stuff</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag historical-fiction"
-                         data-filter-value=".tag-historical-fiction" data-tag-slug="historical-fiction">Historical Fiction</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag identity-and-culture"
-                         data-filter-value=".tag-identity-and-culture" data-tag-slug="identity-and-culture">Identity & Culture</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag its-all-geek-to-me"
-                         data-filter-value=".tag-its-all-geek-to-me" data-tag-slug="its-all-geek-to-me">It’s All Geek To Me</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag kids-books"
-                         data-filter-value=".tag-kids-books" data-tag-slug="kids-books">Kids' Books</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag ladies-first"
-                         data-filter-value=".tag-ladies-first" data-tag-slug="ladies-first">Ladies First</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag lets-talk-about-sex"
-                         data-filter-value=".tag-lets-talk-about-sex" data-tag-slug="lets-talk-about-sex">Let's Talk About Sex</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag love-stories"
-                         data-filter-value=".tag-love-stories" data-tag-slug="love-stories">Love Stories</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag mysteries-and-thrillers"
-                         data-filter-value=".tag-mysteries-and-thrillers" data-tag-slug="mysteries-and-thrillers">Mysteries & Thrillers</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag nonfiction"
-                         data-filter-value=".tag-nonfiction" data-tag-slug="nonfiction">Nonfiction</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag poetry"
-                         data-filter-value=".tag-poetry" data-tag-slug="poetry">Poetry & Short Stories</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag rather-long"
-                         data-filter-value=".tag-rather-long" data-tag-slug="rather-long">Rather Long</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag rather-short"
-                         data-filter-value=".tag-rather-short" data-tag-slug="rather-short">Rather Short</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag realistic-fiction"
-                         data-filter-value=".tag-realistic-fiction" data-tag-slug="realistic-fiction">Realistic Fiction</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag science"
-                         data-filter-value=".tag-science" data-tag-slug="science">Science!</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag science-fiction-and-fantasy"
-                         data-filter-value=".tag-science-fiction-and-fantasy" data-tag-slug="science-fiction-and-fantasy">Science Fiction & Fantasy</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag seriously-great-writing"
-                         data-filter-value=".tag-seriously-great-writing" data-tag-slug="seriously-great-writing">Seriously Great Writing</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag tales-from-around-the-world"
-                         data-filter-value=".tag-tales-from-around-the-world" data-tag-slug="tales-from-around-the-world">Tales From Around The World</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag the-dark-side"
-                         data-filter-value=".tag-the-dark-side" data-tag-slug="the-dark-side">The Dark Side</button>
-                     </li>
-                    
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag young-adult"
-                         data-filter-value=".tag-young-adult" data-tag-slug="young-adult">Young Adult</button>
-                     </li>
-                    
-
 
                 </ul>
             </div>
@@ -416,8 +271,11 @@
 
             <div class="books-grid-wrapper">
 
-                <div id="books-grid" class="filter-inactive">
-
+                <div class="filter-inactive">
+					<c:forEach var="objLink" items="${link}">
+						<iframe width="300" height="150" src="https://www.${objLink.link}" frameborder="0" allowfullscreen></iframe>
+					</c:forEach>
+				
                 </div>
 
                 <ul id="books-list">
@@ -438,23 +296,11 @@
     <footer id="footer">
         <div class="primary">
             <ul>
-                <li><a href="http://www.npr.org" data-action="Click Logo"><img src="resources/assets/logo.png" alt="NPR Logo"></a></li>
-                <li class="news"><a href="http://www.npr.org/sections/news/">News</a></li>
-                <li class="artslife"><a href="http://www.npr.org/sections/arts/">Arts &amp; Life</a></li>
-                <li class="music"><a href="http://www.npr.org/music/">Music</a></li>
-                <li class="programs"><a href="http://www.npr.org/programs/">Programs</a></li>
-                <li class="listen"><a href="http://www.npr.org/listen/">Listen</a></li>
-                <li class="about"><a href="http://www.npr.org/about/">About</a></li>
+               <li><a href="https://www.facebook.com/bruno.brown.75" >facebook</a></li>
             </ul>
         </div>
         <div class="secondary">
-            <p>&copy;2016 IFTube</p>
-            <ul>
-                <li id="footerContact"><a href="http://help.npr.org/npr/includes/customer/npr/custforms/contactus.aspx">Contato</a></li>
-                <li><a href="http://www.npr.org/about/termsofuse.html">Terms of Use</a></li>
-                <li><a href="http://www.npr.org/about/privacypolicy.html">Privacy</a></li>
-                <li><a href="http://thin.npr.org/">Text-Only</a></li>
-            </ul>
+            <p>&copy;2017 IFTube</p>
         </div>
     </footer>
     
@@ -508,22 +354,6 @@ http://apps.npr.org/best-books-2016/ &amp;subject=NPR's best books of 2016" oncl
     <script src="resources/js/lib/clipboard.min.js"></script>
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <script type="text/javascript" src="resources/js/app-footer.min.js?1481298572"></script>
 
     
@@ -543,11 +373,6 @@ http://apps.npr.org/best-books-2016/ &amp;subject=NPR's best books of 2016" oncl
 	    });
 	</script>
 </c:if>
-
-
-<script type="text/javascript" src="resources/js/algoritimo.js"></script>
-
-
 
 </body>
 </html>
