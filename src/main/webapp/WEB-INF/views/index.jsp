@@ -159,7 +159,7 @@
 <header id="top">
     <div class="header-wrapper">
         <a class="iftube" href="#"><img src="resources/assets/logo_IFTube.png" alt="IFTube" /></a>
-        <h1>Simples. Facil. Divertido.</h1>
+        <h1>O temor do Senhor é o princípio da sabedoria; bom entendimento têm todos os que lhe obedecem; o seu louvor permanece para sempre. Salmos 111:10</h1>
         <h2>Os Melhores Links Estão Aqui!</h2>
         <p class="byline">Não desperdice seu tempo estudando através de vídeos que não tem nada a ver com as disciplinas.<br/>Utilize os melhores!</p>
     </div>
