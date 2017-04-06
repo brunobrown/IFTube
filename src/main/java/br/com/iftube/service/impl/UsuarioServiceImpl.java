@@ -104,6 +104,11 @@ public class UsuarioServiceImpl implements UsuarioService, Converter<String, Usu
 	}
 	
 	@Transactional
+	public Usuario obterUsuarioPorLogin(String login) {
+		return usuarioDao.obterUsuarioPorLogin(login);
+	}
+	
+	@Transactional
 	public Usuario obterUsuarioPorMatricula(String idMatriculaAlunoFk) {
 		return usuarioDao.obterUsuarioPorNome(idMatriculaAlunoFk);
 	}

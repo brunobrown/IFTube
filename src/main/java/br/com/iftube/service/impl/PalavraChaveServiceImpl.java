@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +14,7 @@ import br.com.iftube.model.entities.PalavraChave;
 import br.com.iftube.service.PalavraChaveService;
 
 @Service
-public class PalavraChaveServiceImpl implements PalavraChaveService {
+public class PalavraChaveServiceImpl implements PalavraChaveService, Converter<String, PalavraChave> {
 
 	@Autowired
 	private PalavraChaveDAO palavraChaveDao;
@@ -164,6 +165,16 @@ public class PalavraChaveServiceImpl implements PalavraChaveService {
 	@Transactional
 	public List obterTodosTag() {
 		return palavraChaveDao.obterTodosTag();
+	}
+	
+	@Transactional
+	public PalavraChave convert(String id) {
+		
+		if (!id.equals("")) {
+			return palavraChaveDao.obterTagPorNome(String.valueOf(id));
+		} else {
+		    return null;
+		}
 	}
 
 }

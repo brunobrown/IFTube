@@ -9,6 +9,7 @@ import br.com.iftube.model.entities.Links;
 import br.com.iftube.service.DisciplinaService;
 import br.com.iftube.service.LinksService;
 import br.com.iftube.service.PalavraChaveService;
+import br.com.iftube.service.UsuarioService;
 
 @Controller
 public class LinkController {
@@ -22,25 +23,30 @@ public class LinkController {
 	@Autowired
 	private PalavraChaveService palavraChaveService;
 	
+	@Autowired
+	private UsuarioService usuarioService;
+	
 	@RequestMapping("homeLink")
 	public String exibirHomeLink(Model model){
 		model.addAttribute("link", linkService.obterTodosLinks());
+		model.addAttribute("palavraChave", palavraChaveService.obterTodosTag());
 		return "adm/link/homeLink";
 	}
 	
 	@RequestMapping("exibirPaginaCadastrarLink")
-	public String exibirPaginaCadastarLink(Model model){
+	public String exibirPaginaCadastarLink(String idDisciplinaSelecionada, Model model){
 		model.addAttribute("disciplina", disciplinaService.obterTodosDisciplina());
 		model.addAttribute("palavraChave", palavraChaveService.obterTodosTag());
-		
+		model.addAttribute("idDisciplinaSelecionada", idDisciplinaSelecionada);
+		model.addAttribute("link", linkService.obterTodosLinks());
 		return "adm/link/addLink";
 	}
 	
 	@RequestMapping("cadastrarLink")
-	public String cadastarLink(Links link, Model model){
-		linkService.adicionar(link);
-		model.addAttribute("link", linkService.obterTodosLinks());
-		return "forward:exibirPaginaCadastarLink";
+	public String cadastarLink(Links link, String userLogin, Model model){
+		
+		linkService.adicionar(link, usuarioService.obterUsuarioPorLogin(userLogin));
+		return "forward:exibirPaginaCadastrarLink";
 	}
 	
 	@RequestMapping("exibirPaginaVisualizarLink")

@@ -15,6 +15,7 @@ public interface UsuarioService {
 	public Usuario validarUsuario(Usuario usuario);
 	public boolean verificarPerfilUsuario(Usuario usuario);
 	public Usuario obterUsuarioPorNome(String nome);
+	public Usuario obterUsuarioPorLogin(String login);
 	public Usuario obterUsuarioPorMatricula(String idMatriculaAlunoFk);
 	@SuppressWarnings("rawtypes")
 	public List obterTodosUsuario();

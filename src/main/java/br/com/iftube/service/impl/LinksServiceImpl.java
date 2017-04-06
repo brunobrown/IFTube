@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.iftube.model.daos.LinksDAO;
 import br.com.iftube.model.entities.Links;
+import br.com.iftube.model.entities.Usuario;
 import br.com.iftube.service.LinksService;
 
 @Service
@@ -18,7 +19,9 @@ public class LinksServiceImpl implements LinksService {
 	
 	
 	@Transactional
-	public Links adicionar(Links link) {
+	public Links adicionar(Links link, Usuario usuario) {
+		
+		link.setIdUsuarioFk(usuario);
 		return linksDao.adicionar(link);
 	}
 

@@ -12,6 +12,7 @@ public interface UsuarioDAO {
 	public Usuario obterUsuarioPorId(int usuarioId);
 	public Usuario obterUsuario(String login, String senha);
 	public Usuario obterUsuarioPorNome(String nome);
+	public Usuario obterUsuarioPorLogin(String login);
 	@SuppressWarnings("rawtypes")
 	public List obterTodosUsuario();
 }

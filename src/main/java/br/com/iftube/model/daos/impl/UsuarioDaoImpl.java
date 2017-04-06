@@ -70,6 +70,19 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 			//throw new DAOException("Resgistro não encontrado", e);
 		}
 	}
+	
+	@Transactional
+	public Usuario obterUsuarioPorLogin(String login) {
+		try {
+		Query q = em.createQuery("select u from Usuario u where u.login=:loginParam");
+		q.setParameter("loginParam", login);
+		q.setMaxResults(1);
+		return (Usuario) q.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+			//throw new DAOException("Resgistro não encontrado", e);
+		}
+	}
 
 
 	@SuppressWarnings("rawtypes")

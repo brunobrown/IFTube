@@ -51,10 +51,13 @@
 			<tr bgcolor="#${ i.count % 2 == 0 ? 'ffffff' : 'bdc3c7' }" >
 				<td>${objLink.id}</td>
 				<td>${objLink.link}</td>
+				<td>${objLink.descricao}</td>
 				<td>${objLink.idDisciplinaFk.nomeDisciplina}</td>
 				<td>
-					<c:forEach var="objLink" items="${link}">
-						${objLink.idPalavraChaveFk.tag}
+					<c:forEach var="objpalavraChave" items="${palavraChave}">
+					
+							${objLink.id}|${objpalavraChave.id}
+					
 					</c:forEach>
 				</td>
 				<td><a href="exibirPaginaVisualizar?id=${objLink.id}"><button>Visualizar Link</button></a></td>
