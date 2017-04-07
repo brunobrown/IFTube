@@ -159,7 +159,7 @@
 <header id="top">
     <div class="header-wrapper">
         <a class="iftube" href="#"><img src="resources/assets/logo_IFTube.png" alt="IFTube" /></a>
-        <h1>O temor do Senhor é o princípio da sabedoria; bom entendimento têm todos os que lhe obedecem; o seu louvor permanece para sempre. Salmos 111:10</h1>
+        <h1>O temor do Senhor é o princípio da sabedoria;</h1>
         <h2>Os Melhores Links Estão Aqui!</h2>
         <p class="byline">Não desperdice seu tempo estudando através de vídeos que não tem nada a ver com as disciplinas.<br/>Utilize os melhores!</p>
     </div>
@@ -227,43 +227,16 @@
                         <button class="btn btn-large btn-info clear-tags hide" data-filter-value="*"><i class="icon-cancel-circled2">&nbsp;&nbsp;</i>Limpar Filtro</button>
                     </li>
                     
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag ingles"
-                         data-filter-value=".tag-ingles" data-tag-slug="ingles">Matemática</button>
-                     </li>
-                     
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag ingles"
-                         data-filter-value=".tag-ingles" data-tag-slug="ingles">inglês</button>
-                     </li>
-                     
-                      <li>
-                         <button
-                         class="btn btn-large btn-info tag ingles"
-                         data-filter-value=".tag-ingles" data-tag-slug="ingles">Português</button>
-                     </li>
-                     
-                      <li>
-                         <button
-                         class="btn btn-large btn-info tag ingles"
-                         data-filter-value=".tag-ingles" data-tag-slug="ingles">Segurança do Trabalho</button>
-                     </li>
-                     
-                     <li>
-                         <button
-                         class="btn btn-large btn-info tag ingles"
-                         data-filter-value=".tag-ingles" data-tag-slug="ingles">Lógica de Programação</button>
-                     </li>
-                     
-                      <li>
-                         <button
-                         class="btn btn-large btn-info tag ingles"
-                         data-filter-value=".tag-ingles" data-tag-slug="ingles">Redes</button>
-                     </li>
                     
+                    <c:forEach var="objLink" items="${link}">
                     
+                    <li>
+                        <button
+                        	class="btn btn-large btn-info tag ingles"
+                         	data-filter-value=".tag-ingles" data-tag-slug="ingles">${objLink.idDisciplinaFk.nomeDisciplina}</button>
+                    </li>
+                    
+                    </c:forEach>
 
                 </ul>
             </div>
@@ -314,22 +287,16 @@
                     <h4>Share this App</h4>
 
                     <p>
-                    <textarea class="summary-text" id="summary-text" type="text" readonly>Visit the #bookconcierge, NPR's guide to 2016's great reads. http://apps.npr.org/best-books-2016/</textarea><a class="clippy" data-toggle="tooltip" data-trigger="manual" data-placement="right" title="Copied!" data-clipboard-target="#summary-text"><i class="icon icon-clipboard share-icon"></i> Copy</a></p>
+                    <textarea class="summary-text" id="summary-text" type="text" readonly></textarea><a class="clippy" data-toggle="tooltip" data-trigger="manual" data-placement="right" title="Copied!" data-clipboard-target="#summary-text"><i class="icon icon-clipboard share-icon"></i> Copy</a></p>
 
                 </div><!-- / story-summary -->
 
-                <div class="email-friend">
-                        <h4><a href="mailto:?body=Explore more than 300 books NPR staff and critics loved this year. 
-http://apps.npr.org/best-books-2016/ &amp;subject=NPR's best books of 2016" onclick="_gaq.push(['_trackEvent', 'best-books-2016', 'email', 'share-discuss']);"><i class="icon icon-mail share-icon"></i> <b>Email to a friend</b></a></h4>
-                    </div><!-- / email-friend -->
 
                 <div class="facebook-share share-section">
 
                     <h4>On Facebook</h4>
                     <ul class="featured-facebook-posts">
                         
-                    </ul><!-- / featured-tweets -->
-                    <p class="share-story"><a href="https://www.facebook.com/dialog/feed?app_id=138837436154588&amp;link=http%3A%2F%2Fapps.npr.org%2Fbest-books-2016%2F&amp;name=NPR%27s+Book+Concierge&amp;picture=http%3A%2F%2Fapps.npr.org%2Fbest-books-2016%2Fassets%2Fimg%2Fcovers.jpg&amp;redirect_uri=http%3A%2F%2Fapps.npr.org%2Fbest-books-2016%2F" target="_blank" onclick="_gaq.push(['_trackEvent', 'best-books-2016', 'facebook', 'share-discuss']);"><i class="icon icon-facebook share-icon"></i> <b>Share on Facebook</b></a></p>
                 </div><!-- / facebook-share -->
 
                 <div class="twitter-share share-section">
@@ -342,7 +309,6 @@ http://apps.npr.org/best-books-2016/ &amp;subject=NPR's best books of 2016" oncl
                     </ul><!-- / featured-tweets -->
 
                     <p class="share-story">
-                        <a href="http://twitter.com/share?text=Visit+the+%23bookconcierge%2C+%40NPRBooks%27+guide+to+2016%27s+great+reads.&amp;url=http%3A%2F%2Fapps.npr.org%2Fbest-books-2016%2F" target="_blank" onclick="_gaq.push(['_trackEvent', 'best-books-2016', 'tweet', 'share-discuss']);"><i class="icon icon-twitter share-icon"></i> <b>Share on Twitter</b></a>
                     </p>
                 </div><!-- / twitter-share -->
             </div><!-- / modal-body -->
