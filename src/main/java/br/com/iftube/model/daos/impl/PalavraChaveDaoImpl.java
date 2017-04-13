@@ -65,5 +65,12 @@ public class PalavraChaveDaoImpl implements PalavraChaveDAO {
 		Query q = em.createQuery("from PalavraChave");
 		return q.getResultList();
 	}
+	
+	@SuppressWarnings("rawtypes")
+	@Transactional
+	public List obterTodosLinksPalavrasChavesIds() {
+		Query q = em.createQuery("from PalavraChave as pc left join fetch pc.linkId");
+		return q.getResultList();
+	}
 
 }

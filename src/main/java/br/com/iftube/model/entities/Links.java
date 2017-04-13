@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -17,11 +18,10 @@ import javax.persistence.Table;
 @Table(name="links")
 public class Links implements Serializable{
 	
-
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3310808216030725020L;
+	private static final long serialVersionUID = -2846403149994104824L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,8 +42,8 @@ public class Links implements Serializable{
 	private Usuario idUsuarioFk;
 	
 	@ManyToMany
-	@JoinColumn(name = "id_palavra_chave_fk")
-	private List<PalavraChave> idPalavraChaveFk;
+	@JoinTable(name="palavras_chaves_links", joinColumns={@JoinColumn(name="link_id")}, inverseJoinColumns={@JoinColumn(name="palavra_chave_id")})
+	private List<PalavraChave> palavraChaveId;
 	
 	//private Views views;
 	//private Comentario comentario;
@@ -89,12 +89,12 @@ public class Links implements Serializable{
 		this.idUsuarioFk = idUsuarioFk;
 	}
 
-	public List<PalavraChave> getIdPalavraChaveFk() {
-		return idPalavraChaveFk;
+	public List<PalavraChave> getPalavraChaveId() {
+		return palavraChaveId;
 	}
 
-	public void setIdPalavraChaveFk(List<PalavraChave> idPalavraChaveFk) {
-		this.idPalavraChaveFk = idPalavraChaveFk;
+	public void setPalavraChaveId(List<PalavraChave> palavraChaveId) {
+		this.palavraChaveId = palavraChaveId;
 	}
 
 	@Override
@@ -104,9 +104,9 @@ public class Links implements Serializable{
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((idDisciplinaFk == null) ? 0 : idDisciplinaFk.hashCode());
-		result = prime * result + ((idPalavraChaveFk == null) ? 0 : idPalavraChaveFk.hashCode());
 		result = prime * result + ((idUsuarioFk == null) ? 0 : idUsuarioFk.hashCode());
 		result = prime * result + ((link == null) ? 0 : link.hashCode());
+		result = prime * result + ((palavraChaveId == null) ? 0 : palavraChaveId.hashCode());
 		return result;
 	}
 
@@ -134,11 +134,6 @@ public class Links implements Serializable{
 				return false;
 		} else if (!idDisciplinaFk.equals(other.idDisciplinaFk))
 			return false;
-		if (idPalavraChaveFk == null) {
-			if (other.idPalavraChaveFk != null)
-				return false;
-		} else if (!idPalavraChaveFk.equals(other.idPalavraChaveFk))
-			return false;
 		if (idUsuarioFk == null) {
 			if (other.idUsuarioFk != null)
 				return false;
@@ -148,6 +143,11 @@ public class Links implements Serializable{
 			if (other.link != null)
 				return false;
 		} else if (!link.equals(other.link))
+			return false;
+		if (palavraChaveId == null) {
+			if (other.palavraChaveId != null)
+				return false;
+		} else if (!palavraChaveId.equals(other.palavraChaveId))
 			return false;
 		return true;
 	}

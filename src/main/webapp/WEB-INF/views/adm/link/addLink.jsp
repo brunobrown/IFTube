@@ -14,7 +14,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<!-- jQuery -->
 <script src="resources/js/jquery.js"></script>
 
 <script>
@@ -36,18 +35,13 @@
 						});
 			});
 </script>
-<script type="text/javascript"
-	src="resources/js/webfonts.min.js?1481298570"></script>
-
-<!-- CSS -->
-<!-- FONTS -->
 
 <link rel="stylesheet" type="text/css"
-	href="resources/css/rendered/fonts.min.css?1481298571" />
+	href="resources/css/rendered/fonts.min.css" />
 
 
 <link rel="stylesheet" type="text/css"
-	href="resources/css/app.min.css?1481298571" />
+	href="resources/css/bootstrap.min.css" />
 
 </head>
 <body id='conteudo'>
@@ -94,7 +88,7 @@
 				</a>
 								
 				<input type="hidden" id="${objPalavraChave.tag}"
-					class="${objPalavraChave.tag}" name="idPalavraChaveFk"
+					class="${objPalavraChave.tag}" name="palavraChaveId"
 					value="${objPalavraChave.tag}" />
 	
 				<script>
@@ -136,12 +130,16 @@ Descrição:<br />
 			<th>DESCRIÇÃO</th>
 		</tr>
 
-		<c:forEach var="objLink" items="${link}">
-		
-				${objLink.id}<br/>
-				${objLink.descricao}<br/>
-		
-		</c:forEach>
+	
+			<c:forEach var="objLinksTags" items="${linksTags}">
+				${objLinksTags.id}
+			</c:forEach>
+			
+			<!-- 
+			<c:forEach var="objTagsLinks" items="${tagsLinks}">
+				${objTagsLinks.id}
+			</c:forEach>
+			-->
 
 		<tr>
 			<c:url var="editLink" value="/editLink" />
@@ -167,6 +165,9 @@ Descrição:<br />
 		</tr>
 
 	</table>
-
+ <!-- JavaScript -->
+    <script src="resources/js/jquery.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
+    <script src="resources/js/modern-business.js"></script>
 </body>
 </html>

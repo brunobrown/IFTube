@@ -65,6 +65,15 @@ public class LinksDaoImpl implements LinksDAO {
 		return q.getResultList();
 	}
 
-	//SELECT f.codigo FROM Funcionalidades f LEFT JOIN f.tblPerfilCollection p, WHERE p.idPerfil = :id
+	@SuppressWarnings("rawtypes")
+	@Transactional
+	public List obterTodosPalavrasChavesLinksIds() {
+		Query q = em.createQuery("from Links as l left join fetch l.palavraChaveId");
+		return q.getResultList();
+	}
+	
+	//SELECT car FROM Carro as car JOIN FETCH car.acessorios WHERE car.codigo=?
+	//from Links as l left join FETCH l.palavraChaveId as pc where pc.tag =: 2
+	//SELECT l.id FROM Links l LEFT JOIN l.palavraChaveId p, WHERE p.idPerfil = :id
 	
 }

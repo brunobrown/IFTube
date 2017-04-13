@@ -13,4 +13,6 @@ public interface LinksDAO {
 	public Links obterLinkPorNome(String nomeLink);
 	@SuppressWarnings("rawtypes")
 	public List obterTodosLinks();
+	@SuppressWarnings("rawtypes")
+	public List obterTodosPalavrasChavesLinksIds();
 }

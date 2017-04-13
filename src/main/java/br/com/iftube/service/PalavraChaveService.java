@@ -14,5 +14,7 @@ public interface PalavraChaveService {
 	public PalavraChave obterTagPorNome(String tag);
 	@SuppressWarnings("rawtypes")
 	public List obterTodosTag();
+	@SuppressWarnings("rawtypes")
+	public List obterTodosLinksPalavrasChavesIds();
 	
 }

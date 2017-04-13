@@ -177,4 +177,11 @@ public class PalavraChaveServiceImpl implements PalavraChaveService, Converter<S
 		}
 	}
 
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public List obterTodosLinksPalavrasChavesIds() {
+		return palavraChaveDao.obterTodosLinksPalavrasChavesIds();
+	}
+
 }

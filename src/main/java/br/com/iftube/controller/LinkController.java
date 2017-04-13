@@ -35,13 +35,16 @@ public class LinkController {
 	}
 	
 	@RequestMapping("exibirPaginaCadastrarLink")
-	public String exibirPaginaCadastarLink(String idDisciplinaSelecionada, Model model){
+	public String exibirPaginaCadastarLink(Links link, String idDisciplinaSelecionada, Model model){
 		model.addAttribute("disciplina", disciplinaService.obterTodosDisciplina());
 		model.addAttribute("palavraChave", palavraChaveService.obterTodosTag());
 		model.addAttribute("idDisciplinaSelecionada", idDisciplinaSelecionada);
 		model.addAttribute("link", linkService.obterTodosLinks());
-		return "adm/link/addLink";
+		model.addAttribute("linksTags", linkService.obterTodosPalavrasChavesLinksIds());
+		model.addAttribute("tagsLinks", linkService.obterTodosPalavrasChavesLinksIds());
+	return "adm/link/addLink";
 	}
+	
 	
 	@RequestMapping("cadastrarLink")
 	public String cadastarLink(Links link, String userLogin, Model model){
@@ -52,7 +55,9 @@ public class LinkController {
 			model.addAttribute("exception", e);
 			e.printStackTrace();
 		}
+		model.addAttribute(link);
 		return "forward:exibirPaginaCadastrarLink";
+		
 	}
 	
 	@RequestMapping("exibirPaginaVisualizarLink")

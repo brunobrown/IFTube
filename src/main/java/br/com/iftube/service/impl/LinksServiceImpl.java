@@ -64,4 +64,11 @@ public class LinksServiceImpl implements LinksService {
 		return linksDao.obterTodosLinks();
 	}
 
+	@SuppressWarnings("rawtypes")
+	@Override
+	public List obterTodosPalavrasChavesLinksIds() {
+		
+		return linksDao.obterTodosPalavrasChavesLinksIds();
+	}
+
 }

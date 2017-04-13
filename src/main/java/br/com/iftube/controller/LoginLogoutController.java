@@ -36,8 +36,6 @@ public class LoginLogoutController {
 	@Autowired
 	private DisciplinaService disciplinaService;
 	
-	@Autowired
-	private PalavraChaveService palavraChaveService;
 	
 	@PostConstruct
 	private void init() {
@@ -49,6 +47,7 @@ public class LoginLogoutController {
 	@RequestMapping("index")
 	public String exibirLogin(boolean loginSenhaInvalido, Model model) {
 		model.addAttribute("erro", loginSenhaInvalido);
+		model.addAttribute("Disciplina", disciplinaService.obterTodosDisciplina());
 		model.addAttribute("link", linkService.obterTodosLinks());
 		return "index";
 	}

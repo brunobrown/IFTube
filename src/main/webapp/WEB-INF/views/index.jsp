@@ -18,7 +18,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   
+   	
+   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- CHARTBEAT -->
     <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
@@ -26,15 +27,15 @@
     <!-- WEBFONTS -->
     
     
-    <script type="text/javascript" src="resources/js/webfonts.min.js?1481298570"></script>
+    <script type="text/javascript" src="resources/js/webfonts.min.js"></script>
 
     <!-- CSS -->
     <!-- FONTS -->
     
-    <link rel="stylesheet" type="text/css" href="resources/css/rendered/fonts.min.css?1481298571" />
+    <link rel="stylesheet" type="text/css" href="resources/css/rendered/fonts.min.css" />
     
     
-    <link rel="stylesheet" type="text/css" href="resources/css/app.min.css?1481298571" />
+    <link rel="stylesheet" type="text/css" href="resources/css/app.min.css" />
 
        
 </head>
@@ -159,8 +160,8 @@
 <header id="top">
     <div class="header-wrapper">
         <a class="iftube" href="#"><img src="resources/assets/logo_IFTube.png" alt="IFTube" /></a>
-        <h1>O temor do Senhor é o princípio da sabedoria;</h1>
-        <h2>Os Melhores Links Estão Aqui!</h2>
+        <h2>O temor do Senhor é o princípio da sabedoria;</h2>
+        <h3>Os Melhores Links Estão Aqui!</h3>
         <p class="byline">Não desperdice seu tempo estudando através de vídeos que não tem nada a ver com as disciplinas.<br/>Utilize os melhores!</p>
     </div>
 
@@ -228,12 +229,12 @@
                     </li>
                     
                     
-                    <c:forEach var="objLink" items="${link}">
+                    <c:forEach var="objDisciplina" items="${Disciplina}">
                     
                     <li>
                         <button
                         	class="btn btn-large btn-info tag ingles"
-                         	data-filter-value=".tag-ingles" data-tag-slug="ingles">${objLink.idDisciplinaFk.nomeDisciplina}</button>
+                         	data-filter-value=".tag-ingles" data-tag-slug="ingles">${objDisciplina.nomeDisciplina}</button>
                     </li>
                     
                     </c:forEach>
@@ -270,6 +271,8 @@
         <div class="primary">
             <ul>
                <li><a href="https://www.facebook.com/bruno.brown.75" >facebook</a></li>
+               <li><i class="fa fa-facebook-official" style="font-size:48px;color:red"></i></li>
+            	<li><a class="icon-1" href="https://www.facebook.com/devmedia.com.br/" target="_blank"></a></li>
             </ul>
         </div>
         <div class="secondary">
@@ -318,10 +321,11 @@
 
     <!-- JS -->
     <script src="resources/js/lib/clipboard.min.js"></script>
-    
-    
-    <script type="text/javascript" src="resources/js/app-footer.min.js?1481298572"></script>
 
+     <!-- JavaScript -->
+    <script src="resources/js/jquery.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
+    <script src="resources/js/modern-business.js"></script>
     
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="true">
